@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>出价的底层逻辑 · 食饮投放契约课 v4.1</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Montserrat:wght@400;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-0: #07091A;
+    --bg-1: #0B0F22;
+    --bg-2: #11162E;
+    --line: rgba(255,255,255,0.08);
+    --line-strong: rgba(255,255,255,0.18);
+    --purple: #7C5CFF;
+    --purple-2: #A48BFF;
+    --cyan: #38D6FF;
+    --cyan-2: #7BE7FF;
+    --green: #14E5A0;
+    --orange: #FF9F45;
+    --red: #FF5C7C;
+    --gold: #FFC857;
+    --text-1: #F1F5FF;
+    --text-2: #B7BED9;
+    --text-3: #6B7396;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg-0);
+    color: var(--text-1);
+    font-family: 'Noto Sans SC', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+  body { scroll-snap-type: y mandatory; overflow-y: scroll; height: 100vh; }
+  .num, .data-num { font-family: 'Montserrat','DM Mono',monospace; font-feature-settings:'tnum'; letter-spacing:-0.02em; }
+  section.slide {
+    position: relative; width: 100vw; min-height: 100vh;
+    scroll-snap-align: start;
+    padding: 56px 72px 72px;
+    display: flex; flex-direction: column; overflow: hidden;
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(124,92,255,0.15), transparent 60%),
+      radial-gradient(900px 500px at -5% 110%, rgba(56,214,255,0.10), transparent 60%),
+      var(--bg-0);
+  }
+  section.slide::before {
+    content:""; position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 80%);
+    pointer-events:none;
+  }
+  .top-nav {
+    position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+    z-index: 1000;
+    display: flex; gap: 10px;
+    padding: 0; border-radius: 999px;
+    font-size: 13px; color: var(--text-2);
+  }
+  .top-nav a {
+    padding: 8px 18px; border-radius: 999px; text-decoration:none;
+    color:var(--text-2); transition:all .25s;
+    background: rgba(11,15,34,0.55); backdrop-filter: blur(14px);
+    border: 1px solid var(--line);
+    font-weight: 500;
+  }
+  .top-nav a:hover { color:var(--text-1); border-color: var(--line-strong); transform: translateY(-1px); }
+  .top-nav a[data-target="act1"]:hover, .top-nav a[data-target="act1"].active { color:#fff; background: linear-gradient(135deg, rgba(124,92,255,0.85), rgba(124,92,255,0.55)); border-color: rgba(124,92,255,0.6); box-shadow: 0 4px 18px rgba(124,92,255,0.35); }
+  .top-nav a[data-target="act3"]:hover, .top-nav a[data-target="act3"].active { color:#fff; background: linear-gradient(135deg, rgba(164,139,255,0.85), rgba(124,92,255,0.55)); border-color: rgba(164,139,255,0.6); box-shadow: 0 4px 18px rgba(124,92,255,0.35); }
+  .top-nav a[data-target="act4"]:hover, .top-nav a[data-target="act4"].active { color:#fff; background: linear-gradient(135deg, rgba(56,214,255,0.85), rgba(56,214,255,0.5)); border-color: rgba(56,214,255,0.6); box-shadow: 0 4px 18px rgba(56,214,255,0.35); }
+  .top-nav a[data-target="act5"]:hover, .top-nav a[data-target="act5"].active { color:#fff; background: linear-gradient(135deg, rgba(255,92,124,0.85), rgba(255,92,124,0.5)); border-color: rgba(255,92,124,0.6); box-shadow: 0 4px 18px rgba(255,92,124,0.35); }
+  .top-nav a[data-target="act6"]:hover, .top-nav a[data-target="act6"].active { color:#fff; background: linear-gradient(135deg, rgba(255,200,87,0.85), rgba(255,159,69,0.6)); border-color: rgba(255,200,87,0.6); box-shadow: 0 4px 18px rgba(255,159,69,0.35); }
+  .top-nav a[data-target="card"]:hover, .top-nav a[data-target="card"].active { color:#0B0F22; background: linear-gradient(135deg, #FFD27A, #FF9F45); border-color: rgba(255,200,87,0.7); box-shadow: 0 4px 18px rgba(255,159,69,0.4); font-weight:700; }
+  .progress-bar { position:fixed; top:0; left:0; right:0; height:2px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    z-index:1001; transform-origin:left; transform:scaleX(0); transition:transform .25s; }
+  .page-num { position:absolute; right:32px; bottom:24px;
+    font-family:'Montserrat',monospace; font-size:11px; color:var(--text-3); letter-spacing:0.2em; }
+  .module-tag {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:5px 12px; border-radius:999px;
+    background: rgba(255,255,255,0.04); border:1px solid var(--line);
+    font-size:11.5px; color:var(--text-2); margin-bottom: 18px;
+  }
+  .module-tag .num { color: var(--purple-2); font-weight: 700; }
+  h1.slide-title { font-size: 46px; font-weight: 800; line-height: 1.2; letter-spacing:-0.01em; margin: 0 0 14px; }
+  h2.slide-title { font-size: 36px; font-weight: 800; line-height: 1.25; margin: 0 0 12px; }
+  h3.section-title { font-size: 22px; font-weight: 700; margin: 0 0 12px; color: var(--text-1); }
+  .subtitle { font-size: 15px; color: var(--text-2); line-height: 1.7; max-width: 880px; }
+  .gradient-text { background: linear-gradient(135deg, var(--purple-2) 0%, var(--cyan-2) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .gold-text { background: linear-gradient(135deg, #FFD27A, #FF9F45);
+    -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .red-text { background: linear-gradient(135deg, #FF8FA8, #FF5C7C);
+    -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .green-text { background: linear-gradient(135deg, #6CFFD0, #14E5A0);
+    -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .glass {
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+    border: 1px solid var(--line); border-radius: 16px; backdrop-filter: blur(8px);
+  }
+  .glass:hover { border-color: var(--line-strong); }
+  .glass-strong {
+    background: linear-gradient(180deg, rgba(124,92,255,0.08), rgba(56,214,255,0.04));
+    border: 1px solid rgba(124,92,255,0.3); border-radius: 16px;
+  }
+  .glass-red {
+    background: linear-gradient(180deg, rgba(255,92,124,0.08), rgba(255,92,124,0.02));
+    border: 1px solid rgba(255,92,124,0.3); border-radius: 16px;
+  }
+  .glass-green {
+    background: linear-gradient(180deg, rgba(20,229,160,0.08), rgba(20,229,160,0.02));
+    border: 1px solid rgba(20,229,160,0.3); border-radius: 16px;
+  }
+  .glass-gold {
+    background: linear-gradient(180deg, rgba(255,200,87,0.10), rgba(255,159,69,0.03));
+    border: 1px solid rgba(255,200,87,0.3); border-radius: 16px;
+  }
+  .big-num { font-family:'Montserrat',monospace; font-weight:800; line-height:1; letter-spacing:-0.03em; }
+  .reveal { opacity:0; transform: translateY(20px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity:1; transform: translateY(0); }
+  .reveal-d1 { transition-delay:.1s } .reveal-d2 { transition-delay:.2s }
+  .reveal-d3 { transition-delay:.3s } .reveal-d4 { transition-delay:.4s }
+  .reveal-d5 { transition-delay:.5s }
+  @keyframes pulseGlow { 0%,100% { text-shadow:0 0 32px rgba(124,92,255,0.3); } 50% { text-shadow: 0 0 64px rgba(124,92,255,0.6); } }
+  .pulse-glow { animation: pulseGlow 3s ease-in-out infinite; }
+  .glow-border { position:relative; }
+  .glow-border::before {
+    content:""; position:absolute; inset:-1px; border-radius: inherit; padding: 1px;
+    background: linear-gradient(135deg, var(--purple), var(--cyan), var(--purple));
+    background-size: 200% 200%; animation: borderFlow 6s linear infinite;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+  }
+  @keyframes borderFlow { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+
+  .stage-tag { display:inline-flex; align-items:center; gap:8px;
+    padding:4px 10px; border-radius:6px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; }
+  .stage-tag.symptom { background: rgba(255,92,124,0.15); color: #FFB0BE; border: 1px solid rgba(255,92,124,0.3); }
+  .stage-tag.diag { background: rgba(56,214,255,0.15); color: var(--cyan-2); border: 1px solid rgba(56,214,255,0.3); }
+  .stage-tag.cure { background: rgba(20,229,160,0.15); color: #6CFFD0; border: 1px solid rgba(20,229,160,0.3); }
+  .stage-tag.law { background: rgba(124,92,255,0.18); color: var(--purple-2); border: 1px solid rgba(124,92,255,0.35); }
+
+  .quote-box {
+    border-left: 3px solid var(--cyan);
+    padding: 12px 18px; background: rgba(56,214,255,0.05);
+    border-radius: 0 10px 10px 0;
+    color: var(--text-1); font-size: 16px; font-weight: 500; line-height: 1.6;
+  }
+  .punchline {
+    padding: 16px 22px;
+    background: linear-gradient(135deg, rgba(255,200,87,0.10), rgba(255,159,69,0.04));
+    border: 1px solid rgba(255,200,87,0.35); border-radius: 12px;
+    font-size: 17px; font-weight: 600; line-height: 1.55; color: #FFE3A6;
+  }
+  .punchline .gold-text { font-weight: 800; }
+  table.cmp { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.5px; }
+  table.cmp th, table.cmp td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--line); }
+  table.cmp th { color: var(--text-2); font-weight: 600; background: rgba(255,255,255,0.03); }
+  table.cmp tr td:first-child { color: var(--text-2); font-weight: 600; width: 22%; }
+  .ascii {
+    font-family:'DM Mono','Montserrat',monospace; font-size:13px; line-height:1.7;
+    background: rgba(0,0,0,0.35); padding: 14px 18px; border-radius: 10px;
+    border: 1px solid var(--line); color: var(--text-2); white-space: pre;
+  }
+  .pill { display:inline-flex; align-items:center; gap:6px;
+    padding: 3px 10px; border-radius: 999px;
+    font-size: 11.5px; font-weight: 600;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--line);
+    color: var(--text-2); }
+  .pill.purple { background: rgba(124,92,255,0.15); color: var(--purple-2); border-color: rgba(124,92,255,0.35); }
+  .pill.cyan { background: rgba(56,214,255,0.15); color: var(--cyan-2); border-color: rgba(56,214,255,0.35); }
+  .pill.green { background: rgba(20,229,160,0.15); color: #6CFFD0; border-color: rgba(20,229,160,0.35); }
+  .pill.gold { background: rgba(255,200,87,0.15); color: #FFD27A; border-color: rgba(255,200,87,0.35); }
+  .pill.red { background: rgba(255,92,124,0.15); color: #FFB0BE; border-color: rgba(255,92,124,0.35); }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav class="top-nav">
+  <a href="#act1" data-target="act1" data-group="act1,act2">归因前置</a>
+  <a href="#act3" data-target="act3" data-group="act3,act3-cmp,act3-tree,act3-edge">出价心法</a>
+  <a href="#act4" data-target="act4" data-group="act4">eCPM 杠杆</a>
+  <a href="#act5-balance" data-target="act5" data-group="act5-balance,act5">掉量诊断</a>
+  <a href="#act6" data-target="act6" data-group="act6,act6-table,act6-tree">6把加速器</a>
+  <a href="#card" data-target="card" data-group="card">决策卡</a>
+</nav>
+
+<!-- ============ 封面 ============ -->
+<section class="slide" id="cover">
+  <div class="flex-1 grid grid-cols-12 gap-10 items-center">
+    <!-- 左：标题区 -->
+    <div class="col-span-7">
+      <div class="module-tag reveal">
+        <span class="num">v4.1</span><span>·</span><span>食饮投放契约课</span><span>·</span><span>60 min 单讲</span>
+      </div>
+      <h1 class="slide-title reveal reveal-d1" style="font-size:60px; line-height:1.15;">
+        出价的<span class="gradient-text">底层逻辑</span>
+        <br/>
+        <span style="font-size:32px; font-weight:600; color:var(--text-2)">— 模型、契约与博弈 —</span>
+      </h1>
+      <p class="subtitle reveal reveal-d2" style="margin-top:20px; font-size:16px;">
+        投手每天在投放后台调的那几个数字，<br/>
+        你真的知道它们在跟系统打什么<span class="gold-text" style="font-weight:700">契约</span>吗？
+      </p>
+      <div class="reveal reveal-d3 mt-8 grid grid-cols-2 gap-4">
+        <div class="glass p-5">
+          <div class="text-xs uppercase tracking-widest" style="color:var(--text-3)">这不是</div>
+          <div class="text-base mt-2" style="color:var(--text-2)">"出价怎么填"的工具课</div>
+        </div>
+        <div class="glass-strong p-5 glow-border">
+          <div class="text-xs uppercase tracking-widest" style="color:var(--purple-2)">这是</div>
+          <div class="text-base mt-2" style="color:var(--text-1); font-weight:600">系统在你出价之后到底做了什么<br/>为什么这么做、你能怎么影响它</div>
+        </div>
+      </div>
+      <div class="mt-8 flex gap-3 flex-wrap reveal reveal-d4">
+        <span class="pill purple">归因前置</span>
+        <span class="pill purple">出价心法</span>
+        <span class="pill cyan">eCPM 杠杆</span>
+        <span class="pill red">掉量诊断</span>
+        <span class="pill gold">6把加速器</span>
+      </div>
+    </div>
+    <!-- 右：契约公式视觉装饰 -->
+    <div class="col-span-5 reveal reveal-d3">
+      <div class="glass p-7" style="border-color: rgba(124,92,255,0.25); background: linear-gradient(180deg, rgba(124,92,255,0.06), rgba(56,214,255,0.03));">
+        <div class="text-xs uppercase tracking-[0.25em] mb-4" style="color:var(--purple-2)">CONTRACT · 契约公式</div>
+        <div class="ascii" style="font-size:13px; line-height:1.9; padding:18px;">
+出价 = bid 水位
+       × <span style="color:var(--cyan-2)">归因窗口</span>
+       × <span style="color:var(--purple-2)">深度事件</span>
+       × <span style="color:var(--gold)">契约外能力</span>
+       ─────────────
+       = 你跟系统签的
+         <b class="gradient-text">那张合同</b></div>
+        <div class="mt-5 pt-5" style="border-top:1px dashed var(--line-strong);">
+          <div class="text-xs" style="color:var(--text-3); letter-spacing:0.15em;">本课要回答的 4 个真问题</div>
+          <div class="mt-3 space-y-2 text-sm" style="color:var(--text-2);">
+            <div>① CVR 漂亮，模型为什么不学？</div>
+            <div>② 转化数为什么三天后还在变？</div>
+            <div>③ 下单 vs 下单 ROI 到底怎么选？</div>
+            <div>④ 为什么"突然"就没量了？</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-num">00 / 16</div>
+</section>
+
+<!-- ============ 心法地基 · 出价的双重撬动 ============ -->
+<section class="slide" id="foundation">
+  <div class="module-tag reveal"><span class="num">心法地基</span><span>·</span><span>出价的双重撬动 · 1.5 min</span></div>
+  <h2 class="slide-title reveal reveal-d1">
+    你今天调了一次出价——<br/>
+    <span class="gradient-text">系统那边，发生了几件事？</span>
+  </h2>
+
+  <!-- 反差对比：客户视角 vs 真相 -->
+  <div class="grid grid-cols-12 gap-5 mt-6">
+    <!-- 左：客户视角 -->
+    <div class="col-span-5 glass p-6 reveal reveal-d2" style="border-color:rgba(255,255,255,0.12);">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="pill" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.18); color:var(--text-2);">客户视角</span>
+        <span class="text-xs" style="color:var(--text-3);">90% 投手脑子里的画面</span>
+      </div>
+      <div class="text-base mb-4" style="color:var(--text-2);">
+        "我把出价从 <b style="color:#fff">30</b> 调到 <b style="color:#fff">35</b>，<br/>就 <b class="gold-text" style="font-size:22px;">1 件事</b> 嘛。"
+      </div>
+      <div class="ascii" style="font-size:13px; line-height:1.8; padding:16px; background:rgba(255,255,255,0.03);">
+出价 = 30
+   ↓
+出价 = 35
+   ↓
+完事了 ✓</div>
+      <div class="text-xs mt-4 leading-relaxed" style="color:var(--text-3);">
+        ——这是把出价当成了"<b style="color:var(--text-2)">一个数字</b>"。<br/>
+        但凡你这么想，后面的掉量、跑不动、换契约就翻车，<br/>
+        都会让你觉得"系统是黑箱"。
+      </div>
+    </div>
+
+    <!-- 中：箭头 -->
+    <div class="col-span-1 flex flex-col items-center justify-center reveal reveal-d3">
+      <div class="text-3xl" style="color:var(--gold);">▶</div>
+      <div class="text-xs mt-2 text-center" style="color:var(--text-3); letter-spacing:0.15em;">真相</div>
+    </div>
+
+    <!-- 右：真相 -->
+    <div class="col-span-6 glass-strong p-6 glow-border reveal reveal-d3">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="pill gold">系统真相</span>
+        <span class="text-xs" style="color:var(--text-3);">同一个动作，至少触发 4 件事</span>
+      </div>
+      <div class="text-base mb-3" style="color:var(--text-1);">
+        你按下"保存"的瞬间，系统其实做了<br/><b class="gradient-text" style="font-size:22px;">至少 4 件事</b>：
+      </div>
+      <div class="space-y-2">
+        <div class="flex items-start gap-3 p-2.5 rounded-lg" style="background:rgba(56,214,255,0.06); border-left:3px solid var(--cyan-2);">
+          <span class="text-base font-bold" style="color:var(--cyan-2);">1</span>
+          <div class="text-xs leading-relaxed" style="color:var(--text-2);">
+            <b style="color:var(--cyan-2); font-size:13px;">BID 数值变了</b>　<span style="color:var(--text-3);">直接 · 即时（分钟级）</span><br/>
+            → eCPM 立刻被你撬高 · 投手手里唯一的即时杠杆
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-2.5 rounded-lg" style="background:rgba(164,139,255,0.07); border-left:3px solid #A48BFF;">
+          <span class="text-base font-bold" style="color:#A48BFF;">2</span>
+          <div class="text-xs leading-relaxed" style="color:var(--text-2);">
+            <b style="color:#A48BFF; font-size:13px;">pCTR 估值在重算</b>　<span style="color:var(--text-3);">间接 · 创意/素材侧（小时~天）</span><br/>
+            → 出价变了 → 系统重新分配曝光人群 → 点击率口径跟着变
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-2.5 rounded-lg" style="background:rgba(124,92,255,0.07); border-left:3px solid var(--purple-2);">
+          <span class="text-base font-bold" style="color:var(--purple-2);">3</span>
+          <div class="text-xs leading-relaxed" style="color:var(--text-2);">
+            <b style="color:var(--purple-2); font-size:13px;">pCVR 估值在重算</b>　<span style="color:var(--text-3);">间接 · 转化/契约侧（2~7 天）</span><br/>
+            → 模型识别的"高质量人群"边界变了 → pCVR 重新学
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-2.5 rounded-lg" style="background:rgba(255,200,87,0.06); border-left:3px solid var(--gold);">
+          <span class="text-base font-bold" style="color:var(--gold);">4</span>
+          <div class="text-xs leading-relaxed" style="color:var(--text-2);">
+            <b class="gold-text" style="font-size:13px;">归因窗口 / 契约口径可能跟着切了</b>　<span style="color:var(--text-3);">如果顺手换了契约</span><br/>
+            → 整个"成本怎么算"的合同基础面都变了
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 公式总纲：双杠杆图 -->
+  <div class="glass p-5 mt-6 reveal reveal-d4" style="background:linear-gradient(180deg, rgba(56,214,255,0.05), rgba(124,92,255,0.05)); border-color:rgba(255,200,87,0.3);">
+    <div class="grid grid-cols-12 gap-5 items-center">
+      <div class="col-span-3">
+        <div class="text-xs mb-2" style="color:var(--text-3); letter-spacing:0.25em;">这门课的总纲</div>
+        <div class="text-lg font-bold" style="color:var(--text-1);">
+          出价不是<br/>"<b class="gold-text">调一个数</b>"<br/>
+          是"<b class="gradient-text">撬两根杠杆</b>"
+        </div>
+      </div>
+      <div class="col-span-9">
+        <!-- SVG 公式图：三因子精准对位 · 双杠杆归类 -->
+        <svg viewBox="0 0 720 220" style="width:100%; height:auto; display:block; background:rgba(11,15,34,0.5); border-radius:8px;" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="formula-grad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#38D6FF"/>
+              <stop offset="0.5" stop-color="#A48BFF"/>
+              <stop offset="1" stop-color="#FFC857"/>
+            </linearGradient>
+          </defs>
+
+          <!-- 公式主体（居中）：eCPM = BID × pCTR × pCVR × 1000 -->
+          <!-- 整体宽度估算：以中心 360 为轴 -->
+          <text x="80"  y="58" font-family="-apple-system, 'Menlo', monospace" font-size="22" font-weight="700" fill="#E6E6F0">eCPM</text>
+          <text x="160" y="58" font-family="-apple-system, 'Menlo', monospace" font-size="22" font-weight="500" fill="rgba(230,230,240,0.6)">=</text>
+          <text x="195" y="58" font-family="-apple-system, 'Menlo', monospace" font-size="22" font-weight="700" fill="#38D6FF">BID</text>
+          <text x="252" y="58" font-family="-apple-system, 'Menlo', monospace" font-size="22" font-weight="500" fill="rgba(230,230,240,0.5)">×</text>
+          <text x="280" y="58" font-family="-apple-system, 'Menlo', monospace" font-size="22" font-weight="700" fill="#A48BFF">pCTR</text>
+          <text x="358" y="58" font-family="-apple-system, 'Menlo', monospace" font-size="22" font-weight="500" fill="rgba(230,230,240,0.5)">×</text>
+          <text x="385" y="58" font-family="-apple-system, 'Menlo', monospace" font-size="22" font-weight="700" fill="#A48BFF">pCVR</text>
+          <text x="465" y="58" font-family="-apple-system, 'Menlo', monospace" font-size="22" font-weight="500" fill="rgba(230,230,240,0.5)">×</text>
+          <text x="495" y="58" font-family="-apple-system, 'Menlo', monospace" font-size="22" font-weight="500" fill="rgba(230,230,240,0.55)">1000</text>
+
+          <!-- 三个因子的对位向下指引线（虚线，从字符正下方往下） -->
+          <line x1="220" y1="68" x2="220" y2="92" stroke="#38D6FF" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6"/>
+          <line x1="320" y1="68" x2="320" y2="92" stroke="#A48BFF" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6"/>
+          <line x1="425" y1="68" x2="425" y2="92" stroke="#A48BFF" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6"/>
+
+          <!-- 三个三角箭头 -->
+          <polygon points="220,92 213,103 227,103" fill="#38D6FF"/>
+          <polygon points="320,92 313,103 327,103" fill="#A48BFF"/>
+          <polygon points="425,92 418,103 432,103" fill="#A48BFF"/>
+
+          <!-- 直接撬动（BID）标签 -->
+          <text x="220" y="124" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="13" font-weight="700" fill="#38D6FF">直接撬动</text>
+          <text x="220" y="143" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="rgba(230,230,240,0.55)">即时 · 分钟级</text>
+
+          <!-- 间接撬动 · pCTR -->
+          <text x="320" y="124" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="13" font-weight="700" fill="#A48BFF">间接撬动</text>
+          <text x="320" y="143" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="rgba(230,230,240,0.55)">创意/素材侧</text>
+          <text x="320" y="159" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="rgba(230,230,240,0.45)">滞后 · 小时~天</text>
+
+          <!-- 间接撬动 · pCVR -->
+          <text x="425" y="124" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="13" font-weight="700" fill="#A48BFF">间接撬动</text>
+          <text x="425" y="143" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="rgba(230,230,240,0.55)">转化/契约侧</text>
+          <text x="425" y="159" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="rgba(230,230,240,0.45)">滞后 · 2~7 天</text>
+
+          <!-- 左侧 BID 单独标记（独占即时杠杆） -->
+          <path d="M 200 175 Q 200 186 209 186 L 220 186 L 231 186 Q 240 186 240 175"
+                fill="none" stroke="rgba(56,214,255,0.55)" stroke-width="1.3"/>
+          <text x="220" y="207" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#38D6FF" letter-spacing="1">即时杠杆</text>
+
+          <!-- 右侧 pCTR + pCVR 合并归"间接·滞后杠杆" -->
+          <path d="M 290 175 Q 290 186 300 186 L 365 186 Q 372.5 186 372.5 192 Q 372.5 186 380 186 L 445 186 Q 455 186 455 175"
+                fill="none" stroke="rgba(164,139,255,0.55)" stroke-width="1.3"/>
+          <text x="372.5" y="207" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#A48BFF" letter-spacing="1">模型侧 · 滞后杠杆</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- 全课导航：双杠杆是怎么贯穿 6 幕的 -->
+  <div class="grid grid-cols-6 gap-3 mt-5 reveal reveal-d5">
+    <div class="glass p-3 text-center" style="border-color:rgba(124,92,255,0.25);">
+      <div class="text-xs mb-1" style="color:var(--purple-2); letter-spacing:0.1em;">ACT 1-2</div>
+      <div class="text-xs" style="color:var(--text-2);">看见 pCVR<br/><span style="color:var(--text-3);">公式怎么读</span></div>
+    </div>
+    <div class="glass p-3 text-center" style="border-color:rgba(164,139,255,0.25);">
+      <div class="text-xs mb-1" style="color:#A48BFF; letter-spacing:0.1em;">ACT 3</div>
+      <div class="text-xs" style="color:var(--text-2);">选哪根杠杆<br/><span style="color:var(--text-3);">心法选契约</span></div>
+    </div>
+    <div class="glass p-3 text-center" style="border-color:rgba(56,214,255,0.25);">
+      <div class="text-xs mb-1" style="color:var(--cyan-2); letter-spacing:0.1em;">ACT 4</div>
+      <div class="text-xs" style="color:var(--text-2);">杠杆怎么撬<br/><span style="color:var(--text-3);">eCPM 案例</span></div>
+    </div>
+    <div class="glass p-3 text-center" style="border-color:rgba(255,92,124,0.25);">
+      <div class="text-xs mb-1" style="color:#FFB0BE; letter-spacing:0.1em;">ACT 5</div>
+      <div class="text-xs" style="color:var(--text-2);">撬错了怎么办<br/><span style="color:var(--text-3);">掉量诊断</span></div>
+    </div>
+    <div class="glass p-3 text-center" style="border-color:rgba(255,200,87,0.25);">
+      <div class="text-xs mb-1" style="color:var(--gold); letter-spacing:0.1em;">ACT 6</div>
+      <div class="text-xs" style="color:var(--text-2);">叠加用杠杆<br/><span style="color:var(--text-3);">6 把加速器</span></div>
+    </div>
+    <div class="glass-strong p-3 text-center glow-border">
+      <div class="text-xs mb-1" style="color:var(--gold); letter-spacing:0.1em;">CARD</div>
+      <div class="text-xs" style="color:var(--text-1);">决策卡<br/><span style="color:var(--text-3);">收口落地</span></div>
+    </div>
+  </div>
+
+  <div class="page-num">01 / 16</div>
+</section>
+
+<!-- ============ 开场：四句拷问 ============ -->
+<section class="slide" id="open">
+  <div class="module-tag reveal"><span class="num">PROLOGUE</span><span>·</span><span>四句拷问</span></div>
+  <h2 class="slide-title reveal reveal-d1">客户每天会问的<span class="gradient-text">4 个真问题</span></h2>
+  <p class="subtitle reveal reveal-d2">
+    上一页的"两根杠杆"是<span class="gold-text" style="font-weight:700">总纲</span>——
+    那它具体长在哪些<span class="gold-text" style="font-weight:700">真实场景</span>里？<br/>
+    下面这 4 个问题，是客户每天会拍到你脸上的、最高频的"杠杆翻车现场"。
+  </p>
+
+  <div class="grid grid-cols-2 gap-5 mt-10 flex-1 content-center">
+    <div class="glass p-6 reveal reveal-d1">
+      <div class="text-xs uppercase tracking-widest mb-2" style="color:var(--text-3)">Q1 · 看数</div>
+      <div class="text-lg font-medium leading-relaxed">"我看 CVR 那么高，<br/>怎么广告还<span class="red-text" style="font-weight:700">不跑量</span>？"</div>
+    </div>
+    <div class="glass p-6 reveal reveal-d2">
+      <div class="text-xs uppercase tracking-widest mb-2" style="color:var(--text-3)">Q2 · 归因</div>
+      <div class="text-lg font-medium leading-relaxed">"今天显示 50 个转化，<br/>三天后变 80 个，<span class="red-text" style="font-weight:700">以谁为准</span>？"</div>
+    </div>
+    <div class="glass p-6 reveal reveal-d3">
+      <div class="text-xs uppercase tracking-widest mb-2" style="color:var(--text-3)">Q3 · 出价</div>
+      <div class="text-lg font-medium leading-relaxed">"下单出价和下单 ROI 到底<br/>用哪个？换了就<span class="red-text" style="font-weight:700">掉量</span>？"</div>
+    </div>
+    <div class="glass p-6 reveal reveal-d4">
+      <div class="text-xs uppercase tracking-widest mb-2" style="color:var(--text-3)">Q4 · 跑量</div>
+      <div class="text-lg font-medium leading-relaxed">"前面跑得好好的，<br/>为什么<span class="red-text" style="font-weight:700">突然就没量了</span>？"</div>
+    </div>
+  </div>
+
+  <div class="punchline mt-8 reveal reveal-d5">
+    答完这 4 题，等于把"<span class="gold-text">两根杠杆</span>"翻成了 <span class="gold-text">4 个具体的客户场景</span>——
+    接下来 6 幕，就是把每个场景背后的杠杆原理讲透。
+  </div>
+  <div class="page-num">02 / 16</div>
+</section>
+
+<!-- ============ 第一幕 · 症状1：CVR口径 ============ -->
+<section class="slide" id="act1">
+  <div class="module-tag reveal"><span class="num">ACT 1</span><span>·</span><span>归因前置 · 6 min</span></div>
+  <h2 class="slide-title reveal reveal-d1">
+    CVR 漂亮，<span class="red-text">模型为什么不学习？</span>
+  </h2>
+  <div class="reveal reveal-d2 mt-2">
+    <span class="stage-tag symptom">症状</span>
+    <div class="quote-box mt-3">
+      "我转化口径 CVR 都 8% 了，怎么广告就是<b style="color:var(--red)">跑不动</b>？"
+    </div>
+  </div>
+
+  <!-- 投放端看数概念 × 广告后台示意 -->
+  <div class="grid grid-cols-12 gap-5 mt-7 reveal reveal-d3">
+    <!-- 左：转化口径 / 回传口径 -->
+    <div class="col-span-5 glass-red p-6">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="pill red">回传口径</span>
+        <span class="text-xs" style="color:var(--text-3);">客户复盘看数 · 投放端常用</span>
+      </div>
+      <div class="text-2xl font-bold mb-2 red-text">转化回传</div>
+      <div class="text-sm leading-relaxed" style="color:var(--text-2)">
+        转化数据"<b>统计到行为上报时间点</b>"。<br/>
+        含<b style="color:#FFB0BE">历史回流转化</b>——前 N 天的曝光/点击 → 今天才下单，也算今天。<br/>
+        <span class="text-xs" style="color:var(--text-3);">→ 适合实时看当日上报</span>
+      </div>
+      <div class="mt-4 px-4 py-3 rounded-lg" style="background:rgba(255,92,124,0.06); border:1px solid rgba(255,92,124,0.18);">
+        <div class="text-xs mb-1" style="color:#FFB0BE;">广告后台示意</div>
+        <div class="ascii" style="font-size:12px; padding:10px;">┌──────────────────────┐
+│ 数据统计口径          │
+│  ✓ 转化回传 ←── 你勾的│
+│    广告播放          │
+└──────────────────────┘</div>
+      </div>
+    </div>
+
+    <!-- 右：播放口径 -->
+    <div class="col-span-7 glass-green p-6">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="pill green">播放口径</span>
+        <span class="text-xs" style="color:var(--text-3);">系统喂模型的"真账本"</span>
+      </div>
+      <div class="text-2xl font-bold mb-2 green-text">广告播放</div>
+      <div class="text-sm leading-relaxed" style="color:var(--text-2)">
+        转化数据"<b>统计到广告播放时间点</b>"——<br/>
+        今天<b style="color:#6CFFD0">这条广告播出去</b> → 今天<b style="color:#6CFFD0">这条广告</b>带来的转化，才算。<br/>
+        <span class="text-xs" style="color:var(--text-3);">→ 适合看广告整体生命周期表现，模型只用这部分喂 pCVR</span>
+      </div>
+      <div class="grid grid-cols-2 gap-3 mt-4">
+        <div class="px-4 py-3 rounded-lg" style="background:rgba(20,229,160,0.06); border:1px solid rgba(20,229,160,0.18);">
+          <div class="text-xs mb-1" style="color:#6CFFD0;">同样 100 单，回传口径看到</div>
+          <div class="ascii" style="font-size:11.5px; padding:8px;">今天上报：100 单
+ ├ 今天广告带来 30 单
+ ├ 昨天广告带来 25 单
+ ├ 前天广告带来 28 单
+ └ 更早回流    17 单</div>
+        </div>
+        <div class="px-4 py-3 rounded-lg" style="background:rgba(20,229,160,0.06); border:1px solid rgba(20,229,160,0.18);">
+          <div class="text-xs mb-1" style="color:#6CFFD0;">同样这天，播放口径只算</div>
+          <div class="ascii" style="font-size:11.5px; padding:8px;">今天广告 → 今天单
+       <b style="color:#6CFFD0">仅 30 单</b>
+─────────────
+模型实际"训练样本"
+ = <b style="color:#6CFFD0">30 单 / N 曝光</b>
+ ≪ 你看到的 CVR</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="punchline mt-6 reveal reveal-d4">
+    <span class="gold-text">📐 结论：</span>
+    报表里勾的是<b style="color:#FFB0BE">"转化回传"</b>，看到的是"漂亮 CVR"；
+    系统喂模型用的是<b style="color:#6CFFD0">"广告播放"</b>口径——
+    <b>冷启 / 起量阶段，必须切回播放口径看 CVR</b>，才能知道模型到底学到没学到。
+  </div>
+  <div class="page-num">03 / 16</div>
+</section>
+
+<!-- ============ 第二幕 · 症状2：30天窗口 ============ -->
+<section class="slide" id="act2">
+  <div class="module-tag reveal"><span class="num">ACT 2</span><span>·</span><span>归因前置 · 5 min</span></div>
+  <h2 class="slide-title reveal reveal-d1">
+    今天的转化数，<span class="red-text">三天后还在变</span>
+  </h2>
+  <div class="reveal reveal-d2 mt-2">
+    <span class="stage-tag symptom">症状</span>
+    <div class="quote-box mt-3">
+      "昨天报表 50 单，今天再看变 80 单，<b style="color:var(--red)">到底以哪个为准</b>？"
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-5 mt-8">
+    <div class="col-span-7 glass p-6 reveal reveal-d3">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="stage-tag diag">真相</span>
+        <h3 class="section-title m-0">默认归因窗口 = <span class="gold-text">30 天</span></h3>
+      </div>
+      <div class="ascii">一次曝光/点击
+   │
+   ├─── T+0  下单 ──→ 计入今天广告
+   ├─── T+3  下单 ──→ <b style="color:var(--gold)">仍回归到"那一天的广告"</b>
+   ├─── T+15 下单 ──→ 仍回归
+   └─── T+30 下单 ──→ 最后窗口</div>
+      <p class="text-sm leading-relaxed mt-4" style="color:var(--text-2)">
+        所以"今天的数据"其实是<b style="color:var(--purple-2)">滚动数字</b>，T+0 看到的只是"目前为止"。<br/>
+        长决策类目（<b>健康滋补 · 酒水 · 母婴</b>）回流尤其明显。
+      </p>
+    </div>
+
+    <div class="col-span-5 reveal reveal-d4">
+      <div class="glass-gold p-5 mb-4">
+        <h3 class="section-title">📊 不同归因窗口的"看数稳定期"</h3>
+        <table class="cmp">
+          <tr><th>归因窗口</th><th>看真账</th></tr>
+          <tr><td>24 小时下单</td><td><b class="green-text">T+1</b></td></tr>
+          <tr><td>30 天下单</td><td><b class="gold-text">T+7 起</b></td></tr>
+          <tr><td>30 天 ROI</td><td><b style="color:var(--purple-2)">T+15 最佳</b></td></tr>
+        </table>
+      </div>
+      <div class="punchline">
+        <span class="gold-text">📐 结论：</span>
+        数据要"看穿时间"。<br/>
+        <b>短链路看 T+1，长链路至少看 T+7、最好 T+15</b>，才是真账。
+      </div>
+    </div>
+  </div>
+  <div class="page-num">04 / 16</div>
+</section>
+
+<!-- ============ 第三幕 · 出价心法 · 章首（多品直播间故事） ============ -->
+<section class="slide" id="act3">
+  <div class="module-tag reveal"><span class="num">ACT 3</span><span>·</span><span>出价方式心法 · 12 min · 核心一幕</span></div>
+  <h2 class="slide-title reveal reveal-d1">
+    下单出价 <span style="color:var(--text-3); font-weight:400">vs</span> 下单 ROI<br/>
+    <span class="gradient-text">同一个用户，两套模型眼里完全不一样</span>
+  </h2>
+  <div class="reveal reveal-d2 mt-2">
+    <span class="stage-tag symptom">场景</span>
+    <div class="quote-box mt-3">
+      多品直播间——一个用户通过广告点进直播间，<b style="color:var(--gold)">在 3 个不同时刻</b>下了 3 单：
+      9.9 元尝鲜装 → 89 元礼盒装 → 199 元家庭囤货装。
+      <br/><b style="color:var(--red)">同一个人、3 笔订单，两套模型分别看到了什么？</b>
+    </div>
+  </div>
+
+  <!-- 故事可视化：时间轴 -->
+  <div class="glass p-5 mt-5 reveal reveal-d3">
+    <div class="text-xs mb-3" style="color:var(--text-3); letter-spacing:0.15em;">USER JOURNEY · 同一个广告点击进来的同一个人</div>
+    <div class="grid grid-cols-12 gap-3 items-center">
+      <div class="col-span-3 text-center px-3 py-3 rounded-lg" style="background:rgba(56,214,255,0.08); border:1px solid rgba(56,214,255,0.25);">
+        <div class="text-xs" style="color:var(--cyan-2);">T+0 · 进直播间</div>
+        <div class="text-lg font-bold mt-1" style="color:var(--cyan-2);">9.9 元</div>
+        <div class="text-xs mt-1" style="color:var(--text-2);">尝鲜装</div>
+      </div>
+      <div class="col-span-1 text-center" style="color:var(--text-3);">→</div>
+      <div class="col-span-3 text-center px-3 py-3 rounded-lg" style="background:rgba(124,92,255,0.08); border:1px solid rgba(124,92,255,0.25);">
+        <div class="text-xs" style="color:var(--purple-2);">T+0 · 30 min 后</div>
+        <div class="text-lg font-bold mt-1" style="color:var(--purple-2);">89 元</div>
+        <div class="text-xs mt-1" style="color:var(--text-2);">礼盒装</div>
+      </div>
+      <div class="col-span-1 text-center" style="color:var(--text-3);">→</div>
+      <div class="col-span-4 text-center px-3 py-3 rounded-lg" style="background:rgba(255,200,87,0.08); border:1px solid rgba(255,200,87,0.3);">
+        <div class="text-xs" style="color:var(--gold);">T+3 · 3 天后回流</div>
+        <div class="text-lg font-bold mt-1" style="color:var(--gold);">199 元</div>
+        <div class="text-xs mt-1" style="color:var(--text-2);">家庭囤货装 · 总 GMV <b style="color:#fff">297.9</b></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 两套模型的"眼睛" -->
+  <div class="grid grid-cols-2 gap-5 mt-5 reveal reveal-d4">
+    <!-- pCVR -->
+    <div class="glass-red p-6">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="pill cyan">CPA 契约</span>
+        <span class="pill">下单出价</span>
+      </div>
+      <h3 class="section-title">pCVR 模型眼里：<span class="red-text">这是 1 个转化</span></h3>
+      <div class="ascii mt-3" style="font-size:12.5px; padding:14px;">第 1 单 9.9 元 ──→ <b style="color:#6CFFD0">✓ 转化达成</b>
+第 2 单 89 元  ──→ <span style="color:#6B7396">·· 已转化用户，无价值</span>
+第 3 单 199 元 ──→ <span style="color:#6B7396">·· 已转化用户，无价值</span>
+─────────────────────
+模型学到：<b style="color:#FFB0BE">"这种人会下单"</b>
+模型在意：<b style="color:#FFB0BE">下不下单（0 / 1）</b>
+模型不在意：<b>下多少钱、买几次</b></div>
+      <p class="text-sm leading-relaxed mt-3" style="color:var(--text-2);">
+        系统会去找<b style="color:#FFB0BE">"长得像第 1 单这种 9.9 党"</b>的人——
+        因为单看 pCVR，9.9 党最容易出单、CVR 最高。
+      </p>
+    </div>
+
+    <!-- pLTV -->
+    <div class="glass-strong p-6 glow-border">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="pill purple">ROI 契约</span>
+        <span class="pill gold">下单 ROI</span>
+      </div>
+      <h3 class="section-title">pCVR × pLTV 模型眼里：<span class="gold-text">这是一个值 297 元的人</span></h3>
+      <div class="ascii mt-3" style="font-size:12.5px; padding:14px;">第 1 单 9.9 元 ──→ <b style="color:#A48BFF">✓ 转化 + 金额学习</b>
+第 2 单 89 元  ──→ <b style="color:#A48BFF">✓ 复购 + 金额学习</b>
+第 3 单 199 元 ──→ <b style="color:#A48BFF">✓ 高客单 + 金额学习</b>
+─────────────────────
+模型学到：<b class="gold-text">"这种人会买更多"</b>
+模型在意：<b class="gold-text">下单 + 总 GMV</b>
+模型升维：<b>找会下单 → 找会持续买、买更贵的人</b></div>
+      <p class="text-sm leading-relaxed mt-3" style="color:var(--text-2);">
+        系统会去找<b class="gold-text">"长得像这个会复购、会升单的人"</b>——
+        即使 pCVR 略低，但 pLTV 高，<b>消耗 / GMV 反而更划算</b>。
+      </p>
+    </div>
+  </div>
+
+  <div class="punchline mt-5 reveal reveal-d5">
+    <span class="gold-text">🎁 一句话听懂：</span>
+    <b class="gradient-text">下单出价帮你找"会下单的人"</b>，<b class="gold-text">下单 ROI 帮你找"会买更多的人"</b>。<br/>
+    多品直播间 / SKU 丰富 / 客单跨度大 的客户，<b style="color:var(--gold)">用 pCVR 是亏的</b>——
+    模型只学到第 1 单，后面 2 单的价值<b>全被它当成噪声丢掉了</b>。
+  </div>
+  <div class="page-num">05 / 16</div>
+</section>
+
+<!-- ============ 第三幕 · 一张表看懂差异 ============ -->
+<section class="slide" id="act3-cmp">
+  <div class="module-tag reveal"><span class="num">ACT 3.1</span><span>·</span><span>一张表看懂模型差异</span></div>
+  <h2 class="slide-title reveal reveal-d1">两种出价的<span class="gradient-text">5 个关键差异</span></h2>
+
+  <div class="glass p-6 mt-6 reveal reveal-d2">
+    <table class="cmp">
+      <tr>
+        <th>维度</th>
+        <th><span class="gradient-text" style="font-weight:700">下单出价</span> · CPA 契约</th>
+        <th><span class="gold-text" style="font-weight:700">下单 ROI</span> · ROI 契约</th>
+      </tr>
+      <tr>
+        <td>系统在赌什么</td>
+        <td>pCVR（会不会下单）</td>
+        <td>pCVR × <b style="color:var(--purple-2)">pLTV</b>（下单 + 多少钱）</td>
+      </tr>
+      <tr>
+        <td>契约对齐什么</td>
+        <td>单均成本 ≈ bid</td>
+        <td>消耗 / GMV ≈ 1 / ROI</td>
+      </tr>
+      <tr>
+        <td>样本要求</td>
+        <td><b class="green-text">转化数</b>（几十~几百单可起量）</td>
+        <td>转化数 + <b class="gold-text">GMV 金额方差</b>也要够</td>
+      </tr>
+      <tr>
+        <td>学得快不快</td>
+        <td><b class="green-text">✅ 快</b>（pCVR 单维度）</td>
+        <td><b style="color:var(--orange)">⏳ 慢</b>（多 pLTV 一层）</td>
+      </tr>
+      <tr>
+        <td>怕什么</td>
+        <td>客单波动大（同一 bid 算所有客单）</td>
+        <td>金额方差小（全 9.9 元，pLTV 学不出差异）</td>
+      </tr>
+      <tr>
+        <td>适合场景</td>
+        <td><b>冷启 / 新品 / 客单稳定 / 快速起量</b></td>
+        <td><b>稳态 / SKU 丰富 / 客单跨度大 / ROI 考核</b></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="punchline mt-6 reveal reveal-d3">
+    <span class="gold-text">🎁 升维金句：</span>
+    下单出价是<b class="gradient-text">"管成本"</b>，下单 ROI 是<b class="gold-text">"管赚钱"</b>。<br/>
+    冷启阶段，先让系统学会"<b>谁会下单</b>"，再让它学会"<b>谁下单更值钱</b>"。<br/>
+    <span style="color:var(--gold); font-weight:600;">📍 多品直播间 / SKU 丰富的客户，过了冷启就该切下单 ROI——别让模型只看到第 1 单。</span>
+  </div>
+  <div class="page-num">06 / 16</div>
+</section>
+
+<!-- ============ 第三幕 · 决策三问 ============ -->
+<section class="slide" id="act3-tree">
+  <div class="module-tag reveal"><span class="num">ACT 3.2</span><span>·</span><span>选型决策树</span></div>
+  <h2 class="slide-title reveal reveal-d1">心法决策<span class="gradient-text">三问</span></h2>
+  <p class="subtitle reveal reveal-d2">不是看"客户考核什么"就用什么——先看模型有没有学好的资格。</p>
+
+  <div class="grid grid-cols-3 gap-5 mt-8 reveal reveal-d3">
+    <div class="glass p-5">
+      <div class="big-num text-4xl gradient-text mb-2">01</div>
+      <h3 class="section-title">样本够不够？</h3>
+      <p class="text-sm leading-relaxed" style="color:var(--text-2)">
+        过去 7 天有没有 <b class="gold-text">≥ 50 单</b>转化？
+      </p>
+      <div class="mt-3 text-sm">
+        <div><span class="pill red">否</span> → <b>下单出价</b>（先把 pCVR 喂出来）</div>
+        <div class="mt-2"><span class="pill green">是</span> → 进入第 2 问</div>
+      </div>
+    </div>
+    <div class="glass p-5">
+      <div class="big-num text-4xl gradient-text mb-2">02</div>
+      <h3 class="section-title">客单跨度大不大？</h3>
+      <p class="text-sm leading-relaxed" style="color:var(--text-2)">
+        SKU 客单价 <b>最高 / 最低 ≥ 3 倍</b>？
+      </p>
+      <div class="mt-3 text-sm">
+        <div><span class="pill red">否</span> → <b>下单出价</b>（ROI 学不出差异）</div>
+        <div class="mt-2"><span class="pill green">是</span> → 进入第 3 问</div>
+      </div>
+    </div>
+    <div class="glass-strong p-5 glow-border">
+      <div class="big-num text-4xl gold-text mb-2">03</div>
+      <h3 class="section-title">客户考核什么？</h3>
+      <p class="text-sm leading-relaxed" style="color:var(--text-2)">
+        客户的 KPI 是看<b>成本</b>还是看 <b>ROI</b>？
+      </p>
+      <div class="mt-3 text-sm">
+        <div><span class="pill cyan">成本</span> → <b>下单出价</b>（契约对齐 KPI）</div>
+        <div class="mt-2"><span class="pill gold">ROI</span> → <b>下单 ROI</b>（契约对齐 KPI）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-5 mt-8 reveal reveal-d4">
+    <div class="glass-red p-5">
+      <h3 class="section-title" style="color:#FFB0BE">🚨 切换的 2 个坑</h3>
+      <ul class="text-sm leading-relaxed pl-5 list-disc" style="color:var(--text-2)">
+        <li>不要在<b>跑量稳定期</b>切：换契约 = 模型重学 pLTV，<b style="color:#FFB0BE">必有 3-7 天掉量过渡期</b></li>
+        <li>不要在<b>大促前一周</b>切：大场不允许冒险，要切就在大场结束、稳态期切</li>
+      </ul>
+    </div>
+    <div class="punchline">
+      <span class="gold-text">📐 结论：</span>
+      下单出价是"<b>先让模型活下来</b>"，<br/>
+      下单 ROI 是"<b>让会赚的模型多赚一点</b>"。
+    </div>
+  </div>
+  <div class="page-num">07 / 16</div>
+</section>
+
+<!-- ============ 第三幕 · 小众出价边界 ============ -->
+<section class="slide" id="act3-edge">
+  <div class="module-tag reveal"><span class="num">ACT 3.3</span><span>·</span><span>小众出价边界 · 5 min 速过</span></div>
+  <h2 class="slide-title reveal reveal-d1">短链路类目的<span class="gradient-text">"快契约"</span></h2>
+  <p class="subtitle reveal reveal-d2">
+    不是所有类目都能等 30 天回流。短决策、高退款的类目，需要"短归因"契约。
+  </p>
+
+  <div class="grid grid-cols-2 gap-5 mt-8 reveal reveal-d3">
+    <div class="glass p-6">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="pill cyan">短归因</span>
+        <span class="pill">24h</span>
+      </div>
+      <h3 class="section-title gradient-text">24 小时下单出价</h3>
+      <p class="text-sm leading-relaxed mt-2" style="color:var(--text-2)">
+        归因窗口压缩到 <b class="cyan-2" style="color:var(--cyan-2)">24h</b>，模型只学"今天点了今天买"的人。
+      </p>
+      <div class="mt-3">
+        <div class="text-xs uppercase tracking-widest mb-1" style="color:var(--text-3)">适用场景</div>
+        <div class="text-sm" style="color:var(--text-2)">速食 · 休食 · 9.9 引流款 · 短决策类目<br/>不想等 30 天回流的盘</div>
+      </div>
+    </div>
+
+    <div class="glass-gold p-6">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="pill gold">净成本</span>
+        <span class="pill">24h</span>
+      </div>
+      <h3 class="section-title gold-text">24 小时净成交成本</h3>
+      <p class="text-sm leading-relaxed mt-2" style="color:var(--text-2)">
+        24h 内 <b class="gold-text">GMV − 退款 ≈ bid</b>，把退款的水分挤出契约。
+      </p>
+      <div class="mt-3">
+        <div class="text-xs uppercase tracking-widest mb-1" style="color:var(--text-3)">适用场景</div>
+        <div class="text-sm" style="color:var(--text-2)">高退款类目（生鲜 · 服饰 · 跨界）<br/>客户考核净成本而非毛成本</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="punchline mt-8 reveal reveal-d4">
+    <span class="gold-text">🎁 边界金句：</span>
+    主流出价是<b>下单 / 下单 ROI</b>，小众出价不是替代——而是<b class="gradient-text">在特殊类目上的契约修饰</b>。
+  </div>
+  <div class="page-num">08 / 16</div>
+</section>
+
+<!-- ============ 第四幕 · eCPM 杠杆 ============ -->
+<section class="slide" id="act4">
+  <div class="module-tag reveal"><span class="num">ACT 4</span><span>·</span><span>出价杠杆 · 10 min</span></div>
+  <h2 class="slide-title reveal reveal-d1">
+    起不来量，<span class="red-text">加价就有量</span>——<br/>
+    <span class="gradient-text">这是错的吗？</span>
+  </h2>
+  <div class="reveal reveal-d2 mt-2">
+    <span class="stage-tag symptom">症状</span>
+    <div class="quote-box mt-3">
+      "是不是每次起量都得靠加价？这是不是<b style="color:var(--red)">投手偷懒</b>？"
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-5 mt-8">
+    <div class="col-span-7 glass p-6 reveal reveal-d3">
+      <h3 class="section-title">eCPM 公式：<span class="gradient-text">只有 1 个杠杆能直接握在你手里</span></h3>
+      <div class="ascii mt-2" style="font-size:18px; text-align:center; padding: 24px;">eCPM = <b style="color:var(--cyan)">bid</b> × <b style="color:var(--purple-2)">pCTR</b> × <b style="color:var(--purple-2)">pCVR</b> × 1000
+       ↑      ↑       ↑
+     <b style="color:var(--green)">直接</b>   间接    间接（且冷启样本不足）</div>
+    </div>
+
+    <div class="col-span-5 glass p-6 reveal reveal-d4">
+      <h3 class="section-title">三个杠杆的"撬动周期"</h3>
+      <table class="cmp">
+        <tr><th>杠杆</th><th>谁说了算</th><th>多久</th></tr>
+        <tr><td><b class="cyan-2" style="color:var(--cyan-2)">bid</b></td><td>客户直接调</td><td><b class="green-text">秒级</b></td></tr>
+        <tr><td>pCTR</td><td>创意 + 系统</td><td>几小时~几天</td></tr>
+        <tr><td>pCVR</td><td>商品 + 落地页 + 系统</td><td><b style="color:var(--orange)">冷启最慢</b></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="glass-strong p-6 mt-6 reveal reveal-d5 glow-border">
+    <h3 class="section-title">🎯 反直觉锚点</h3>
+    <p style="color:var(--text-2); line-height:1.8; font-size:15px;">
+      加出价不是"投手偷懒"，是<b class="gradient-text">冷启阶段唯一能秒级影响 eCPM 的科学操作</b>。<br/>
+      因为冷启时 pCVR 是预估的、置信度低，系统给的量极少；
+      这时你不主动用 bid 把 eCPM 顶上去，模型永远等不到那个能让它"开窍"的样本量。
+    </p>
+  </div>
+
+  <div class="punchline mt-6 reveal reveal-d5">
+    <span class="gold-text">🎁 升维金句：</span>
+    冷启阶段，<b>bid 不是成本表达，是<span class="gradient-text">"模型学习费"</span></b>。
+  </div>
+  <div class="page-num">09 / 16</div>
+</section>
+
+<!-- ============ 第五幕 · 超成本打压 ============ -->
+<!-- ============ 第五幕 · 元决策：成本 vs 拿量天平 ============ -->
+<section class="slide" id="act5-balance">
+  <div class="module-tag reveal"><span class="num">ACT 5.0</span><span>·</span><span>掉量诊断的元决策 · 5 min</span></div>
+  <h2 class="slide-title reveal reveal-d1">
+    救火之前，先想清楚一件事：<br/>
+    你这个广告，<span class="gradient-text">更要成本，还是更要量？</span>
+  </h2>
+  <div class="reveal reveal-d2 mt-2">
+    <span class="stage-tag" style="background:rgba(255,200,87,0.12); border-color:rgba(255,200,87,0.4); color:var(--gold);">元决策</span>
+    <div class="quote-box mt-3">
+      所有出价决策的<b class="gold-text">第一性问题</b>不是"出多少"，而是<b style="color:#fff">"这个广告 / 这个阶段，我更需要什么"</b>。<br/>
+      <b style="color:var(--text-3); font-weight:400;">没有这个共识，加价 / 降价 / 换契约都是在打盲拳——掉量了也救不回来。</b>
+    </div>
+  </div>
+
+  <!-- 天平视觉（SVG 实体天平 · 左沉右浮 · 博弈状态） -->
+  <div class="glass p-6 mt-6 reveal reveal-d3" style="background:linear-gradient(180deg, rgba(56,214,255,0.04), rgba(255,200,87,0.04));">
+    <div class="text-xs mb-3 text-center" style="color:var(--text-3); letter-spacing:0.25em;">⚖  COST × VOLUME · 出价天平 · 博弈进行时</div>
+    <svg viewBox="0 0 1080 320" style="width:100%; height:auto; display:block;" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="beam-grad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#38D6FF" stop-opacity="0.9"/>
+          <stop offset="0.5" stop-color="#E6E6F0" stop-opacity="0.6"/>
+          <stop offset="1" stop-color="#FFC857" stop-opacity="0.9"/>
+        </linearGradient>
+        <linearGradient id="pan-l" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="rgba(56,214,255,0.25)"/>
+          <stop offset="1" stop-color="rgba(56,214,255,0.05)"/>
+        </linearGradient>
+        <linearGradient id="pan-r" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="rgba(255,200,87,0.25)"/>
+          <stop offset="1" stop-color="rgba(255,200,87,0.05)"/>
+        </linearGradient>
+        <radialGradient id="coin-grad" cx="0.35" cy="0.35" r="0.7">
+          <stop offset="0" stop-color="#FFE39A"/>
+          <stop offset="1" stop-color="#E89A2E"/>
+        </radialGradient>
+        <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000" flood-opacity="0.35"/>
+        </filter>
+      </defs>
+
+      <!-- 底座 -->
+      <rect x="475" y="270" width="130" height="14" rx="3" fill="#1B1F3A" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <rect x="495" y="240" width="90" height="32" rx="3" fill="#1B1F3A" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+      <!-- 立柱 -->
+      <rect x="535" y="100" width="10" height="148" fill="#1B1F3A" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+      <!-- 立柱顶端枢轴 -->
+      <circle cx="540" cy="100" r="8" fill="#2A2F55" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+
+      <!-- 横梁（向左下倾斜，成本侧重） -->
+      <!-- 左端 (140, 145) → 右端 (940, 55)，倾斜约 6.4° -->
+      <line x1="140" y1="145" x2="940" y2="55" stroke="url(#beam-grad)" stroke-width="4" stroke-linecap="round" filter="url(#soft-shadow)"/>
+
+      <!-- 左挂绳 -->
+      <line x1="140" y1="145" x2="140" y2="195" stroke="rgba(255,255,255,0.3)" stroke-width="1.2"/>
+      <!-- 左托盘（下沉） -->
+      <ellipse cx="140" cy="200" rx="115" ry="14" fill="none" stroke="rgba(56,214,255,0.6)" stroke-width="1.5"/>
+      <path d="M 25 200 Q 140 240 255 200" fill="url(#pan-l)" stroke="rgba(56,214,255,0.7)" stroke-width="1.5"/>
+      <!-- 左盘内容：成本达成金币 -->
+      <circle cx="140" cy="180" r="22" fill="url(#coin-grad)" filter="url(#soft-shadow)"/>
+      <text x="140" y="187" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="20" font-weight="700" fill="#7A4A0F">¥</text>
+
+      <!-- 右挂绳 -->
+      <line x1="940" y1="55" x2="940" y2="105" stroke="rgba(255,255,255,0.3)" stroke-width="1.2"/>
+      <!-- 右托盘（上浮） -->
+      <ellipse cx="940" cy="110" rx="115" ry="14" fill="none" stroke="rgba(255,200,87,0.6)" stroke-width="1.5"/>
+      <path d="M 825 110 Q 940 150 1055 110" fill="url(#pan-r)" stroke="rgba(255,200,87,0.7)" stroke-width="1.5"/>
+      <!-- 右盘内容：拿量上升箭头 -->
+      <path d="M 940 100 L 940 75 M 928 87 L 940 75 L 952 87" stroke="#FFC857" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#soft-shadow)"/>
+
+      <!-- 左标签：成本达成 -->
+      <text x="140" y="58" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="22" font-weight="700" fill="#38D6FF" letter-spacing="2">成 本 达 成</text>
+      <text x="140" y="245" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="13" fill="rgba(255,255,255,0.65)">由「契约」保障</text>
+      <text x="140" y="262" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="rgba(255,255,255,0.4)" letter-spacing="1">pCVR × pGMV 估得准</text>
+
+      <!-- 右标签：拿到更多量 -->
+      <text x="940" y="32" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="22" font-weight="700" fill="#FFC857" letter-spacing="2">拿 到 更 多 量</text>
+      <text x="940" y="155" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="13" fill="rgba(255,255,255,0.65)">由「出价」撬动</text>
+      <text x="940" y="172" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="rgba(255,255,255,0.4)" letter-spacing="1">BID ↑ → eCPM ↑</text>
+
+      <!-- 中间博弈标签 -->
+      <line x1="320" y1="167" x2="450" y2="135" stroke="rgba(255,255,255,0.25)" stroke-width="1" stroke-dasharray="4 3"/>
+      <line x1="630" y1="123" x2="760" y2="91" stroke="rgba(255,255,255,0.25)" stroke-width="1" stroke-dasharray="4 3"/>
+      <rect x="475" y="115" width="130" height="34" rx="17" fill="rgba(20,24,46,0.95)" stroke="rgba(255,200,87,0.55)" stroke-width="1.2"/>
+      <text x="540" y="138" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="16" font-weight="700" fill="#FFC857" letter-spacing="6">博 弈</text>
+    </svg>
+    <div class="grid grid-cols-3 gap-3 mt-3 text-xs" style="color:var(--text-3);">
+      <div class="text-center" style="color:var(--cyan-2);">⬅ 这局重「成本」：契约保障，忍住别加价</div>
+      <div class="text-center" style="letter-spacing:0.2em;">天平倾斜 = 出价决策点</div>
+      <div class="text-center" style="color:var(--gold);">这局重「拿量」：主动加价 / 解杠杆 ➡</div>
+    </div>
+  </div>
+
+  <!-- 两侧对比 -->
+  <div class="grid grid-cols-2 gap-5 mt-5 reveal reveal-d4">
+    <!-- 左：控成本优先 -->
+    <div class="glass p-6" style="border-color:rgba(56,214,255,0.3);">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="pill cyan">控成本优先</span>
+        <span class="text-xs" style="color:var(--text-3);">利润型 / 爆品稳态</span>
+      </div>
+      <div class="text-xs uppercase tracking-widest mb-2" style="color:var(--cyan-2);">典型场景</div>
+      <ul class="text-sm leading-relaxed space-y-1" style="color:var(--text-2)">
+        <li>· 爆品稳定期，ROI 是生命线</li>
+        <li>· 利润敏感（食饮加工 / 标品），CPA 超 1 块都疼</li>
+        <li>· 客户已有稳定模型积累，目标是<b style="color:var(--cyan-2)">守 ROI 上限</b></li>
+      </ul>
+      <div class="text-xs uppercase tracking-widest mt-4 mb-2" style="color:var(--cyan-2);">系统会怎么做</div>
+      <p class="text-sm leading-relaxed" style="color:var(--text-2)">
+        严格履约 → 一旦累计超成本，<b style="color:var(--cyan-2)">主动压量回收</b>（就是下一页要讲的"超成本打压"）
+      </p>
+      <div class="text-xs uppercase tracking-widest mt-4 mb-2" style="color:var(--cyan-2);">掉量时的正确动作</div>
+      <p class="text-sm leading-relaxed" style="color:var(--text-2)">
+        <b style="color:var(--cyan-2)">忍住不加价</b>，温和回调到合理水位，等成本回收期度过自然恢复
+      </p>
+    </div>
+
+    <!-- 右：抢拿量优先 -->
+    <div class="glass-strong p-6 glow-border">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="pill gold">抢拿量优先</span>
+        <span class="text-xs" style="color:var(--text-3);">冷启 / 大场 / 清仓</span>
+      </div>
+      <div class="text-xs uppercase tracking-widest mb-2" style="color:var(--gold);">典型场景</div>
+      <ul class="text-sm leading-relaxed space-y-1" style="color:var(--text-2)">
+        <li>· 新品冷启，目标是<b class="gold-text">把模型样本灌起来</b></li>
+        <li>· 大场预热 / 开播加速，<b class="gold-text">前 2 小时定全场</b></li>
+        <li>· 库存清仓 / 临期，目标客单可让步</li>
+      </ul>
+      <div class="text-xs uppercase tracking-widest mt-4 mb-2" style="color:var(--gold);">系统会怎么做</div>
+      <p class="text-sm leading-relaxed" style="color:var(--text-2)">
+        放宽履约 → <b class="gold-text">先抢量、后调成本</b>，给系统更宽容忍度去探索
+      </p>
+      <div class="text-xs uppercase tracking-widest mt-4 mb-2" style="color:var(--gold);">掉量时的正确动作</div>
+      <p class="text-sm leading-relaxed" style="color:var(--text-2)">
+        <b class="gold-text">主动加价 / 加预算 / 解杠杆</b>（如开速推、放宽 ROI 目标），先把量稳住再谈成本
+      </p>
+    </div>
+  </div>
+
+  <!-- 反面教材 -->
+  <div class="glass-red p-5 mt-5 reveal reveal-d5">
+    <div class="flex items-start gap-3">
+      <span class="pill red" style="flex-shrink:0;">⚠ 最常见的错</span>
+      <div class="text-sm leading-relaxed" style="color:var(--text-2);">
+        <b style="color:#FFB0BE">立场错位 = 永远救不对火。</b>
+        把"控成本"客户当"抢量"投 → 一加价就触发超成本打压、量更少；把"抢量"客户当"控成本"投 → 模型永远跑不出冷启、客户骂你佛系。
+        <b style="color:#fff">→ 跟客户对齐第一句话永远是："这个广告这个阶段，我们要的是成本还是量？"</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="punchline mt-5 reveal reveal-d5">
+    <span class="gold-text">📐 元决策金句：</span>
+    <b class="gradient-text">出价不是技术题，是决策题；决策的前提，是<span class="gold-text">天平先得成立</span>。</b><br/>
+    天平的两端不是给你选"哪个更好"，而是逼你跟客户/老板<b>明牌共识</b>：这局，重在哪头。
+  </div>
+  <div class="page-num">10 / 16</div>
+</section>
+
+<!-- ============ 第五幕 · 契约反噬（具体诊断） ============ -->
+<section class="slide" id="act5">
+  <div class="module-tag reveal"><span class="num">ACT 5.1</span><span>·</span><span>掉量诊断之"超成本打压" · 5 min</span></div>
+  <h2 class="slide-title reveal reveal-d1">
+    跑得好好的，<span class="red-text">怎么突然掉量了？</span>
+  </h2>
+  <div class="reveal reveal-d2 mt-2">
+    <span class="stage-tag symptom">症状</span>
+    <div class="quote-box mt-3">
+      "前两天日耗 5 万好好的，今天突然 <b style="color:var(--red)">8000 都花不出去</b>！"
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-5 mt-6">
+    <div class="col-span-7 glass-red p-6 reveal reveal-d3">
+      <h3 class="section-title" style="color:#FFB0BE">🩺 触发链路：超成本打压</h3>
+      <div class="ascii mt-2">前期跑量大、单 CPA 偏高
+       ↓
+系统检测到<b style="color:#FFB0BE">累计成本超目标</b>
+       ↓
+进入"<b style="color:var(--gold)">成本回收期</b>"
+   自动下调内部出价（你看到的出价没变）
+       ↓
+eCPM 跌穿竞价线
+       ↓
+"<b style="color:var(--red)">突然就没量了</b>"</div>
+    </div>
+
+    <div class="col-span-5 glass-strong p-6 reveal reveal-d4">
+      <h3 class="section-title">📐 这不是 bug</h3>
+      <p class="text-sm leading-relaxed" style="color:var(--text-2)">
+        ROI / 下单出价是<b class="gradient-text">契约型出价</b>——<br/>
+        正面：你给目标，系统帮你达成 → 起量；<br/>
+        背面：累计超成本，<b class="gold-text">系统主动履约 → 压量</b>。
+      </p>
+      <div class="mt-4 punchline">
+        掉量从来不是"突然"的，<br/>
+        是前几天的好量已经<b class="gold-text">"预支"了今天的份额</b>。
+      </div>
+    </div>
+  </div>
+
+  <div class="glass p-6 mt-6 reveal reveal-d5">
+    <h3 class="section-title">🎯 解药：<span class="green-text">不是简单"再加价"</span></h3>
+    <table class="cmp">
+      <tr>
+        <th>❌ 错误操作</th>
+        <th>✅ 正确动作</th>
+      </tr>
+      <tr>
+        <td>直接关停重建</td>
+        <td>检查近 3 天<b class="gold-text">计价率</b>（cost / gmv 或 cost / 转化数 × bid）</td>
+      </tr>
+      <tr>
+        <td>大幅加价压不住</td>
+        <td>把出价<b class="green-text">温和回调到合理水位</b>（不是瞎加）</td>
+      </tr>
+      <tr>
+        <td>怪系统抽风</td>
+        <td>理解：这是<b class="gradient-text">系统在履约</b>，不是 bug</td>
+      </tr>
+    </table>
+  </div>
+  <div class="page-num">11 / 16</div>
+</section>
+
+<!-- ============ 第六幕 · 章首 ============ -->
+<section class="slide" id="act6">
+  <div class="module-tag reveal"><span class="num">ACT 6</span><span>·</span><span>处方 · 15 min</span></div>
+  <h2 class="slide-title reveal reveal-d1">
+    契约外的 <span class="gold-text">6 把</span>"系统加速器"<br/>
+    <span style="font-size:24px; font-weight:600; color:var(--text-2)">— 时间 × 素材 × 人群 三维矩阵 —</span>
+  </h2>
+  <div class="reveal reveal-d2 mt-3">
+    <span class="stage-tag cure">转场</span>
+    <div class="quote-box mt-3">
+      前五幕讲的都是<b class="gradient-text">契约内的主出价</b>——下单 / 下单 ROI / 24h 下单 / 24h 净成交。<br/>
+      它们是日常的"主引擎"。当主引擎力不从心时——<br/>
+      你还有 <b class="gold-text">6 把契约外的"加速器"</b>。
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-5 mt-8 flex-1 content-center reveal reveal-d3">
+    <div class="glass-strong p-6 text-center">
+      <div class="big-num text-5xl gradient-text mb-3">⏱️</div>
+      <h3 class="section-title">时间维度</h3>
+      <div class="text-sm" style="color:var(--text-2)">
+        一键起量<br/>
+        直播快推<br/>
+        直播专场放量
+      </div>
+    </div>
+    <div class="glass-gold p-6 text-center">
+      <div class="big-num text-5xl gold-text mb-3">🎨</div>
+      <h3 class="section-title">素材维度</h3>
+      <div class="text-sm" style="color:var(--text-2)">
+        创意优投<br/>
+        <span class="pill gold" style="margin-top:8px">提价 10%~50%</span>
+      </div>
+    </div>
+    <div class="glass-strong p-6 text-center">
+      <div class="big-num text-5xl gradient-text mb-3">👥</div>
+      <h3 class="section-title">人群维度</h3>
+      <div class="text-sm" style="color:var(--text-2)">
+        潜客优投<br/>
+        分人群出价
+      </div>
+    </div>
+  </div>
+
+  <div class="punchline mt-8 reveal reveal-d4">
+    共性：<b>不（部分）赔付、激进探索、用成本容忍度换跑量</b>。
+  </div>
+  <div class="page-num">12 / 16</div>
+</section>
+
+<!-- ============ 第六幕 · 6把加速器一张图 ============ -->
+<section class="slide" id="act6-table">
+  <div class="module-tag reveal"><span class="num">ACT 6.1</span><span>·</span><span>6 把加速器速览</span></div>
+  <h2 class="slide-title reveal reveal-d1">三维加速矩阵<span class="gradient-text">总览</span></h2>
+
+  <div class="glass p-5 mt-6 reveal reveal-d2" style="overflow:auto;">
+    <table class="cmp" style="font-size:13px;">
+      <tr>
+        <th>加速器</th>
+        <th>一句话能力</th>
+        <th>维度</th>
+        <th>触发场景</th>
+        <th>提价 / 激进度</th>
+        <th>赔付</th>
+      </tr>
+      <tr>
+        <td><b class="gradient-text">一键起量</b></td>
+        <td>单广告拨一笔预算，6h 激进探索增量流量</td>
+        <td><span class="pill cyan">⏱️ 时间</span></td>
+        <td>新广告冷启 / 老广告掉量</td>
+        <td>6h 激进探索</td>
+        <td>❌（增量部分）</td>
+      </tr>
+      <tr>
+        <td><b class="gradient-text">直播快推</b></td>
+        <td>给直播项目单独加一笔起量预算</td>
+        <td><span class="pill cyan">⏱️ 时间</span></td>
+        <td>开播加速 / 大场启动 / 主播换品掉量</td>
+        <td>6h 激进探索</td>
+        <td>❌</td>
+      </tr>
+      <tr>
+        <td><b class="gradient-text">直播专场放量</b></td>
+        <td>大场专属营销场景，分时计价率往 1.2 跑</td>
+        <td><span class="pill cyan">⏱️ 时间</span></td>
+        <td>周 / 月级营销大场</td>
+        <td>全场 ×1.2</td>
+        <td>❌</td>
+      </tr>
+      <tr style="background: rgba(255,200,87,0.05);">
+        <td><b class="gold-text">🆕 创意优投</b></td>
+        <td>给潜力素材开"绿色通道"+ 独立预算测跑量</td>
+        <td><span class="pill gold">🎨 素材</span></td>
+        <td>新素材测试 / 老素材换装 / 找爆款图视频</td>
+        <td><b class="gold-text">+10% ~ +50%</b></td>
+        <td>❌（独立预算）</td>
+      </tr>
+      <tr>
+        <td><b style="color:var(--purple-2)">潜客优投</b></td>
+        <td>对"高购买意向潜客"自动提价 1.1~2.0 倍</td>
+        <td><span class="pill purple">👥 人群</span></td>
+        <td>日常稳态、想多吃精准量</td>
+        <td>×1.1 ~ ×2.0</td>
+        <td>✅（按改后价）</td>
+      </tr>
+      <tr>
+        <td><b style="color:var(--purple-2)">分人群出价</b></td>
+        <td>不同人群分桶配置不同出价</td>
+        <td><span class="pill purple">👥 人群</span></td>
+        <td>客户分层运营 / 人群破圈</td>
+        <td>自定义</td>
+        <td>✅</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="grid grid-cols-2 gap-5 mt-6 reveal reveal-d3">
+    <div class="glass-gold p-5">
+      <h3 class="section-title">🆕 创意优投 · 关键认知 3 条</h3>
+      <ol class="text-sm leading-relaxed pl-5 list-decimal" style="color:var(--text-2)">
+        <li><b>本质</b>：项目级的<b class="gold-text">素材测试通道</b>，不是创意级；一个源项目最多对应一个优投项目</li>
+        <li><b>预算独立</b>：从账户单独划拨，<b class="gold-text">不占源项目预算</b>，源项目花完仍可投</li>
+        <li><b>提价范围</b>：10%~50%，这是人为设定的"<b class="gold-text">模型学习费</b>"——和第四幕"bid 是模型学习费"完全呼应</li>
+      </ol>
+    </div>
+    <div class="glass-red p-5">
+      <h3 class="section-title" style="color:#FFB0BE">🚨 三条避坑红线</h3>
+      <ol class="text-sm leading-relaxed pl-5 list-decimal" style="color:var(--text-2)">
+        <li><b>不要叠满</b>：潜客优投 ×1.5 + 创意优投 ×1.3 = <b style="color:#FFB0BE">真出价 ×1.95</b>，容易超成本</li>
+        <li><b>不要在掉量当下开</b>：先排查是否"超成本打压"，否则加速器火上浇油</li>
+        <li><b>不要长期常开</b>：加速器是"<b class="gold-text">应急药</b>"，长期开会让客户失去对真实成本的感知</li>
+      </ol>
+    </div>
+  </div>
+  <div class="page-num">13 / 16</div>
+</section>
+
+<!-- ============ 第六幕 · 决策树 ============ -->
+<section class="slide" id="act6-tree">
+  <div class="module-tag reveal"><span class="num">ACT 6.2</span><span>·</span><span>升维决策树</span></div>
+  <h2 class="slide-title reveal reveal-d1">
+    时间 × 素材 × 人群<br/>
+    <span class="gradient-text">三维加速决策树</span>
+  </h2>
+
+  <div class="grid grid-cols-3 gap-5 mt-8 reveal reveal-d2">
+    <div class="glass p-5">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="pill cyan">⏱️ 时间</span>
+        <span class="pill">脉冲跑量</span>
+      </div>
+      <h3 class="section-title">短时间脉冲跑量？</h3>
+      <ul class="text-sm leading-relaxed pl-5 list-disc mt-2" style="color:var(--text-2)">
+        <li>新广告 / 老广告冷启重启 → <b class="cyan-2" style="color:var(--cyan-2)">一键起量</b></li>
+        <li>直播间 6h 内爆发 → <b class="cyan-2" style="color:var(--cyan-2)">直播快推</b></li>
+        <li>3-6h 整场大场 → <b class="cyan-2" style="color:var(--cyan-2)">直播专场放量</b></li>
+      </ul>
+    </div>
+    <div class="glass-gold p-5">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="pill gold">🎨 素材</span>
+        <span class="pill">爆款挖掘</span>
+      </div>
+      <h3 class="section-title">想验证哪个素材能跑？</h3>
+      <ul class="text-sm leading-relaxed pl-5 list-disc mt-2" style="color:var(--text-2)">
+        <li>多素材想找爆款 → <b class="gold-text">创意优投</b></li>
+        <li>新素材冷启验证 → <b class="gold-text">创意优投</b>（提价 10-50%）</li>
+        <li>独立预算 · 不占源项目</li>
+      </ul>
+    </div>
+    <div class="glass p-5">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="pill purple">👥 人群</span>
+        <span class="pill">精准拿量</span>
+      </div>
+      <h3 class="section-title">想多拿"对的人"？</h3>
+      <ul class="text-sm leading-relaxed pl-5 list-disc mt-2" style="color:var(--text-2)">
+        <li>标准化高意向潜客 → <b style="color:var(--purple-2)">潜客优投</b></li>
+        <li>自定义人群分桶 → <b style="color:var(--purple-2)">分人群出价</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="glass-strong p-6 mt-8 reveal reveal-d3 glow-border">
+    <h3 class="section-title">🧭 顺序口诀：<span class="gradient-text">先时间、后素材、再人群</span></h3>
+    <p style="color:var(--text-2); line-height:1.8; font-size:15px;">
+      <b>时间</b>是脉冲（应急启动）→ <b>素材</b>是验证（找到爆款的图视频）→ <b>人群</b>是放大（在对的人身上多花钱）。<br/>
+      顺序错了，等于：<b style="color:#FFB0BE">在错的人身上验证错的素材，做出错的脉冲</b>。
+    </p>
+  </div>
+  <div class="page-num">14 / 16</div>
+</section>
+
+<!-- ============ 决策卡 ============ -->
+<section class="slide" id="card">
+  <div class="module-tag reveal"><span class="num">FINALE</span><span>·</span><span>带走的决策卡 · 3 min</span></div>
+  <h2 class="slide-title reveal reveal-d1">
+    一张<span class="gold-text">"出价决策卡"</span>带走
+  </h2>
+  <p class="subtitle reveal reveal-d2">
+    周一回到投放后台，按场景对号入座。
+  </p>
+
+  <div class="grid grid-cols-2 gap-5 mt-6 reveal reveal-d3">
+    <div class="glass p-5">
+      <div class="flex items-center gap-2 mb-2"><span class="pill green">日常稳态</span></div>
+      <h3 class="section-title">主出价：<span class="gradient-text">下单 ROI</span>（强契约）</h3>
+      <ul class="text-sm leading-relaxed pl-5 list-disc" style="color:var(--text-2)">
+        <li>辅助：<b style="color:var(--purple-2)">潜客优投</b>（人群）/ <b class="gold-text">创意优投</b>（素材）</li>
+        <li>看数：<b class="green-text">T+7 播放口径</b></li>
+      </ul>
+    </div>
+    <div class="glass p-5">
+      <div class="flex items-center gap-2 mb-2"><span class="pill cyan">冷启 / 起量</span></div>
+      <h3 class="section-title">主出价：<span class="gradient-text">下单出价</span>（30天归因）</h3>
+      <ul class="text-sm leading-relaxed pl-5 list-disc" style="color:var(--text-2)">
+        <li>辅助：<b class="cyan-2" style="color:var(--cyan-2)">一键起量</b> + <b class="gold-text">创意优投</b>（时间×素材双线起）</li>
+        <li>看数：6h–T+1 播放口径，关注<b class="gold-text">计价率</b></li>
+      </ul>
+    </div>
+    <div class="glass p-5">
+      <div class="flex items-center gap-2 mb-2"><span class="pill gold">大促 / 大场</span></div>
+      <h3 class="section-title">主出价：<span class="gradient-text">24h 下单 / 24h 净成交</span>（短契约）</h3>
+      <ul class="text-sm leading-relaxed pl-5 list-disc" style="color:var(--text-2)">
+        <li>辅助：<b class="cyan-2" style="color:var(--cyan-2)">直播专场放量</b> + <b class="cyan-2" style="color:var(--cyan-2)">直播快推</b></li>
+        <li>看数：<b class="gold-text">分时计价率</b>，T+0 实时</li>
+      </ul>
+    </div>
+    <div class="glass-red p-5">
+      <div class="flex items-center gap-2 mb-2"><span class="pill red">掉量诊断</span></div>
+      <h3 class="section-title" style="color:#FFB0BE">先排查、后用药</h3>
+      <ul class="text-sm leading-relaxed pl-5 list-disc" style="color:var(--text-2)">
+        <li>先看：近 3 天计价率是否 <b style="color:#FFB0BE">&gt; 1.0</b></li>
+        <li>再判：是<b>契约打压</b>还是<b>基建掉</b></li>
+        <li>最后：<b class="green-text">温和回调 bid</b>，不要瞎加速器</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="glass-strong p-6 mt-8 reveal reveal-d4 glow-border text-center">
+    <p style="color:var(--text-2); line-height:1.85; font-size:17px;">
+      会出价的投手，管好<b class="gradient-text">契约内</b>的 4 件事：bid · 契约 · 归因 · 时间。<br/>
+      会出价的高手，再加<b class="gold-text">契约外</b>的 2 把杠杆：<b class="gold-text">人群（潜客优投）</b> + <b class="gold-text">素材（创意优投）</b>。
+    </p>
+  </div>
+  <div class="page-num">15 / 16</div>
+</section>
+
+<script>
+  // 进度条
+  const progress = document.getElementById('progressBar');
+  document.body.addEventListener('scroll', () => {
+    const max = document.body.scrollHeight - document.body.clientHeight;
+    const ratio = Math.min(1, document.body.scrollTop / max);
+    progress.style.transform = `scaleX(${ratio})`;
+  });
+  // 顶部导航 active 高亮（按 group 聚合）
+  const navLinks = document.querySelectorAll('.top-nav a');
+  const sections = document.querySelectorAll('section.slide');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && e.intersectionRatio > 0.5) {
+        const id = e.target.id;
+        navLinks.forEach(a => {
+          const group = (a.dataset.group || a.dataset.target || '').split(',').map(s=>s.trim());
+          a.classList.toggle('active', group.includes(id));
+        });
+        // reveal 动画
+        e.target.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+      }
+    });
+  }, { threshold: [0.5] });
+  sections.forEach(s => io.observe(s));
+</script>
+</body>
+</html>
