@@ -1,588 +1,2530 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>食饮行业投放勤奋度诊断 · 服务商培训材料（占位版）</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>有效勤奋 · 食饮行业投放力诊断与提升</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=Montserrat:wght@400;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{--primary:#0052D9;--primary-light:#E6F0FF;--accent:#FF6B35;--accent-light:#FFE8DD;--success:#00A870;--success-light:#E3F9F0;--warning:#ED7B2F;--warning-light:#FFF1E5;--danger:#D54941;--danger-light:#FCEAE9;--gray-50:#F8F9FB;--gray-100:#F0F2F5;--gray-200:#E5E7EB;--gray-300:#D1D5DB;--gray-500:#6B7280;--gray-700:#374151;--gray-900:#111827;--bg:#FFFFFF;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 12px rgba(0,0,0,.08);--shadow-lg:0 12px 32px rgba(0,0,0,.12)}
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--gray-50);color:var(--gray-900);line-height:1.65;-webkit-font-smoothing:antialiased}
-  .deck{max-width:1280px;margin:0 auto;padding:24px 16px 80px}
-  .slide{background:var(--bg);border-radius:16px;padding:56px 64px;margin-bottom:32px;box-shadow:var(--shadow-md);position:relative;overflow:hidden;min-height:720px}
-  .slide::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--primary) 0%,var(--accent) 100%)}
-  .slide-tag{display:inline-block;font-size:13px;font-weight:600;color:var(--primary);background:var(--primary-light);padding:4px 12px;border-radius:20px;margin-bottom:16px;letter-spacing:.5px}
-  .slide-num{position:absolute;top:24px;right:32px;font-size:12px;color:var(--gray-500);letter-spacing:1px}
-  h1.slide-title{font-size:36px;font-weight:800;color:var(--gray-900);margin-bottom:8px;line-height:1.3;letter-spacing:-.5px}
-  h2.slide-subtitle{font-size:18px;font-weight:500;color:var(--gray-500);margin-bottom:36px;letter-spacing:.3px}
-  h3.section-h{font-size:22px;font-weight:700;color:var(--gray-900);margin:28px 0 16px;padding-left:14px;border-left:4px solid var(--primary)}
-  h4.sub-h{font-size:17px;font-weight:700;color:var(--primary);margin:18px 0 10px}
-  .cover{background:linear-gradient(135deg,#0052D9 0%,#003A99 60%,#001F66 100%);color:#fff;text-align:left;padding:96px 80px;min-height:760px;display:flex;flex-direction:column;justify-content:space-between}
-  .cover::before{background:linear-gradient(90deg,var(--accent),#FFB347)}
-  .cover .brand{font-size:14px;letter-spacing:4px;opacity:.85;font-weight:500}
-  .cover h1{font-size:64px;font-weight:800;line-height:1.15;margin-top:20px;background:linear-gradient(135deg,#fff 0%,#FFD7B5 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .cover .subtitle{font-size:22px;font-weight:400;opacity:.92;margin-top:16px;max-width:800px}
-  .cover .meta{display:flex;gap:48px;font-size:14px;opacity:.8;margin-top:60px}
-  .cover .meta div b{font-weight:600;opacity:1}
-  .cover-deco{position:absolute;right:-120px;bottom:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(255,107,53,.25),transparent 70%);border-radius:50%}
-  .toc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:28px}
-  .toc-item{display:flex;align-items:center;gap:18px;padding:24px 26px;background:var(--gray-50);border-radius:12px;border-left:4px solid var(--primary);transition:all .2s}
-  .toc-item:hover{transform:translateX(4px);box-shadow:var(--shadow-md)}
-  .toc-item .num{font-size:32px;font-weight:800;color:var(--primary);opacity:.4;min-width:48px}
-  .toc-item .info .t{font-size:18px;font-weight:700;color:var(--gray-900)}
-  .toc-item .info .d{font-size:13px;color:var(--gray-500);margin-top:4px}
-  p.lead{font-size:17px;color:var(--gray-700);margin:12px 0}
-  p{font-size:15px;color:var(--gray-700);margin:10px 0}
-  .highlight{color:var(--accent);font-weight:700}
-  .ph{display:inline-block;background:linear-gradient(90deg,#FFF1E5 0%,#FFE0CC 100%);color:var(--accent);border:1px dashed var(--accent);padding:1px 8px;border-radius:4px;font-weight:700;font-size:.95em;letter-spacing:.3px}
-  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0}
-  .stat{background:linear-gradient(135deg,var(--primary-light) 0%,#fff 100%);border-radius:12px;padding:20px 22px;border:1px solid var(--gray-200)}
-  .stat .label{font-size:13px;color:var(--gray-500);font-weight:500}
-  .stat .value{font-size:32px;font-weight:800;color:var(--primary);margin:6px 0;line-height:1}
-  .stat .value .unit{font-size:14px;font-weight:500;color:var(--gray-500);margin-left:4px}
-  .stat .desc{font-size:12px;color:var(--gray-500)}
-  .stat.danger{background:linear-gradient(135deg,var(--danger-light) 0%,#fff 100%)}.stat.danger .value{color:var(--danger)}
-  .stat.success{background:linear-gradient(135deg,var(--success-light) 0%,#fff 100%)}.stat.success .value{color:var(--success)}
-  .stat.warning{background:linear-gradient(135deg,var(--warning-light) 0%,#fff 100%)}.stat.warning .value{color:var(--warning)}
-  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:var(--shadow-sm)}
-  thead{background:linear-gradient(135deg,var(--primary) 0%,#003A99 100%);color:#fff}
-  th{padding:12px 14px;text-align:left;font-weight:600;font-size:13px;letter-spacing:.3px}
-  td{padding:12px 14px;border-top:1px solid var(--gray-100);color:var(--gray-700)}
-  tbody tr:nth-child(even){background:var(--gray-50)}
-  tbody tr:hover{background:var(--primary-light)}
-  td.center,th.center{text-align:center}
-  .tier-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0}
-  .tier{padding:14px 10px;border-radius:8px;text-align:center;color:#fff;font-weight:600;font-size:13px}
-  .tier .tval{font-size:20px;font-weight:800;display:block;margin-top:4px}
-  .tier.t1{background:var(--danger)}.tier.t2{background:var(--warning)}.tier.t3{background:var(--primary)}.tier.t4{background:var(--success)}
-  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:16px 0}
-  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:16px 0}
-  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:16px 0}
-  .card{background:var(--gray-50);border-radius:12px;padding:22px 24px;border-left:4px solid var(--primary)}
-  .card.warn{border-left-color:var(--warning);background:var(--warning-light)}
-  .card.danger{border-left-color:var(--danger);background:var(--danger-light)}
-  .card.ok{border-left-color:var(--success);background:var(--success-light)}
-  .card .ct{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:8px}
-  .card .cb{font-size:14px;color:var(--gray-700)}
-  .card ul{padding-left:20px;margin-top:6px}
-  .card li{font-size:14px;color:var(--gray-700);margin:4px 0}
-  .quote{background:linear-gradient(135deg,#FFF8F3 0%,#FFE8DD 100%);border-left:5px solid var(--accent);padding:24px 30px;border-radius:12px;margin:24px 0;font-size:18px;font-weight:600;color:var(--gray-900);line-height:1.7}
-  .quote .qmark{color:var(--accent);font-size:28px;font-weight:800}
-  .flow{display:flex;align-items:stretch;gap:12px;margin:24px 0;flex-wrap:nowrap}
-  .flow .node{flex:1;background:#fff;border:2px solid var(--primary);border-radius:10px;padding:14px 16px;text-align:center;position:relative}
-  .flow .node .nt{font-size:13px;color:var(--primary);font-weight:700;margin-bottom:6px}
-  .flow .node .nb{font-size:13px;color:var(--gray-700)}
-  .flow .arrow{align-self:center;color:var(--primary);font-size:22px;font-weight:800}
-  .badges{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
-  .badge{display:inline-block;padding:4px 12px;border-radius:16px;font-size:12px;font-weight:600;background:var(--primary-light);color:var(--primary)}
-  .badge.warn{background:var(--warning-light);color:var(--warning)}
-  .badge.danger{background:var(--danger-light);color:var(--danger)}
-  .badge.ok{background:var(--success-light);color:var(--success)}
-  .badge.gray{background:var(--gray-100);color:var(--gray-700)}
-  .diagcard{background:linear-gradient(180deg,#fff 0%,var(--gray-50) 100%);border:2px solid var(--primary);border-radius:16px;padding:28px;margin:20px 0;box-shadow:var(--shadow-md)}
-  .diagcard h4{font-size:18px;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:8px}
-  .diagcard h4::before{content:'';width:6px;height:22px;background:var(--primary);border-radius:3px}
-  .seg-card{background:#fff;border:1px solid var(--gray-200);border-radius:14px;padding:22px;box-shadow:var(--shadow-sm);transition:all .2s}
-  .seg-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
-  .seg-card .hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:12px;border-bottom:2px dashed var(--gray-200)}
-  .seg-card .hdr .name{font-size:18px;font-weight:800;color:var(--gray-900)}
-  .seg-card .hdr .tag{font-size:11px;padding:3px 8px;border-radius:10px;font-weight:600}
-  .seg-card.s1 .hdr .tag{background:var(--success-light);color:var(--success)}
-  .seg-card.s2 .hdr .tag{background:var(--primary-light);color:var(--primary)}
-  .seg-card.s3 .hdr .tag{background:var(--warning-light);color:var(--warning)}
-  .seg-card.s4 .hdr .tag{background:var(--accent-light);color:var(--accent)}
-  .seg-card .row{font-size:13px;margin:6px 0;color:var(--gray-700)}
-  .seg-card .row b{color:var(--gray-900);display:inline-block;min-width:70px}
-  .footnote{margin-top:24px;padding:12px 16px;background:var(--gray-50);border-radius:8px;font-size:12px;color:var(--gray-500);border-left:3px solid var(--gray-300)}
-  .footnote b{color:var(--gray-700)}
-  .progress{height:28px;background:var(--gray-100);border-radius:14px;overflow:hidden;position:relative;margin:6px 0}
-  .progress .fill{height:100%;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;color:#fff;font-weight:700;font-size:12px;transition:width .4s}
-  .progress.l0 .fill{background:var(--danger)}.progress.l1 .fill{background:var(--warning)}.progress.l2 .fill{background:var(--primary)}.progress.l3 .fill{background:var(--success)}
-  .progress .label-out{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:12px;font-weight:600;color:var(--gray-900)}
-  .closing{background:linear-gradient(135deg,#001F66 0%,#0052D9 100%);color:#fff;text-align:center;padding:120px 80px}
-  .closing h1{font-size:56px;font-weight:800;margin-bottom:24px}
-  .closing p{color:rgba(255,255,255,.85);font-size:18px}
-  .closing .signature{margin-top:60px;opacity:.7;font-size:13px;letter-spacing:2px}
-  .placeholder-note{background:#FFFBEB;border:1px dashed #F59E0B;border-radius:8px;padding:10px 16px;font-size:12px;color:#92400E;margin:12px 0}
-  .placeholder-note b{color:#78350F}
-  @media print{.slide{page-break-after:always;box-shadow:none}body{background:#fff}}
+  :root {
+    --bg-0: #07091A;
+    --bg-1: #0B0F22;
+    --bg-2: #11162E;
+    --line: rgba(255,255,255,0.08);
+    --line-strong: rgba(255,255,255,0.18);
+    --purple: #7C5CFF;
+    --purple-2: #A48BFF;
+    --cyan: #38D6FF;
+    --cyan-2: #7BE7FF;
+    --green: #14E5A0;
+    --orange: #FF9F45;
+    --red: #FF5C7C;
+    --gold: #FFC857;
+    --text-1: #F1F5FF;
+    --text-2: #B7BED9;
+    --text-3: #6B7396;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg-0);
+    color: var(--text-1);
+    font-family: 'Noto Sans SC', system-ui, sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+  body {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+  }
+  .num, .data-num {
+    font-family: 'Montserrat', 'DM Mono', monospace;
+    font-feature-settings: 'tnum';
+    letter-spacing: -0.02em;
+  }
+  /* ============ Section 通用 ============ */
+  section.slide {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    scroll-snap-align: start;
+    padding: 64px 80px 80px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(124,92,255,0.15), transparent 60%),
+      radial-gradient(900px 500px at -5% 110%, rgba(56,214,255,0.10), transparent 60%),
+      var(--bg-0);
+  }
+  section.slide::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 80%);
+    pointer-events: none;
+  }
+  /* ============ 顶部页码与导航 ============ */
+  .top-nav {
+    position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
+    z-index: 1000;
+    display: flex; gap: 8px;
+    background: rgba(11,15,34,0.65);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--text-2);
+  }
+  .top-nav a {
+    padding: 6px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--text-2);
+    transition: all .3s;
+  }
+  .top-nav a:hover { color: var(--text-1); background: rgba(255,255,255,0.05); }
+  .top-nav a.active {
+    color: white;
+    background: linear-gradient(135deg, var(--purple), var(--cyan));
+  }
+  /* 进度条 */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    z-index: 1001;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform .25s;
+  }
+  /* 页码 */
+  .page-num {
+    position: absolute; right: 40px; bottom: 32px;
+    font-family: 'Montserrat', monospace;
+    font-size: 12px;
+    color: var(--text-3);
+    letter-spacing: 0.2em;
+  }
+  /* ============ 四力导航圆环 ============ */
+  .force-nav {
+    position: absolute; top: 80px; right: 80px;
+    display: flex; gap: 8px;
+    z-index: 5;
+  }
+  .force-pill {
+    display: flex; align-items: center; gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--line);
+    font-size: 11px;
+    color: var(--text-3);
+    transition: all .3s;
+  }
+  .force-pill .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--text-3);
+  }
+  .force-pill.active {
+    background: rgba(124,92,255,0.18);
+    border-color: rgba(124,92,255,0.5);
+    color: var(--text-1);
+    box-shadow: 0 0 24px rgba(124,92,255,0.3);
+  }
+  .force-pill.active .dot { background: var(--purple-2); box-shadow: 0 0 8px var(--purple-2); }
+  .force-pill.cyan.active { background: rgba(56,214,255,0.18); border-color: rgba(56,214,255,0.5); box-shadow: 0 0 24px rgba(56,214,255,0.25); }
+  .force-pill.cyan.active .dot { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+  .force-pill.green.active { background: rgba(20,229,160,0.18); border-color: rgba(20,229,160,0.5); box-shadow: 0 0 24px rgba(20,229,160,0.25); }
+  .force-pill.green.active .dot { background: var(--green); box-shadow: 0 0 8px var(--green); }
+  .force-pill.gold.active { background: rgba(255,200,87,0.18); border-color: rgba(255,200,87,0.5); box-shadow: 0 0 24px rgba(255,200,87,0.25); }
+  .force-pill.gold.active .dot { background: var(--gold); box-shadow: 0 0 8px var(--gold); }
+  /* ============ 模块标签 ============ */
+  .module-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--text-2);
+    margin-bottom: 24px;
+  }
+  .module-tag .num { color: var(--purple-2); font-weight: 700; }
+  /* ============ 标题 ============ */
+  h1.slide-title {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+  }
+  h2.slide-title {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 14px;
+  }
+  .subtitle {
+    font-size: 16px;
+    color: var(--text-2);
+    line-height: 1.7;
+    max-width: 880px;
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, var(--purple-2) 0%, var(--cyan-2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .gold-text {
+    background: linear-gradient(135deg, #FFD27A, #FF9F45);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* ============ 玻璃卡片 ============ */
+  .glass {
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+  }
+  .glass:hover {
+    border-color: var(--line-strong);
+  }
+  .glass-strong {
+    background: linear-gradient(180deg, rgba(124,92,255,0.08), rgba(56,214,255,0.04));
+    border: 1px solid rgba(124,92,255,0.3);
+    border-radius: 16px;
+  }
+  /* ============ 大数字 ============ */
+  .big-num {
+    font-family: 'Montserrat', monospace;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  /* ============ 动画 ============ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
+  .reveal-delay-5 { transition-delay: .5s; }
+  /* 数字脉冲 */
+  @keyframes pulseGlow {
+    0%, 100% { text-shadow: 0 0 32px rgba(124,92,255,0.3); }
+    50% { text-shadow: 0 0 64px rgba(124,92,255,0.6); }
+  }
+  .pulse-glow { animation: pulseGlow 3s ease-in-out infinite; }
+  /* 流光边框 */
+  .glow-border {
+    position: relative;
+  }
+  .glow-border::before {
+    content: "";
+    position: absolute; inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--purple), var(--cyan), var(--purple));
+    background-size: 200% 200%;
+    animation: borderFlow 6s linear infinite;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  @keyframes borderFlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+  /* 轻微浮动 */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .float { animation: float 4s ease-in-out infinite; }
+  /* ============ 配套文档卡片（百宝箱） ============ */
+  .doc-card-group { display: grid; gap: 10px; }
+  .doc-card {
+    display: flex; align-items: center; gap: 12px;
+    padding: 11px 14px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid var(--line);
+    text-decoration: none;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .doc-card::after {
+    content: "";
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--purple), var(--cyan));
+    opacity: 0.7;
+  }
+  .doc-card:hover {
+    background: rgba(124,92,255,0.10);
+    border-color: rgba(124,92,255,0.45);
+    transform: translateX(3px);
+    box-shadow: 0 6px 24px -10px rgba(124,92,255,0.45);
+  }
+  .doc-card .doc-icon {
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, rgba(124,92,255,0.18), rgba(56,214,255,0.12));
+    border: 1px solid rgba(124,92,255,0.30);
+    flex-shrink: 0;
+    font-size: 15px;
+  }
+  .doc-card .doc-body { flex: 1; min-width: 0; }
+  .doc-card .doc-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-right: 6px;
+    background: rgba(56,214,255,0.12);
+    color: var(--cyan);
+    border: 1px solid rgba(56,214,255,0.30);
+    letter-spacing: 0.5px;
+  }
+  .doc-card .doc-tag.green   { background: rgba(56,232,143,0.12); color: var(--green); border-color: rgba(56,232,143,0.30); }
+  .doc-card .doc-tag.gold    { background: rgba(255,200,87,0.12); color: var(--gold);  border-color: rgba(255,200,87,0.30); }
+  .doc-card .doc-tag.purple  { background: rgba(124,92,255,0.14); color: #B9A8FF;      border-color: rgba(124,92,255,0.35); }
+  .doc-card .doc-title {
+    font-size: 12.5px;
+    color: var(--text-1);
+    font-weight: 600;
+    line-height: 1.35;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .doc-card .doc-sub {
+    font-size: 10.5px;
+    color: var(--text-3);
+    margin-top: 2px;
+    line-height: 1.3;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .doc-card .doc-go {
+    font-size: 11px;
+    color: var(--cyan);
+    padding: 3px 9px;
+    border-radius: 99px;
+    border: 1px solid rgba(56,214,255,0.35);
+    background: rgba(56,214,255,0.06);
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .doc-card:hover .doc-go {
+    background: var(--cyan);
+    color: #0B0F22;
+    border-color: var(--cyan);
+  }
+  .doc-section-title {
+    font-size: 12px;
+    color: var(--text-3);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .doc-section-title::before {
+    content: "";
+    width: 14px; height: 1px;
+    background: var(--cyan);
+    display: inline-block;
+  }
+
+  /* ============ 模拟手机直播间卡片（无图兜底） ============ */
+  .phone-card {
+    position: relative;
+    aspect-ratio: 9/16;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px -8px rgba(0,0,0,0.55);
+    cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+    color: #fff;
+    font-size: 9px;
+    padding: 6px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .phone-card:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 12px 28px -8px rgba(255,200,87,0.4);
+  }
+  /* 真实图模式 ── 让 img 填满 phone-card */
+  .phone-card-real { padding: 0; }
+  .phone-card-real::before { display: none; }
+  .phone-card-real img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
+  }
+  .phone-card-real .phone-stage-badge {
+    position: absolute;
+    bottom: 6px; left: 50%;
+    transform: translateX(-50%);
+    padding: 2px 10px;
+    border-radius: 9px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px -2px rgba(0,0,0,0.5);
+    z-index: 2;
+  }
+  .phone-card::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.18) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.45) 100%);
+    pointer-events: none;
+  }
+  .phone-card .phone-status {
+    font-size: 8px;
+    background: rgba(0,0,0,0.35);
+    padding: 1px 4px;
+    border-radius: 3px;
+    align-self: flex-start;
+    backdrop-filter: blur(4px);
+    position: relative; z-index: 2;
+  }
+  .phone-card .phone-tag {
+    position: absolute;
+    top: 22px; left: 5px;
+    background: rgba(255,255,255,0.18);
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 7.5px;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.25);
+    z-index: 2;
+  }
+  .phone-card .phone-title {
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin: auto 0 4px 0;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    letter-spacing: 0.3px;
+    position: relative; z-index: 2;
+  }
+  .phone-card .phone-bubble {
+    background: rgba(255,255,255,0.92);
+    color: #1a1a1a;
+    padding: 3px 5px;
+    border-radius: 4px 4px 4px 0;
+    font-size: 8px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    position: relative; z-index: 2;
+  }
+  .phone-card .phone-bubble b { color: #C8102E; }
+  .phone-card .phone-promo {
+    background: linear-gradient(135deg, #FFD700, #FF6B35);
+    color: #1a1a1a;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 9.5px;
+    align-self: flex-start;
+    box-shadow: 0 2px 6px rgba(255,107,53,0.4);
+    position: relative; z-index: 2;
+  }
+  .phone-card .phone-stage {
+    position: absolute;
+    bottom: 4px; right: 4px;
+    background: rgba(0,0,0,0.55);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 9px;
+    font-weight: 700;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.15);
+    z-index: 3;
+  }
+
+  /* ============ 模拟书本礼盒产品卡（玛氏） ============ */
+  .product-card {
+    position: relative;
+    aspect-ratio: 1/1;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.25s;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 4px 14px -6px rgba(0,0,0,0.45);
+  }
+  .product-card:hover { transform: scale(1.05); box-shadow: 0 8px 22px -6px rgba(255,200,87,0.45); }
+  .product-card .pc-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(180deg, transparent, rgba(0,0,0,0.78));
+    color: #fff;
+    font-size: 9px;
+    padding: 8px 5px 4px;
+    text-align: center;
+    line-height: 1.2;
+    font-weight: 600;
+  }
+
+  /* ============ 图片放大 Lightbox ============ */
+  .thumb-wrap {
+    position: relative;
+    cursor: zoom-in;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    transition: all 0.25s;
+  }
+  .thumb-wrap:hover {
+    border-color: rgba(124,92,255,0.5);
+    box-shadow: 0 8px 30px -10px rgba(124,92,255,0.5);
+  }
+  .thumb-wrap img { display: block; width: 100%; }
+  .thumb-wrap::after {
+    content: "🔍 点击放大";
+    position: absolute; right: 8px; top: 8px;
+    background: rgba(11,15,34,0.7);
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 99px;
+    font-size: 10.5px;
+    backdrop-filter: blur(6px);
+  }
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(11,15,34,0.92);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: none;
+    align-items: center; justify-content: center;
+    padding: 30px;
+    cursor: zoom-out;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 92%; max-height: 92%;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+  }
+  .lightbox .close-hint {
+    position: absolute; top: 24px; right: 32px;
+    color: var(--text-2);
+    font-size: 13px;
+  }
+  /* Hero 流光 */
+  @keyframes auroraMove {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    50%  { transform: translate(-40px, 30px) rotate(8deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
+  .aurora {
+    position: absolute;
+    width: 1200px; height: 1200px;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.45;
+    pointer-events: none;
+    animation: auroraMove 16s ease-in-out infinite;
+  }
+  .aurora.purple { background: radial-gradient(circle, var(--purple) 0%, transparent 70%); top: -30%; left: -10%; }
+  .aurora.cyan   { background: radial-gradient(circle, var(--cyan)   0%, transparent 70%); bottom: -40%; right: -10%; animation-delay: -8s; }
+  /* 表格 */
+  table.exec-table { width: 100%; border-collapse: collapse; }
+  table.exec-table th, table.exec-table td {
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 13px;
+    border-bottom: 1px solid var(--line);
+  }
+  table.exec-table th {
+    color: var(--text-3);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  table.exec-table td.num-cell {
+    font-family: 'Montserrat', monospace;
+    color: var(--text-1);
+    font-weight: 600;
+  }
+  table.exec-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+  /* 力 token */
+  .force-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .chip-product { background: rgba(20,229,160,0.12); color: var(--green); border: 1px solid rgba(20,229,160,0.3); }
+  .chip-content { background: rgba(56,214,255,0.12); color: var(--cyan); border: 1px solid rgba(56,214,255,0.3); }
+  .chip-ops     { background: rgba(255,200,87,0.12); color: var(--gold); border: 1px solid rgba(255,200,87,0.3); }
+  .chip-buy     { background: rgba(124,92,255,0.14); color: var(--purple-2); border: 1px solid rgba(124,92,255,0.35); }
 </style>
 </head>
 <body>
-<div class="deck">
 
-  <!-- ============ 封面 ============ -->
-  <section class="slide cover">
-    <div>
-      <div class="brand">TENCENT ADS · FOOD &amp; BEVERAGE</div>
-      <h1>食饮行业<br/>投放勤奋度诊断</h1>
-      <div class="subtitle">从"做了多少"到"持续在做" —— 服务商基建标准化与勤奋度牵引培训</div>
-    </div>
-    <div class="meta">
-      <div><b>分享对象</b><br/>食饮行业核心服务商</div>
-      <div><b>课时</b><br/>1 小时精讲版</div>
-      <div><b>版本</b><br/>V3 · 2026.05</div>
-      <div><b>讲师</b><br/>腾讯广告 食品饮料行业中心</div>
-    </div>
-    <div class="cover-deco"></div>
-  </section>
+<!-- 进度条 -->
+<div class="progress-bar" id="progressBar"></div>
 
-  <!-- ============ 目录 ============ -->
-  <section class="slide">
-    <span class="slide-num">02 / 18</span>
-    <span class="slide-tag">目录 · CONTENTS</span>
-    <h1 class="slide-title">本次培训核心议题</h1>
-    <h2 class="slide-subtitle">围绕"勤奋度"这一核心命题，重塑服务商的基建标准认知</h2>
-    <div class="toc-grid">
-      <div class="toc-item"><div class="num">01</div><div class="info"><div class="t">行业现状与勤奋度命题</div><div class="d">为什么"做了多少"的旧标准已经失效</div></div></div>
-      <div class="toc-item"><div class="num">02</div><div class="info"><div class="t">三阶段诊断卡 V3</div><div class="d">活跃水位 + 周节奏的双层诊断框架</div></div></div>
-      <div class="toc-item"><div class="num">03</div><div class="info"><div class="t">商品颗粒度与货组聚焦</div><div class="d">从"客户层评估"升级为"商品×客户"双层评估</div></div></div>
-      <div class="toc-item"><div class="num">04</div><div class="info"><div class="t">四类客群差异化打法</div><div class="d">贸易商 / 新锐 / 本土传统 / 国际品牌的对症方案</div></div></div>
-      <div class="toc-item"><div class="num">05</div><div class="info"><div class="t">场景感知召回 × AI 赋能</div><div class="d">把"勤奋"从体力活变成"杠杆活"</div></div></div>
-      <div class="toc-item"><div class="num">06</div><div class="info"><div class="t">服务商行动指引</div><div class="d">本周 / 本月 / 本季度的可落地动作清单</div></div></div>
-    </div>
-    <div class="placeholder-note"><b>占位说明：</b>本材料中所有 <span class="ph">XX</span> 标记均为待填占位符，将在 BI AI 数据回传后统一替换为真实数据。</div>
-  </section>
+<!-- 顶部导航 -->
+<nav class="top-nav">
+  <a href="#cover" class="active">封面</a>
+  <a href="#m1-status">总领 · 概率×eCPM</a>
+  <a href="#m1-exec">模块一 · L1 基建</a>
+  <a href="#m2-why">模块二 · L2 跃迁</a>
+  <a href="#m3">模块三 · L3 确定性</a>
+  <a href="#end">收尾</a>
+</nav>
 
-  <!-- =================== 模块一 =================== -->
-  <section class="slide">
-    <span class="slide-num">03 / 18</span>
-    <span class="slide-tag">MODULE 01 · 命题</span>
-    <h1 class="slide-title">食饮行业，正在进入"勤奋度分化"的关键节点</h1>
-    <h2 class="slide-subtitle">大盘消耗增长趋缓的背景下，"谁能持续上新、持续上素材"成为分水岭</h2>
-    <div class="stats-grid">
-      <div class="stat"><div class="label">食饮行业月消耗</div><div class="value"><span class="ph">XX</span><span class="unit">亿</span></div><div class="desc">近30天 · 大盘体量</div></div>
-      <div class="stat warning"><div class="label">同比增速</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">行业整体增速放缓</div></div>
-      <div class="stat success"><div class="label">头部服务商集中度</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">Top10服务商消耗占比</div></div>
-      <div class="stat danger"><div class="label">活跃SPU占比</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">在投SPU中近4周有动作的占比</div></div>
+<!-- ============ P1 封面 ============ -->
+<section class="slide" id="cover">
+  <div class="aurora purple"></div>
+  <div class="aurora cyan"></div>
+  <div class="flex-1 flex flex-col justify-center max-w-6xl reveal">
+    <div class="flex items-center gap-3 mb-8">
+      <div style="width:6px;height:36px;background:linear-gradient(180deg,var(--purple),var(--cyan));border-radius:3px;"></div>
+      <div class="text-sm tracking-[0.4em]" style="color:var(--text-2);">TENCENT ADVERTISING · F&amp;B CLIENT TRAINING</div>
     </div>
-    <h3 class="section-h">三个正在发生的关键变化</h3>
-    <div class="grid-3">
-      <div class="card"><div class="ct">变化一：流量红利收敛</div><div class="cb">大盘自然流量增长收窄，"加预算 = 加消耗"的简单逻辑失效，更依赖<b>素材效率</b>和<b>创意迭代速度</b>。</div></div>
-      <div class="card warn"><div class="ct">变化二：素材生命周期缩短</div><div class="cb">食饮行业素材有效期普遍 <b>3~7天</b>，"一波流"投放的客户开始系统性衰退。</div></div>
-      <div class="card ok"><div class="ct">变化三：商品颗粒度成胜负手</div><div class="cb">头部客户开始按 SPU 维度精细化运营，单品打透的客户跑赢"广撒网"客户 <b><span class="ph">XX</span> 倍 ROI</b>。</div></div>
+    <h1 style="font-size:88px;font-weight:900;line-height:1.05;letter-spacing:-0.02em;">
+      <span class="gradient-text">有效勤奋</span>
+    </h1>
+    <h1 style="font-size:64px;font-weight:800;line-height:1.1;margin-top:12px;color:var(--text-1);">
+      从基建到确定性的<span class="gold-text">跃迁之路</span>
+    </h1>
+    <div class="mt-10 text-xl" style="color:var(--text-2);max-width:760px;line-height:1.6;">
+      食饮行业客户培训 · 三阶段勤奋诊断与四力提升手册
     </div>
-    <div class="quote"><span class="qmark">"</span> 过去比拼的是"<b>有没有做</b>"，未来比拼的是"<b>有没有持续在做</b>"。<span class="qmark">"</span></div>
-  </section>
-
-  <section class="slide">
-    <span class="slide-num">04 / 18</span>
-    <span class="slide-tag">MODULE 01 · 旧标准为什么失效</span>
-    <h1 class="slide-title">为什么"30天累计创意数"是个伪指标？</h1>
-    <h2 class="slide-subtitle">素材生命周期 3~7 天的现实，让"累计值"无法反映"当下勤奋"</h2>
-    <h3 class="section-h">三个客户，同样的"30天累计60条创意"，本质完全不同</h3>
-    <div class="grid-3">
-      <div class="card danger"><div class="ct">🔴 客户A · 一波流</div><div class="cb">第1周一次性上 60 条，后 3 周 0 条。<br/><b>真相：曾经勤奋，现在躺平</b></div><div class="badges" style="margin-top:8px;"><span class="badge danger">假勤奋</span><span class="badge gray">活跃率 25%</span></div></div>
-      <div class="card warn"><div class="ct">🟡 客户B · 突击型</div><div class="cb">前3周 0 条，第4周被推着突击 60 条。<br/><b>真相：被动响应，缺乏节奏</b></div><div class="badges" style="margin-top:8px;"><span class="badge warn">突击勤奋</span><span class="badge gray">活跃率 25%</span></div></div>
-      <div class="card ok"><div class="ct">🟢 客户C · 持续型</div><div class="cb">每周稳定上新 15 条，4 周节奏不断。<br/><b>真相：真勤奋，可复制</b></div><div class="badges" style="margin-top:8px;"><span class="badge ok">真勤奋</span><span class="badge ok">活跃率 100%</span></div></div>
-    </div>
-    <h3 class="section-h">这就是为什么我们要切换到「活跃水位 + 周节奏」</h3>
-    <div class="flow">
-      <div class="node"><div class="nt">旧方法</div><div class="nb">30天累计<br/>"做了多少"</div></div>
-      <div class="arrow">→</div>
-      <div class="node"><div class="nt">新方法 ①</div><div class="nb">活跃水位<br/>"当下还在做"</div></div>
-      <div class="arrow">+</div>
-      <div class="node"><div class="nt">新方法 ②</div><div class="nb">周节奏<br/>"持续在做"</div></div>
-      <div class="arrow">→</div>
-      <div class="node" style="background:var(--success-light);border-color:var(--success);"><div class="nt" style="color:var(--success);">真实勤奋度</div><div class="nb">可识别 / 可指导 / 可复制</div></div>
-    </div>
-  </section>
-
-  <section class="slide">
-    <span class="slide-num">05 / 18</span>
-    <span class="slide-tag">MODULE 01 · 行业全景</span>
-    <h1 class="slide-title">食饮行业勤奋度全景画像</h1>
-    <h2 class="slide-subtitle">基于近4周（W18~W21）全行业 SPU 级活跃水位扫描</h2>
-    <h3 class="section-h">客户勤奋度分层分布（按周勤奋活跃率）</h3>
-    <div style="margin: 12px 0;">
-      <div class="progress l0"><div class="fill" style="width:38%"><span class="ph">XX</span>%</div><span class="label-out">🔴 L0 真躺平（4周中 0 周有动作）</span></div>
-      <div class="progress l1"><div class="fill" style="width:28%"><span class="ph">XX</span>%</div><span class="label-out">🟡 L1 一波流（4周中仅 1 周有动作）</span></div>
-      <div class="progress l2"><div class="fill" style="width:22%"><span class="ph">XX</span>%</div><span class="label-out">🟢 L2 间歇勤奋（4周中 2~3 周有动作）</span></div>
-      <div class="progress l3"><div class="fill" style="width:12%"><span class="ph">XX</span>%</div><span class="label-out">⭐ L3 持续勤奋（4周全活跃）</span></div>
-    </div>
-    <div class="placeholder-note"><b>数据待填：</b>四档分布占比（来自 BI 任务2 · 客户勤奋度 L0/L1/L2/L3 分布矩阵），柱长会按真实数据等比缩放。</div>
-    <h3 class="section-h">三个最扎心的发现 <span style="font-size:13px;color:var(--gray-500);font-weight:400;">（数据待填）</span></h3>
-    <div class="grid-3">
-      <div class="card danger"><div class="ct">💥 发现1：占位SPU泛滥</div><div class="cb">食饮行业在投 SPU 中，<b><span class="ph">XX</span>%</b> 的 SPU 近4周「单品活跃创意数 &lt; 3条」 —— 大量 SPU 只是"挂着"在投，实际没在做。</div></div>
-      <div class="card danger"><div class="ct">💥 发现2：周活跃率严重偏低</div><div class="cb">行业平均"周勤奋活跃率"仅 <b><span class="ph">XX</span>%</b> —— 即大多数客户4周里只有不到一半时间在动。</div></div>
-      <div class="card danger"><div class="ct">💥 发现3：爆款产出极度稀缺</div><div class="cb">近4周累计消耗 ≥5万 的爆款素材，<b>仅 <span class="ph">XX</span>% 的客户产出 ≥1条</b> —— 大多数客户在做"无效勤奋"。</div></div>
-    </div>
-  </section>
-
-  <!-- =================== 模块二 =================== -->
-  <section class="slide">
-    <span class="slide-num">06 / 18</span>
-    <span class="slide-tag">MODULE 02 · 诊断框架</span>
-    <h1 class="slide-title">三阶段勤奋度诊断卡 V3</h1>
-    <h2 class="slide-subtitle">活跃水位 + 周节奏 + 确定性产出 · 双颗粒度（商品 × 客户）</h2>
-    <div class="diagcard">
-      <h4>诊断卡总览</h4>
-      <div class="grid-3">
-        <div><div style="font-size:14px;color:var(--gray-500);margin-bottom:6px;">L1 · 基建关</div><div style="font-size:18px;font-weight:800;color:var(--danger);">活跃水位</div><div style="font-size:13px;color:var(--gray-700);margin-top:4px;">回答："你<b>当下</b>还在做吗？"</div></div>
-        <div><div style="font-size:14px;color:var(--gray-500);margin-bottom:6px;">L2 · 有效关</div><div style="font-size:18px;font-weight:800;color:var(--warning);">周节奏</div><div style="font-size:13px;color:var(--gray-700);margin-top:4px;">回答："你是不是<b>每周都在做</b>？"</div></div>
-        <div><div style="font-size:14px;color:var(--gray-500);margin-bottom:6px;">L3 · 确定性关</div><div style="font-size:18px;font-weight:800;color:var(--success);">爆款产出</div><div style="font-size:13px;color:var(--gray-700);margin-top:4px;">回答："你做的<b>有没有效</b>？"</div></div>
-      </div>
-    </div>
-    <h3 class="section-h">为什么是"三阶段"而不是一刀切</h3>
-    <p class="lead">勤奋度不是 0/1 题，而是 <b>递进式</b> 的能力建设：先把基建搭起来（L1），再把节奏跑稳（L2），最后才是产出爆款（L3）。<br/><b>客户卡在哪一关，对应的服务动作就完全不同</b> —— 这是诊断卡的核心价值。</p>
-    <div class="flow">
-      <div class="node" style="border-color:var(--danger);"><div class="nt" style="color:var(--danger);">L1 没过</div><div class="nb">服务动作：<br/>陪跑搭素材</div></div>
-      <div class="arrow">→</div>
-      <div class="node" style="border-color:var(--warning);"><div class="nt" style="color:var(--warning);">L2 没过</div><div class="nb">服务动作：<br/>定周上新节奏</div></div>
-      <div class="arrow">→</div>
-      <div class="node" style="border-color:var(--primary);"><div class="nt">L3 没过</div><div class="nb">服务动作：<br/>对标拆爆款</div></div>
-      <div class="arrow">→</div>
-      <div class="node" style="border-color:var(--success);"><div class="nt" style="color:var(--success);">L3 已过</div><div class="nb">服务动作：<br/>提客单&amp;扩矩阵</div></div>
-    </div>
-  </section>
-
-  <section class="slide">
-    <span class="slide-num">07 / 18</span>
-    <span class="slide-tag">MODULE 02 · L1基建关</span>
-    <h1 class="slide-title">L1 · 基建关：活跃水位</h1>
-    <h2 class="slide-subtitle">取最近一个完整自然周（W21：05/05~05/11）的瞬时快照 —— 反映"当下勤奋密度"</h2>
-    <h3 class="section-h">L1 商品层指标（单SPU活跃水位）</h3>
-    <table>
-      <thead><tr><th>维度</th><th class="center">🔴 躺平区</th><th class="center">🟡 入门线</th><th class="center">🟢 合格线</th><th class="center">⭐ 优秀线</th><th>口径说明</th></tr></thead>
-      <tbody>
-        <tr><td><b>单SPU活跃广告数</b></td><td class="center"><span class="ph">&lt;X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td>当周有消耗的广告数</td></tr>
-        <tr><td><b>单SPU活跃创意数</b></td><td class="center"><span class="ph">&lt;X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td>当周有曝光的创意数</td></tr>
-        <tr><td><b>单SPU活跃直播间</b></td><td class="center"><span class="ph">&lt;X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td>当周有开播且关联此SPU的直播间数</td></tr>
-      </tbody>
-    </table>
-    <h3 class="section-h">L1 客户层指标（货盘&amp;矩阵）</h3>
-    <table>
-      <thead><tr><th>维度</th><th class="center">🔴 躺平区</th><th class="center">🟡 入门线</th><th class="center">🟢 合格线</th><th class="center">⭐ 优秀线</th><th>口径说明</th></tr></thead>
-      <tbody>
-        <tr><td><b>客户在投活跃SPU数</b></td><td class="center"><span class="ph">&lt;X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td>当周有消耗的SPU总数</td></tr>
-        <tr><td><b>客户活跃直播间数</b></td><td class="center"><span class="ph">&lt;X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td>当周有开播的直播间数</td></tr>
-        <tr><td><b>客户当周开播天数</b></td><td class="center"><span class="ph">&lt;X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td>当周内任一直播间开播的累计天数</td></tr>
-      </tbody>
-    </table>
-    <div class="footnote"><b>口径锁定：</b>当前周 = 最近一个完整自然周（W21：2026-05-05 ~ 2026-05-11）。所有"活跃"=当周有消耗/曝光/开播。</div>
-  </section>
-
-  <section class="slide">
-    <span class="slide-num">08 / 18</span>
-    <span class="slide-tag">MODULE 02 · L2有效关</span>
-    <h1 class="slide-title">L2 · 有效关：周节奏</h1>
-    <h2 class="slide-subtitle">取近4周（W18~W21）周均值 —— 反映"持续勤奋度"</h2>
-    <h3 class="section-h">L2 商品层指标（单SPU节奏）</h3>
-    <table>
-      <thead><tr><th>维度</th><th class="center">🔴 躺平区</th><th class="center">🟡 入门线</th><th class="center">🟢 合格线</th><th class="center">⭐ 优秀线</th><th>口径说明</th></tr></thead>
-      <tbody>
-        <tr><td><b>周创意上新数（4周均值）</b></td><td class="center"><span class="ph">&lt;X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td>每周新增创意数的均值</td></tr>
-        <tr><td><b>周二创素材数（4周均值）</b></td><td class="center"><span class="ph">&lt;X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td>每周二创素材数的均值</td></tr>
-        <tr style="background:var(--accent-light);"><td><b>⭐ 周勤奋活跃率</b></td><td class="center"><span class="ph">&lt;25%</span></td><td class="center"><span class="ph">≥25%</span></td><td class="center"><span class="ph">≥50%</span></td><td class="center"><span class="ph">100%</span></td><td>4周中"有基础动作"的周数占比</td></tr>
-        <tr><td><b>唯一创意ID占比</b></td><td class="center"><span class="ph">&lt;X%</span></td><td class="center"><span class="ph">≥X%</span></td><td class="center"><span class="ph">≥X%</span></td><td class="center"><span class="ph">≥X%</span></td><td>去重创意数 / 总创意数</td></tr>
-      </tbody>
-    </table>
-    <div class="quote"><span class="qmark">★</span> <b>「周勤奋活跃率」</b>是整张诊断卡最有冲击力的一栏 —— 客户看到自己"4周里只有1周在动"，比任何累计值都更扎心。<span class="qmark">★</span></div>
-    <h3 class="section-h">L2 客户层指标（开播节奏 + 货盘更新）</h3>
-    <div class="tier-bar">
-      <div class="tier t1">周开播天数 · 躺平<span class="tval ph">&lt;X 天</span></div>
-      <div class="tier t2">入门<span class="tval ph">≥X 天</span></div>
-      <div class="tier t3">合格<span class="tval ph">≥X 天</span></div>
-      <div class="tier t4">优秀<span class="tval ph">≥X 天</span></div>
-    </div>
-    <div class="tier-bar">
-      <div class="tier t1">周新增SPU · 躺平<span class="tval ph">&lt;X</span></div>
-      <div class="tier t2">入门<span class="tval ph">≥X</span></div>
-      <div class="tier t3">合格<span class="tval ph">≥X</span></div>
-      <div class="tier t4">优秀<span class="tval ph">≥X</span></div>
-    </div>
-  </section>
-
-  <section class="slide">
-    <span class="slide-num">09 / 18</span>
-    <span class="slide-tag">MODULE 02 · L3确定性关</span>
-    <h1 class="slide-title">L3 · 确定性关：爆款产出</h1>
-    <h2 class="slide-subtitle">近4周累计 · 反映"勤奋度的最终转化效率"</h2>
-    <div class="grid-2">
+    <div class="mt-12 flex items-center gap-12">
       <div>
-        <h3 class="section-h">L3 商品层指标</h3>
-        <table>
-          <thead><tr><th>维度</th><th class="center">合格线</th><th class="center">优秀线</th></tr></thead>
-          <tbody>
-            <tr><td>单SPU近4周爆款素材数<br/><span style="font-size:11px;color:var(--gray-500);">（累计消耗 ≥5万）</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td></tr>
-            <tr><td>单SPU近4周累计消耗</td><td class="center"><span class="ph">≥X 万</span></td><td class="center"><span class="ph">≥X 万</span></td></tr>
-            <tr><td>单SPU爆款素材ROI均值</td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td></tr>
-          </tbody>
-        </table>
+        <div class="text-xs tracking-widest" style="color:var(--text-3);">数据样本</div>
+        <div class="big-num text-3xl mt-1"><span class="gradient-text">1万+</span> <span class="text-base font-normal" style="color:var(--text-2);">家食饮客户</span></div>
       </div>
       <div>
-        <h3 class="section-h">L3 客户层指标</h3>
-        <table>
-          <thead><tr><th>维度</th><th class="center">合格线</th><th class="center">优秀线</th></tr></thead>
-          <tbody>
-            <tr><td>近4周稳定爆款SPU数</td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td></tr>
-            <tr><td>Top3 SPU消耗集中度</td><td class="center"><span class="ph">≥X%</span></td><td class="center"><span class="ph">≥X%</span></td></tr>
-            <tr><td>客户综合GPM</td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td></tr>
-          </tbody>
-        </table>
+        <div class="text-xs tracking-widest" style="color:var(--text-3);">分析周期</div>
+        <div class="big-num text-3xl mt-1"><span class="gradient-text">4</span> <span class="text-base font-normal" style="color:var(--text-2);">个完整自然周</span></div>
+      </div>
+      <div>
+        <div class="text-xs tracking-widest" style="color:var(--text-3);">数据来源</div>
+        <div class="text-2xl mt-1" style="color:var(--text-1);font-weight:600;">腾讯广告数仓 BI</div>
       </div>
     </div>
-    <div class="placeholder-note"><b>阈值说明：</b>L3"爆款"门槛初定为单素材累计消耗 ≥5万。如 BI 数据显示行业普遍达成率 &lt;1%，将切换为 ≥3万 阈值，确保诊断卡能区分头部客户。</div>
-    <h3 class="section-h">三阶段诊断卡的输出形态：客户的"勤奋度雷达"</h3>
-    <p>每个客户最终会得到一张包含 <b>商品级 + 客户级</b> 双图谱的雷达图，清晰标记其在 L1/L2/L3 三关上的位置。<br/>服务商可以拿着这张雷达图直接对客户说："您卡在 L2，这周我们一起把节奏跑起来。"</p>
-  </section>
+  </div>
+  <div class="absolute bottom-12 left-20 right-20 flex justify-between items-center text-xs" style="color:var(--text-3);">
+    <div class="tracking-[0.2em]">2026 · 食品饮料行业 · 客户培训</div>
+    <div class="flex items-center gap-2">
+      <div class="w-1.5 h-1.5 rounded-full" style="background:var(--green);box-shadow:0 0 8px var(--green);"></div>
+      <span>滚动浏览 / Scroll to explore</span>
+    </div>
+  </div>
+  <div class="page-num">01 / 17</div>
+</section>
 
-  <!-- =================== 模块三 =================== -->
-  <section class="slide">
-    <span class="slide-num">10 / 18</span>
-    <span class="slide-tag">MODULE 03 · 颗粒度</span>
-    <h1 class="slide-title">从"客户层评估"升级为"商品 × 客户"双层评估</h1>
-    <h2 class="slide-subtitle">凡是涉及"投放执行动作"的分析，主颗粒度都用商品</h2>
-    <h3 class="section-h">为什么必须切到商品颗粒度</h3>
-    <table>
-      <thead><tr><th>问题</th><th>客户颗粒度（旧）</th><th>商品颗粒度（新）</th></tr></thead>
+<!-- ============ P2 行业现状 · 客户分层金字塔 ============ -->
+<section class="slide" id="m1-status">
+  <div class="reveal">
+    <div class="module-tag"><span class="num">▸</span><span>引子 · 行业现状</span></div>
+    <h2 class="slide-title">食饮行业的<span class="gradient-text">三层客户结构</span>：你在哪一层？</h2>
+    <div class="subtitle">基于 1万+ 家食饮客户的真实数据，把"日均消耗水位"作为客观坐标，呈现一个<b style="color:var(--text-1);">极度倒挂</b>的金字塔 —— 这里藏着投放结果差异的全部源头。</div>
+  </div>
+
+  <!-- 三栏分层卡 -->
+  <div class="grid grid-cols-12 gap-5 mt-8 flex-1 items-stretch">
+    <!-- 头部 L3 -->
+    <div class="col-span-4 glass-strong p-7 reveal reveal-delay-1 relative overflow-hidden glow-border" style="border-top:3px solid var(--green);">
+      <div class="absolute -right-16 -top-16 w-64 h-64 rounded-full" style="background:radial-gradient(circle,rgba(20,229,160,0.18),transparent 70%);"></div>
+      <div class="flex items-baseline justify-between mb-3">
+        <div>
+          <div class="text-xs tracking-widest" style="color:var(--text-3);">头部 · L3 进阶型</div>
+          <div class="text-xl font-bold mt-1" style="color:var(--green);">日均 ≥ 5W</div>
+        </div>
+        <div class="text-3xl">🏔️</div>
+      </div>
+      <div class="grid grid-cols-2 gap-2 mt-5">
+        <div class="p-3 rounded-lg" style="background:rgba(20,229,160,0.06);border:1px solid rgba(20,229,160,0.2);">
+          <div class="text-xs" style="color:var(--text-3);">客户数占比</div>
+          <div class="big-num mt-1" style="font-size:32px;color:var(--green);">0.7<span class="text-base">%</span></div>
+        </div>
+        <div class="p-3 rounded-lg" style="background:rgba(20,229,160,0.06);border:1px solid rgba(20,229,160,0.2);">
+          <div class="text-xs" style="color:var(--text-3);">消耗占比</div>
+          <div class="big-num mt-1" style="font-size:32px;color:var(--green);">≈75<span class="text-base">%</span></div>
+          <div class="text-xs mt-0.5" style="color:var(--text-3);">行业大盘</div>
+        </div>
+      </div>
+      <div class="mt-4 p-3 rounded-lg" style="background:rgba(20,229,160,0.04);border:1px dashed rgba(20,229,160,0.3);">
+        <div class="text-xs" style="color:var(--text-3);">日均消耗水位（中位数）</div>
+        <div class="big-num mt-1" style="font-size:28px;color:var(--green);">10W~100W+</div>
+      </div>
+      <div class="mt-3 text-xs leading-relaxed" style="color:var(--text-2);">
+        <span style="color:var(--green);">▸</span> 不到 1% 的客户，撑起整个食饮投放大盘 —— <b style="color:var(--text-1);">能力卓越带来确定性增长</b>
+      </div>
+    </div>
+
+    <!-- 腰部 L2 -->
+    <div class="col-span-4 glass p-7 reveal reveal-delay-2 relative overflow-hidden" style="border-top:3px solid var(--cyan);">
+      <div class="absolute -right-16 -top-16 w-64 h-64 rounded-full" style="background:radial-gradient(circle,rgba(56,214,255,0.15),transparent 70%);"></div>
+      <div class="flex items-baseline justify-between mb-3">
+        <div>
+          <div class="text-xs tracking-widest" style="color:var(--text-3);">腰部 · L2 内卷型</div>
+          <div class="text-xl font-bold mt-1" style="color:var(--cyan);">日均 3K ~ 5W</div>
+        </div>
+        <div class="text-3xl">⛰️</div>
+      </div>
+      <div class="grid grid-cols-2 gap-2 mt-5">
+        <div class="p-3 rounded-lg" style="background:rgba(56,214,255,0.06);border:1px solid rgba(56,214,255,0.2);">
+          <div class="text-xs" style="color:var(--text-3);">客户数占比</div>
+          <div class="big-num mt-1" style="font-size:32px;color:var(--cyan);">6.3<span class="text-base">%</span></div>
+          <div class="text-xs mt-0.5" style="color:var(--text-3);">902 家</div>
+        </div>
+        <div class="p-3 rounded-lg" style="background:rgba(56,214,255,0.06);border:1px solid rgba(56,214,255,0.2);">
+          <div class="text-xs" style="color:var(--text-3);">消耗占比</div>
+          <div class="big-num mt-1" style="font-size:32px;color:var(--cyan);">≈22<span class="text-base">%</span></div>
+          <div class="text-xs mt-0.5" style="color:var(--text-3);">中坚力量</div>
+        </div>
+      </div>
+      <div class="mt-4 p-3 rounded-lg" style="background:rgba(56,214,255,0.04);border:1px dashed rgba(56,214,255,0.3);">
+        <div class="text-xs" style="color:var(--text-3);">日均消耗水位（中位数）</div>
+        <div class="big-num mt-1" style="font-size:28px;color:var(--cyan);">1W ~ 10W</div>
+      </div>
+      <div class="mt-3 text-xs leading-relaxed" style="color:var(--text-2);">
+        <span style="color:var(--cyan);">▸</span> 看似很努力但卡在天花板下 —— <b style="color:var(--text-1);">"有效勤奋"远胜重复堆砌</b>
+      </div>
+    </div>
+
+    <!-- 尾部 L1 -->
+    <div class="col-span-4 glass p-7 reveal reveal-delay-3 relative overflow-hidden" style="border-top:3px solid var(--red);">
+      <div class="absolute -right-16 -top-16 w-64 h-64 rounded-full" style="background:radial-gradient(circle,rgba(255,92,124,0.15),transparent 70%);"></div>
+      <div class="flex items-baseline justify-between mb-3">
+        <div>
+          <div class="text-xs tracking-widest" style="color:var(--text-3);">尾部 · L1 躺平型</div>
+          <div class="text-xl font-bold mt-1" style="color:var(--red);">日均 ≤ 3K</div>
+        </div>
+        <div class="text-3xl">🪨</div>
+      </div>
+      <div class="grid grid-cols-2 gap-2 mt-5">
+        <div class="p-3 rounded-lg" style="background:rgba(255,92,124,0.06);border:1px solid rgba(255,92,124,0.2);">
+          <div class="text-xs" style="color:var(--text-3);">客户数占比</div>
+          <div class="big-num mt-1" style="font-size:32px;color:var(--red);">93.0<span class="text-base">%</span></div>
+        </div>
+        <div class="p-3 rounded-lg" style="background:rgba(255,92,124,0.06);border:1px solid rgba(255,92,124,0.2);">
+          <div class="text-xs" style="color:var(--text-3);">消耗占比</div>
+          <div class="big-num mt-1" style="font-size:32px;color:var(--red);">≈3<span class="text-base">%</span></div>
+          <div class="text-xs mt-0.5" style="color:var(--text-3);">长尾散户</div>
+        </div>
+      </div>
+      <div class="mt-4 p-3 rounded-lg" style="background:rgba(255,92,124,0.04);border:1px dashed rgba(255,92,124,0.3);">
+        <div class="text-xs" style="color:var(--text-3);">日均消耗水位（中位数）</div>
+        <div class="big-num mt-1" style="font-size:28px;color:var(--red);">数百 ~ 数千</div>
+      </div>
+      <div class="mt-3 text-xs leading-relaxed" style="color:var(--text-2);">
+        <span style="color:var(--red);">▸</span> 占了九成客户却只跑出 3% 消耗 —— <b style="color:var(--text-1);">勤奋本身就是答案</b>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部金句 -->
+  <div class="mt-6 reveal reveal-delay-3 p-5 rounded-2xl" style="background:linear-gradient(135deg,rgba(124,92,255,0.06),rgba(56,214,255,0.04));border:1px solid var(--line);">
+    <div class="text-base text-center"><b style="color:var(--text-1);">客户数倒金字塔 ↔ 消耗量正金字塔</b> —— 同样的腾讯广告生态，为什么会跑出三种截然不同的结果？<br><span class="gradient-text font-semibold">下一页揭晓：背后只有两件事 —— 拼概率 × 拼 eCPM</span></div>
+  </div>
+  <div class="page-num">02 / 17</div>
+</section>
+
+<!-- ============ P3 总领 · 投放逻辑：博概率 × eCPM ============ -->
+<section class="slide" id="m0">
+  <div class="reveal">
+    <div class="module-tag" style="background:linear-gradient(135deg,rgba(124,92,255,0.15),rgba(56,214,255,0.08));border-color:rgba(124,92,255,0.3);"><span class="num">★</span><span>总领 · 整个投放逻辑只做两件事</span></div>
+    <h2 class="slide-title">背后只有两件事：<span class="gradient-text">博概率</span> × <span class="gold-text">拼 eCPM</span></h2>
+    <div class="subtitle">广告系统是<b style="color:var(--text-1);">海选机制</b> —— 一手"投放单元够多"博概率，一手"eCPM 表达够强"换确定性。两手都要硬，缺一不可。</div>
+  </div>
+
+  <div class="flex-1 grid grid-cols-12 gap-5 mt-6 items-stretch">
+    <!-- 左：博概率分支 -->
+    <div class="col-span-4 glass p-6 reveal reveal-delay-1 relative overflow-hidden" style="border-top:3px solid var(--cyan);">
+      <div class="absolute -right-12 -top-12 w-56 h-56 rounded-full" style="background:radial-gradient(circle,rgba(56,214,255,0.18),transparent 70%);"></div>
+      <div class="flex items-center gap-3 mb-3 relative z-10">
+        <div class="big-num" style="font-size:42px;color:var(--cyan);line-height:1;">①</div>
+        <div>
+          <div class="text-xs tracking-widest" style="color:var(--text-3);">第一件事</div>
+          <div class="text-2xl font-bold" style="color:var(--cyan);">博概率</div>
+        </div>
+      </div>
+      <div class="text-sm font-semibold mb-2" style="color:var(--text-1);">投放单元够丰富</div>
+      <div class="text-xs leading-relaxed mb-4" style="color:var(--text-2);">
+        每个账户/广告/素材都是一颗"摇号子弹"<br>
+        <b style="color:var(--cyan);">参与的子弹越多 → 跑出爆款概率越高</b>
+      </div>
+      <div class="text-xs tracking-widest mb-2" style="color:var(--text-3);">具体抓手</div>
+      <div class="flex flex-wrap gap-1.5 mb-4">
+        <span class="px-2 py-1 rounded text-[11px]" style="background:rgba(56,214,255,0.1);color:var(--cyan);border:1px solid rgba(56,214,255,0.3);">账户数</span>
+        <span class="px-2 py-1 rounded text-[11px]" style="background:rgba(56,214,255,0.1);color:var(--cyan);border:1px solid rgba(56,214,255,0.3);">项目/广告数</span>
+        <span class="px-2 py-1 rounded text-[11px]" style="background:rgba(56,214,255,0.1);color:var(--cyan);border:1px solid rgba(56,214,255,0.3);">素材数</span>
+        <span class="px-2 py-1 rounded text-[11px]" style="background:rgba(56,214,255,0.1);color:var(--cyan);border:1px solid rgba(56,214,255,0.3);">日预算</span>
+      </div>
+      <div class="p-3 rounded-lg" style="background:rgba(56,214,255,0.06);border:1px solid rgba(56,214,255,0.2);">
+        <div class="text-xs" style="color:var(--text-2);line-height:1.6;">
+          <span style="color:var(--text-1);font-weight:600;">下一节 L1 模块</span> · 4 项基建分层中位数对照 + 唯一性破解</div>
+      </div>
+    </div>
+
+    <!-- 右：eCPM 确定性分支 -->
+    <div class="col-span-8 glass-strong p-7 reveal reveal-delay-2 glow-border relative overflow-hidden">
+      <div class="absolute -right-32 -top-32 w-[500px] h-[500px] rounded-full" style="background:radial-gradient(circle,rgba(124,92,255,0.18),transparent 60%);"></div>
+      <div class="absolute -left-32 -bottom-32 w-[420px] h-[420px] rounded-full" style="background:radial-gradient(circle,rgba(56,214,255,0.12),transparent 60%);"></div>
+      <div class="relative z-10">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="big-num" style="font-size:42px;color:var(--purple-2);line-height:1;">②</div>
+          <div>
+            <div class="text-xs tracking-widest" style="color:var(--text-3);">第二件事</div>
+            <div class="text-2xl font-bold" style="color:var(--purple-2);">拼 eCPM 表达 · 确定性</div>
+          </div>
+        </div>
+
+        <!-- eCPM 公式 -->
+        <div class="text-center text-xs tracking-[0.3em] mb-2" style="color:var(--text-3);">竞价广告核心公式</div>
+        <div class="flex items-baseline justify-center gap-2 flex-wrap mb-3">
+          <span class="big-num" style="font-size:38px;color:var(--text-1);">eCPM</span>
+          <span class="big-num" style="font-size:28px;color:var(--text-3);">=</span>
+          <span class="big-num" style="font-size:38px;color:var(--cyan);">CTR</span>
+          <span class="big-num" style="font-size:28px;color:var(--text-3);">×</span>
+          <span class="big-num" style="font-size:38px;color:var(--purple-2);">BID</span>
+          <span class="big-num" style="font-size:28px;color:var(--text-3);">×</span>
+          <span class="big-num" style="font-size:38px;color:var(--gold);">CVR</span>
+          <span class="big-num" style="font-size:28px;color:var(--text-3);">× 1000</span>
+        </div>
+
+        <!-- 投放力（表达层） -->
+        <div class="max-w-2xl mx-auto p-4 rounded-2xl text-center" style="background:linear-gradient(135deg,rgba(124,92,255,0.18),rgba(124,92,255,0.05));border:2px solid rgba(124,92,255,0.5);box-shadow:0 0 24px rgba(124,92,255,0.18);">
+          <div class="flex items-center justify-center gap-3 flex-wrap">
+            <div class="text-lg font-bold" style="color:var(--purple-2);">🚀 投放力</div>
+            <div class="text-[11px] px-2 py-0.5 rounded" style="background:rgba(124,92,255,0.2);color:var(--purple-2);">表达层 · L2 主战场</div>
+          </div>
+          <div class="text-xs mt-1" style="color:var(--text-1);">智投决定 eCPM 怎么对外表达 —— ADQ 智投 · 全域通 · 全店托管 · 短直双开</div>
+        </div>
+
+        <!-- 三路虚线 -->
+        <div class="relative max-w-3xl mx-auto" style="height:30px;">
+          <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 800 30">
+            <line x1="400" y1="0" x2="133" y2="30" stroke="var(--text-3)" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.5"/>
+            <line x1="400" y1="0" x2="400" y2="30" stroke="var(--text-3)" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.5"/>
+            <line x1="400" y1="0" x2="667" y2="30" stroke="var(--text-3)" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.5"/>
+          </svg>
+        </div>
+
+        <!-- 三力底层 -->
+        <div class="text-center text-[11px] tracking-[0.25em] mb-2" style="color:var(--text-3);">真正决定 BID / CTR / CVR 的 —— L3 三力（底层能力）</div>
+        <div class="grid grid-cols-3 gap-3 max-w-3xl mx-auto">
+          <div class="p-3 rounded-xl text-center" style="background:rgba(20,229,160,0.08);border:1.5px solid rgba(20,229,160,0.4);">
+            <div class="text-sm font-bold" style="color:var(--green);">🌱 商品力</div>
+            <div class="text-[11px] mt-1" style="color:var(--text-3);">主影响 <b style="color:var(--purple-2);">BID</b> · 同时通过<b style="color:var(--text-1);">人群范围</b>带动 <b style="color:var(--cyan);">CTR</b>/<b style="color:var(--gold);">CVR</b></div>
+          </div>
+          <div class="p-3 rounded-xl text-center" style="background:rgba(56,214,255,0.08);border:1.5px solid rgba(56,214,255,0.4);">
+            <div class="text-sm font-bold" style="color:var(--cyan);">⚡ 内容力</div>
+            <div class="text-[11px] mt-1" style="color:var(--text-3);">影响 <b style="color:var(--cyan);">CTR</b> 点击</div>
+          </div>
+          <div class="p-3 rounded-xl text-center" style="background:rgba(255,200,87,0.08);border:1.5px solid rgba(255,200,87,0.4);">
+            <div class="text-sm font-bold" style="color:var(--gold);">🏠 经营力</div>
+            <div class="text-[11px] mt-1" style="color:var(--text-3);">影响 <b style="color:var(--gold);">CVR</b> 转化</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">03 / 17</div>
+</section>
+
+<!-- ============ P4 总结 · 本质就三件事 → 引出 L1/L2/L3 ============ -->
+<section class="slide" id="m0-summary">
+  <div class="reveal">
+    <div class="module-tag" style="background:linear-gradient(135deg,rgba(124,92,255,0.15),rgba(56,214,255,0.08));border-color:rgba(124,92,255,0.3);"><span class="num">★</span><span>总领 · 三道闸门 · 本课程主线</span></div>
+    <h2 class="slide-title">本质就<span class="gradient-text">三件事</span> · 也是接下来三个模块的<span class="gold-text">主线</span></h2>
+    <div class="subtitle">把上一页的"博概率 × 拼 eCPM"展开 ——<b style="color:var(--text-1);"> L1 拼概率 → L2 拼投放力 → L3 拼三力</b>。这不是三个并列选项，而是必须依次跨越的三道闸门。</div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-5 mt-10 flex-1">
+    <!-- ① L1 拼概率 -->
+    <div class="col-span-4 glass p-7 reveal reveal-delay-1 relative overflow-hidden" style="border-top:3px solid var(--cyan);">
+      <div class="absolute -right-12 -top-12 w-56 h-56 rounded-full" style="background:radial-gradient(circle,rgba(56,214,255,0.15),transparent 70%);"></div>
+      <div class="flex items-center gap-2 mb-3">
+        <div class="big-num" style="font-size:48px;color:var(--cyan);line-height:1;">①</div>
+        <div>
+          <div class="text-xs" style="color:var(--text-3);">L1 阶段 · 模块一</div>
+          <div class="text-xl font-bold" style="color:var(--cyan);">拼概率</div>
+        </div>
+      </div>
+      <div class="text-base font-semibold mb-3" style="color:var(--text-1);">卷勤奋 · 卷基建</div>
+      <div class="text-sm leading-relaxed mb-4" style="color:var(--text-2);">
+        广告系统是<b style="color:var(--text-1);">海选机制</b> —— 你投出的每个账户/广告/素材，都是一次"摇号"。<br>
+        <b style="color:var(--cyan);">参与的子弹越多，跑出爆款的概率越高。</b>
+      </div>
+      <div class="text-xs tracking-widest mb-2" style="color:var(--text-3);">体现为</div>
+      <div class="flex flex-wrap gap-1.5 mb-4">
+        <span class="px-2.5 py-1 rounded text-xs" style="background:rgba(56,214,255,0.1);color:var(--cyan);border:1px solid rgba(56,214,255,0.3);">账户数</span>
+        <span class="px-2.5 py-1 rounded text-xs" style="background:rgba(56,214,255,0.1);color:var(--cyan);border:1px solid rgba(56,214,255,0.3);">项目/广告数</span>
+        <span class="px-2.5 py-1 rounded text-xs" style="background:rgba(56,214,255,0.1);color:var(--cyan);border:1px solid rgba(56,214,255,0.3);">素材数</span>
+        <span class="px-2.5 py-1 rounded text-xs" style="background:rgba(56,214,255,0.1);color:var(--cyan);border:1px solid rgba(56,214,255,0.3);">日预算</span>
+      </div>
+      <div class="p-3 rounded-lg" style="background:rgba(56,214,255,0.06);border:1px solid rgba(56,214,255,0.2);">
+        <div class="text-xs" style="color:var(--text-2);line-height:1.6;">
+          <b style="color:var(--cyan);">核心命题</b><br>
+          <span style="color:var(--text-1);">"勤奋本身就是答案"</span><br>
+          <span class="text-xs" style="color:var(--text-3);">基建拉满，破解唯一性限制</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② L2 拼投放力 -->
+    <div class="col-span-4 glass-strong p-7 reveal reveal-delay-2 relative overflow-hidden glow-border" style="border-top:3px solid var(--purple-2);">
+      <div class="absolute -right-12 -top-12 w-56 h-56 rounded-full" style="background:radial-gradient(circle,rgba(124,92,255,0.18),transparent 70%);"></div>
+      <div class="flex items-center gap-2 mb-3">
+        <div class="big-num" style="font-size:48px;color:var(--purple-2);line-height:1;">②</div>
+        <div>
+          <div class="text-xs" style="color:var(--text-3);">L2 阶段 · 模块二</div>
+          <div class="text-xl font-bold" style="color:var(--purple-2);">拼投放力</div>
+        </div>
+      </div>
+      <div class="text-base font-semibold mb-3" style="color:var(--text-1);">卷智能投放 · 工具平权</div>
+      <div class="text-sm leading-relaxed mb-4" style="color:var(--text-2);">
+        当基建到位，<b style="color:var(--text-1);">投放方式本身决定 eCPM 表达</b>。<br>
+        <b style="color:var(--purple-2);">智投是降低门槛、AI 化、自动驾驶</b>的方向 —— 也是平台重点投入的红利窗口。
+      </div>
+      <div class="text-xs tracking-widest mb-2" style="color:var(--text-3);">体现为</div>
+      <div class="flex flex-wrap gap-1.5 mb-4">
+        <span class="px-2.5 py-1 rounded text-xs" style="background:rgba(124,92,255,0.12);color:var(--purple-2);border:1px solid rgba(124,92,255,0.35);">全域通兜底</span>
+        <span class="px-2.5 py-1 rounded text-xs" style="background:rgba(124,92,255,0.12);color:var(--purple-2);border:1px solid rgba(124,92,255,0.35);">ADQ 智投</span>
+        <span class="px-2.5 py-1 rounded text-xs" style="background:rgba(124,92,255,0.12);color:var(--purple-2);border:1px solid rgba(124,92,255,0.35);">全店托管</span>
+        <span class="px-2.5 py-1 rounded text-xs" style="background:rgba(124,92,255,0.12);color:var(--purple-2);border:1px solid rgba(124,92,255,0.35);">短直双开</span>
+      </div>
+      <div class="p-3 rounded-lg" style="background:rgba(124,92,255,0.08);border:1px solid rgba(124,92,255,0.3);">
+        <div class="text-xs" style="color:var(--text-2);line-height:1.6;">
+          <b style="color:var(--purple-2);">核心命题</b><br>
+          <span style="color:var(--text-1);">"有效勤奋远胜重复堆砌"</span><br>
+          <span class="text-xs" style="color:var(--text-3);">借助智能投放实现跃迁</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ L3 拼三力 -->
+    <div class="col-span-4 glass p-7 reveal reveal-delay-3 relative overflow-hidden" style="border-top:3px solid var(--gold);">
+      <div class="absolute -right-12 -top-12 w-56 h-56 rounded-full" style="background:radial-gradient(circle,rgba(255,200,87,0.15),transparent 70%);"></div>
+      <div class="flex items-center gap-2 mb-3">
+        <div class="big-num" style="font-size:48px;color:var(--gold);line-height:1;">③</div>
+        <div>
+          <div class="text-xs" style="color:var(--text-3);">L3 阶段 · 模块三</div>
+          <div class="text-xl font-bold" style="color:var(--gold);">拼三力</div>
+        </div>
+      </div>
+      <div class="text-base font-semibold mb-3" style="color:var(--text-1);">卷资源 · 围绕"人"打透</div>
+      <div class="text-sm leading-relaxed mb-4" style="color:var(--text-2);">
+        投放工具到顶后，规模放大要靠<b style="color:var(--text-1);">投放力背后的三力</b> —— 商品力、内容力、经营力的资源投入。<br>
+        <b style="color:var(--gold);">每一力都是围绕"人"展开。</b>
+      </div>
+      <div class="text-xs tracking-widest mb-2" style="color:var(--text-3);">体现为</div>
+      <div class="flex flex-wrap gap-1.5 mb-4">
+        <span class="px-2.5 py-1 rounded text-xs" style="background:rgba(20,229,160,0.1);color:var(--green);border:1px solid rgba(20,229,160,0.3);">🌱 商品力</span>
+        <span class="px-2.5 py-1 rounded text-xs" style="background:rgba(56,214,255,0.1);color:var(--cyan);border:1px solid rgba(56,214,255,0.3);">⚡ 内容力</span>
+        <span class="px-2.5 py-1 rounded text-xs" style="background:rgba(255,200,87,0.1);color:var(--gold);border:1px solid rgba(255,200,87,0.3);">🏠 经营力</span>
+      </div>
+      <div class="p-3 rounded-lg" style="background:rgba(255,200,87,0.06);border:1px solid rgba(255,200,87,0.2);">
+        <div class="text-xs" style="color:var(--text-2);line-height:1.6;">
+          <b style="color:var(--gold);">核心命题</b><br>
+          <span style="color:var(--text-1);">"卷三力，增强确定性"</span><br>
+          <span class="text-xs" style="color:var(--text-3);">围绕"人"卷资源、卷投入</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部进度条 -->
+  <div class="mt-6 reveal reveal-delay-4 p-5 rounded-2xl" style="background:linear-gradient(135deg,rgba(124,92,255,0.06),rgba(56,214,255,0.04));border:1px solid var(--line);">
+    <div class="flex items-center gap-3 text-sm">
+      <span style="color:var(--cyan);" class="font-semibold">L1 子弹够多</span>
+      <span style="color:var(--text-3);">→</span>
+      <span style="color:var(--purple-2);" class="font-semibold">L2 子弹打得准</span>
+      <span style="color:var(--text-3);">→</span>
+      <span style="color:var(--gold);" class="font-semibold">L3 围绕"人"放大</span>
+      <span class="ml-auto text-xs" style="color:var(--text-3);">本课程主线索 · 三个模块对照</span>
+    </div>
+  </div>
+  <div class="page-num">04 / 17</div>
+</section>
+
+
+<!-- ============ P6 L1 基建拉升对照表（新口径） ============ -->
+<section class="slide" id="m1-exec">
+  <div class="reveal">
+    <div class="module-tag"><span class="num">01</span><span>模块一 · L1 执行卡</span></div>
+    <h2 class="slide-title">L1 基建拉升对照表 ·<span class="gradient-text"> 食饮行业 BI 中位数</span></h2>
+    <div class="subtitle">这是<b style="color:var(--text-1);">"拼概率"环节的入场券</b> —— 把当前消耗水位对应到尾/腰/头三档，5 项基建数字逐一对标。统计口径：<b style="color:var(--text-1);">4 周去重</b>。</div>
+  </div>
+  <div class="grid grid-cols-12 gap-6 mt-10 flex-1">
+    <!-- 主表 -->
+    <div class="col-span-9 glass p-8 reveal reveal-delay-1">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="text-sm font-semibold" style="color:var(--purple-2);">📊 食饮行业基建中位数 · 按消耗规模分层</div>
+        <div class="text-xs px-2 py-0.5 rounded" style="background:rgba(255,255,255,0.05);color:var(--text-3);">样本 1万+ 家 · 过去 4 周</div>
+      </div>
+      <table class="exec-table">
+        <thead>
+          <tr>
+            <th style="width:30%;">指标</th>
+            <th style="color:var(--red);">尾部客户<br>（0~3K）</th>
+            <th style="color:var(--cyan);">腰部客户<br>（3K~5W）</th>
+            <th style="color:var(--gold);">头部客户<br>（≥5W）</th>
+            <th style="color:var(--text-3);">尾→腰 跃迁</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b style="color:var(--text-1);">账户数</b><span class="text-xs ml-2" style="color:var(--text-3);">4周去重</span></td>
+            <td class="num-cell" style="color:var(--red);">1.0</td>
+            <td class="num-cell" style="color:var(--cyan);">4.0</td>
+            <td class="num-cell" style="color:var(--gold);">20.5</td>
+            <td class="num-cell text-xs" style="color:var(--text-3);">×4.0</td>
+          </tr>
+          <tr>
+            <td><b style="color:var(--text-1);">项目/广告数</b><span class="text-xs ml-2" style="color:var(--text-3);">有消耗 · 4周去重</span></td>
+            <td class="num-cell" style="color:var(--red);">3.0</td>
+            <td class="num-cell" style="color:var(--cyan);">43.5</td>
+            <td class="num-cell" style="color:var(--gold);">278.5</td>
+            <td class="num-cell text-xs" style="color:var(--text-3);">×14.5</td>
+          </tr>
+          <tr>
+            <td><b style="color:var(--text-1);">素材数</b><span class="text-xs ml-2" style="color:var(--text-3);">实际使用 · 4周去重</span></td>
+            <td class="num-cell" style="color:var(--red);">20.0</td>
+            <td class="num-cell" style="color:var(--cyan);">536.0</td>
+            <td class="num-cell" style="color:var(--gold);">2,045.0</td>
+            <td class="num-cell text-xs" style="color:var(--text-3);">×26.8</td>
+          </tr>
+          <tr>
+            <td><b style="color:var(--text-1);">账户可用日预算</b><span class="text-xs ml-2" style="color:var(--text-3);">万元</span></td>
+            <td class="num-cell" style="color:var(--red);">0.07</td>
+            <td class="num-cell" style="color:var(--cyan);">4.92</td>
+            <td class="num-cell" style="color:var(--gold);">32.78</td>
+            <td class="num-cell text-xs" style="color:var(--text-3);">×73.0</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="mt-5 p-4 rounded-lg flex items-start gap-3" style="background:rgba(255,159,69,0.08);border:1px solid rgba(255,159,69,0.2);">
+        <div style="color:var(--orange);">⚠️</div>
+        <div class="text-sm" style="color:var(--text-2);">
+          <b style="color:var(--gold);">如何使用本表：</b>把你当前日均消耗对照到"尾/腰/头"列 → 4 项指标逐一比对。任一项明显落在尾部数值，说明<b style="color:var(--red);">对应维度的"子弹"没准备够</b>，必须先补齐再谈优化 —— <b style="color:var(--text-1);">这是后面所有四力打法的前提</b>。
+        </div>
+      </div>
+    </div>
+    <!-- 现状警示 -->
+    <div class="col-span-3 space-y-4">
+      <div class="glass p-6 reveal reveal-delay-2">
+        <div class="text-xs tracking-widest mb-2" style="color:var(--text-3);">尾→腰最大鸿沟</div>
+        <div class="big-num text-5xl" style="color:var(--orange);">×73<span class="text-2xl"></span></div>
+        <div class="text-xs mt-2" style="color:var(--text-2);">日预算需要跃迁 73 倍 —— 这是最大短板</div>
+      </div>
+      <div class="glass p-6 reveal reveal-delay-3">
+        <div class="text-xs tracking-widest mb-2" style="color:var(--text-3);">素材数跃迁</div>
+        <div class="big-num text-5xl" style="color:var(--cyan);">×27<span class="text-2xl"></span></div>
+        <div class="text-xs mt-2" style="color:var(--text-2);">尾部 20 条 → 腰部 536 条，创意是燃料</div>
+      </div>
+      <div class="glass p-6 reveal reveal-delay-4">
+        <div class="text-xs tracking-widest mb-2" style="color:var(--text-3);">尾部客户占比</div>
+        <div class="big-num text-5xl" style="color:var(--red);">93<span class="text-2xl">%</span></div>
+        <div class="text-xs mt-2" style="color:var(--text-2);">这是你大概率所在的客户基本盘</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-num">05 / 17</div>
+</section>
+
+<!-- ============ P7 L1 进阶 · 如何有效增加基建（破解唯一性ID限制） ============ -->
+<section class="slide" id="m1-uniq">
+  <div class="reveal">
+    <div class="module-tag"><span class="num">01-PLUS</span><span>模块一 · L1 基建进阶</span></div>
+    <h2 class="slide-title">基建拉满第一道坎：<span class="gradient-text">破解 ADQ 唯一性校验</span></h2>
+    <div class="subtitle">有客户反馈"我已经在拼命建广告了，但平台总是报重复"—— 这是 ADQ 为<b style="color:var(--text-1);">维护探索效率</b>设的"唯一性ID"机制。看懂规则，才能把"摇号子弹"真正打出去。</div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-5 mt-6 flex-1">
+    <!-- 左：唯一性规则示意 -->
+    <div class="col-span-5 glass p-6 reveal reveal-delay-1 relative overflow-hidden" style="border-top:3px solid var(--orange);">
+      <div class="absolute -right-12 -top-12 w-56 h-56 rounded-full" style="background:radial-gradient(circle,rgba(255,159,69,0.15),transparent 70%);"></div>
+      <div class="text-xs tracking-widest mb-3" style="color:var(--orange);">⚠️ 唯一性 ID 校验规则（广告与创意双重拦截）</div>
+      
+      <div class="p-3 mb-4 rounded-xl" style="background:rgba(255,255,255,0.03);border:1px dashed rgba(255,255,255,0.15);">
+        <div class="text-xs" style="color:var(--text-1);font-weight:600;margin-bottom:4px;">🔑 唯一性 ID 的构成公式：</div>
+        <div class="text-xs" style="color:var(--text-2);font-family:monospace;background:rgba(0,0,0,0.2);padding:6px;border-radius:6px;word-break:break-all;">客户ID + 考核单元(营销目的+对象+载体+出价类型) + 创意指纹</div>
+      </div>
+
+      <div class="space-y-3 relative z-10">
+        <div class="p-4 rounded-xl" style="background:rgba(255,92,124,0.06);border:1px solid rgba(255,92,124,0.25);">
+          <div class="flex items-center gap-2 mb-1">
+            <div class="w-7 h-7 rounded-md flex items-center justify-center text-xs font-bold" style="background:rgba(255,92,124,0.18);color:var(--red);">①</div>
+            <div class="text-sm font-semibold" style="color:var(--text-1);">同账户内 · 不能重复进同一广告</div>
+          </div>
+          <div class="text-xs ml-9" style="color:var(--text-2);line-height:1.6;">同一定向 + 同一创意 + 同一落地页组合 → 系统判重，<b style="color:var(--red);">第二条提交失败</b></div>
+        </div>
+
+        <div class="p-4 rounded-xl" style="background:rgba(255,159,69,0.06);border:1px solid rgba(255,159,69,0.3);">
+          <div class="flex items-center gap-2 mb-1">
+            <div class="w-7 h-7 rounded-md flex items-center justify-center text-xs font-bold" style="background:rgba(255,159,69,0.18);color:var(--orange);">②</div>
+            <div class="text-sm font-semibold" style="color:var(--text-1);">同账户内 · 不能重复上传相同创意</div>
+          </div>
+          <div class="text-xs ml-9" style="color:var(--text-2);line-height:1.6;">同一图/视频 MD5 命中 <b style="color:var(--orange);">曝光创意唯一性ID</b> → 后传素材直接被拦</div>
+        </div>
+
+        <div class="p-4 rounded-xl" style="background:rgba(255,200,87,0.06);border:1px solid rgba(255,200,87,0.3);">
+          <div class="flex items-center gap-2 mb-1">
+            <div class="w-7 h-7 rounded-md flex items-center justify-center text-xs font-bold" style="background:rgba(255,200,87,0.18);color:var(--gold);">③</div>
+            <div class="text-sm font-semibold" style="color:var(--text-1);">跨账户 · 同主体下相同创意也会判重</div>
+          </div>
+          <div class="text-xs ml-9" style="color:var(--text-2);line-height:1.6;">即使分散到多个账户，<b style="color:var(--gold);">同一主体下的同图/视频依然受限</b> —— 不要寄希望于"多开账户绕过"</div>
+        </div>
+      </div>
+
+      <div class="mt-4 p-3 rounded text-xs" style="background:rgba(255,92,124,0.08);color:var(--text-2);border:1px solid rgba(255,92,124,0.25);">
+        <b style="color:var(--red);">为什么平台要做唯一性</b> · 重复创意会让算法陷入"局部探索"，无法发现新人群 → 系统设限是<b style="color:var(--text-1);">逼客户做真正的差异化基建</b>
+      </div>
+    </div>
+
+    <!-- 右：有效破解动作与增量逻辑 -->
+    <div class="col-span-7 space-y-3">
+      <div class="text-sm font-semibold mb-1" style="color:var(--text-1);">🔧 真正能跑通的"基建增量"动作</div>
+      <div class="text-xs mb-3" style="color:var(--text-2);line-height:1.6;">唯一性校验包含两层：广告层面（增加考核单元及组合）与创意层面（改变创意指纹）。<b style="color:var(--cyan);">优先从广告层面做增量是跑通模型的核心。</b></div>
+
+      <!-- 广告层面增量 -->
+      <div class="text-xs font-bold px-2 py-1 inline-block rounded" style="background:rgba(56,214,255,0.15);color:var(--cyan);border:1px solid rgba(56,214,255,0.3);">层级一：广告层面动作（核心增量）</div>
+      <div class="grid grid-cols-2 gap-3 mb-2">
+        <div class="glass p-3 reveal reveal-delay-2" style="border-left:3px solid var(--cyan);">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="big-num text-xl" style="color:var(--cyan);">01</span>
+            <div class="text-sm font-bold" style="color:var(--text-1);">增加客户主体与账户</div>
+          </div>
+          <div class="text-xs" style="color:var(--text-2);line-height:1.5;">多加主体、多开账户 → 从源头扩大可探索的基建盘子</div>
+        </div>
+
+        <div class="glass p-3 reveal reveal-delay-2" style="border-left:3px solid var(--cyan);">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="big-num text-xl" style="color:var(--cyan);">02</span>
+            <div class="text-sm font-bold" style="color:var(--text-1);">丰富营销单元要素</div>
+          </div>
+          <div class="text-xs" style="color:var(--text-2);line-height:1.5;">多商品、多直播间、多链路，<b style="color:var(--text-1);">直播间增加商品表达(New)</b> → 组合出更多新考核单元</div>
+        </div>
+
+        <div class="glass p-3 reveal reveal-delay-3 col-span-2" style="border-left:3px solid var(--cyan);">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="big-num text-xl" style="color:var(--cyan);">03</span>
+            <div class="text-sm font-bold" style="color:var(--text-1);">差异化出价 & 定向组合</div>
+          </div>
+          <div class="text-xs" style="color:var(--text-2);line-height:1.5;">针对后效差异（如<b style="color:var(--text-1);">下单、24小时下单、下单ROI</b>）做差异化出价，配合不同定向组合正常上线</div>
+        </div>
+      </div>
+
+      <!-- 创意层面增量 -->
+      <div class="text-xs font-bold px-2 py-1 inline-block rounded mt-2" style="background:rgba(56,232,143,0.15);color:var(--green);border:1px solid rgba(56,232,143,0.3);">层级二：创意层面动作</div>
+      <div class="grid grid-cols-2 gap-3">
+        <div class="glass p-3 reveal reveal-delay-4" style="border-left:3px solid var(--green);">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="big-num text-xl" style="color:var(--green);">01</span>
+            <div class="text-sm font-bold" style="color:var(--text-1);">创意 AIGC 二次生成</div>
+          </div>
+          <div class="text-xs" style="color:var(--text-2);line-height:1.5;">基于同一脚本 → 用 AIGC 换数字人/改配音/重组分镜 → 物理生成<b style="color:var(--text-1);">全新视频(新 MD5)</b></div>
+        </div>
+
+        <div class="glass p-3 reveal reveal-delay-4" style="border-left:3px solid var(--green);">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="big-num text-xl" style="color:var(--green);">02</span>
+            <div class="text-sm font-bold" style="color:var(--text-1);">视频本体深度微调</div>
+          </div>
+          <div class="text-xs" style="color:var(--text-2);line-height:1.5;"><b style="color:var(--orange);">⚠️ 避坑：仅替换封面图无效！</b>必须修改视频本体：混剪前 3s 镜头、加特效/贴纸、调速、换 BGM → 才能改变底层指纹</div>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-2xl reveal reveal-delay-5" style="background:linear-gradient(135deg,rgba(56,214,255,0.08),rgba(124,92,255,0.05));border:1px solid var(--line);">
+        <div class="text-sm"><b class="gradient-text">L1 客户的关键认知</b> · "做不出多基建"≠ 平台限制太严，而是 <b style="color:var(--text-1);">没把"差异化"做出来</b>。分清广告与创意的层级优先级，组合动作可让基建数量轻松翻倍。</div>
+      </div>
+      <div class="mt-3 reveal reveal-delay-5">
+        <div class="doc-section-title">📎 配套文档</div>
+        <a href="https://doc.weixin.qq.com/doc/w3_AJwAqgZ-ACcCNGLKmw5qLQO2DwaLn?scode=AJEAIQdfAAo9nYXFHOAPQAAwZ4ACc" target="_blank" rel="noopener" class="doc-card"><div class="doc-icon">📘</div><div class="doc-body"><div class="doc-title"><span class="doc-tag purple">企微文档</span>【腾讯营销】曝光创意唯一性 ID 投手实操指南</div><div class="doc-sub">投放 SOP · 完整破解逻辑与规则说明</div></div><div class="doc-go">打开 →</div></a>
+        <a href="https://docs.qq.com/doc/DUWxZcFpReHJrY2xS?nlc=1" target="_blank" rel="noopener" class="doc-card mt-2"><div class="doc-icon">🛒</div><div class="doc-body"><div class="doc-title"><span class="doc-tag" style="background:rgba(20,229,160,0.15);color:var(--green);border:1px solid rgba(20,229,160,0.35);">🆕 直播客户加广告基建</span>单品直播间广告表达微信小店商品</div><div class="doc-sub">最新案例 · 单品直播间广告新形态：实测带来 <b style="color:var(--green);">+26.8% 消耗 / 93% 客户 ROI 正向</b></div></div><div class="doc-go">打开 →</div></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">06 / 17</div>
+</section>
+
+<section class="slide" id="m2-why">
+  <div class="force-nav">
+    <div class="force-pill green"><div class="dot"></div>商品力</div>
+    <div class="force-pill cyan"><div class="dot"></div>内容力</div>
+    <div class="force-pill gold"><div class="dot"></div>经营力</div>
+    <div class="force-pill active"><div class="dot"></div>投放力</div>
+  </div>
+  <div class="reveal">
+    <div class="module-tag" style="background:linear-gradient(135deg,rgba(124,92,255,0.15),rgba(56,214,255,0.08));border-color:rgba(124,92,255,0.3);"><span class="num">02</span><span>模块二 · L2 投放力跃迁（腰部）</span></div>
+    <div><span class="force-chip chip-buy">🚀 L2 主命题：拼投放力 · 卷智能投放</span></div>
+    <h2 class="slide-title mt-3">为什么<span class="gradient-text">"智能投放"</span>是 L2 阶段的唯一解？</h2>
+    <div class="subtitle">腾讯广告流量结构极度复杂 · 食饮行业整体渗透率仅个位数 —— <b style="color:var(--text-1);">手动投放吃不下这么大的流量池，智投是必选项</b>。</div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-5 mt-8 flex-1">
+    <!-- 左：流量结构反差图 -->
+    <div class="col-span-6 glass-strong p-6 reveal reveal-delay-1 relative overflow-hidden glow-border">
+      <div class="text-sm font-semibold mb-3" style="color:var(--gold);">📊 AMS 大盘 · 流量结构 vs 食饮渗透率</div>
+      <div class="text-xs mb-4" style="color:var(--text-3);">各版位总广告曝光占比 <span style="color:var(--gold);">vs</span> 食饮行业在该版位的曝光占比</div>
+      <!-- 版位对比条 -->
+      <div class="space-y-3">
+        <!-- 朋友圈 -->
+        <div>
+          <div class="flex items-center justify-between text-xs mb-1">
+            <span style="color:var(--text-1);font-weight:600;">朋友圈</span>
+            <span style="color:var(--text-3);">大盘 <b style="color:var(--text-1);">31%</b> · 食饮 <b style="color:var(--red);">2%</b></span>
+          </div>
+          <div class="relative h-6 rounded" style="background:rgba(255,255,255,0.04);">
+            <div class="absolute inset-y-0 left-0 rounded" style="width:31%;background:linear-gradient(90deg,rgba(255,159,69,0.4),rgba(255,159,69,0.15));"></div>
+            <div class="absolute inset-y-0 left-0 rounded" style="width:2%;background:var(--red);box-shadow:0 0 8px rgba(255,92,124,0.6);"></div>
+          </div>
+          <div class="text-xs mt-1" style="color:var(--red);">⚠️ 食饮最大低渗版位，机会池巨大</div>
+        </div>
+        <!-- 小程序 -->
+        <div>
+          <div class="flex items-center justify-between text-xs mb-1">
+            <span style="color:var(--text-1);">小程序</span>
+            <span style="color:var(--text-3);">大盘 <b style="color:var(--text-1);">19%</b> · 食饮 <b style="color:var(--red);">1%</b></span>
+          </div>
+          <div class="relative h-6 rounded" style="background:rgba(255,255,255,0.04);">
+            <div class="absolute inset-y-0 left-0 rounded" style="width:19%;background:linear-gradient(90deg,rgba(255,159,69,0.4),rgba(255,159,69,0.15));"></div>
+            <div class="absolute inset-y-0 left-0 rounded" style="width:1%;background:var(--red);"></div>
+          </div>
+        </div>
+        <!-- 优量汇 -->
+        <div>
+          <div class="flex items-center justify-between text-xs mb-1">
+            <span style="color:var(--text-1);">优量汇</span>
+            <span style="color:var(--text-3);">大盘 <b style="color:var(--text-1);">18%</b> · 食饮 <b style="color:var(--red);">2%</b></span>
+          </div>
+          <div class="relative h-6 rounded" style="background:rgba(255,255,255,0.04);">
+            <div class="absolute inset-y-0 left-0 rounded" style="width:18%;background:linear-gradient(90deg,rgba(255,159,69,0.4),rgba(255,159,69,0.15));"></div>
+            <div class="absolute inset-y-0 left-0 rounded" style="width:2%;background:var(--red);"></div>
+          </div>
+        </div>
+        <!-- PCAD -->
+        <div>
+          <div class="flex items-center justify-between text-xs mb-1">
+            <span style="color:var(--text-1);">PCAD</span>
+            <span style="color:var(--text-3);">大盘 <b style="color:var(--text-1);">16%</b> · 食饮 <b style="color:var(--red);">2%</b></span>
+          </div>
+          <div class="relative h-6 rounded" style="background:rgba(255,255,255,0.04);">
+            <div class="absolute inset-y-0 left-0 rounded" style="width:16%;background:linear-gradient(90deg,rgba(255,159,69,0.4),rgba(255,159,69,0.15));"></div>
+            <div class="absolute inset-y-0 left-0 rounded" style="width:2%;background:var(--red);"></div>
+          </div>
+        </div>
+        <!-- 视频号 -->
+        <div>
+          <div class="flex items-center justify-between text-xs mb-1">
+            <span style="color:var(--text-1);">视频号</span>
+            <span style="color:var(--text-3);">大盘 <b style="color:var(--text-1);">8%</b> · 食饮 <b style="color:var(--green);">6%</b></span>
+          </div>
+          <div class="relative h-6 rounded" style="background:rgba(255,255,255,0.04);">
+            <div class="absolute inset-y-0 left-0 rounded" style="width:8%;background:linear-gradient(90deg,rgba(255,159,69,0.4),rgba(255,159,69,0.15));"></div>
+            <div class="absolute inset-y-0 left-0 rounded" style="width:6%;background:var(--green);"></div>
+          </div>
+        </div>
+        <!-- 公众号 -->
+        <div>
+          <div class="flex items-center justify-between text-xs mb-1">
+            <span style="color:var(--text-1);">公众号</span>
+            <span style="color:var(--text-3);">大盘 <b style="color:var(--text-1);">8%</b> · 食饮 <b style="color:var(--green);">6%</b></span>
+          </div>
+          <div class="relative h-6 rounded" style="background:rgba(255,255,255,0.04);">
+            <div class="absolute inset-y-0 left-0 rounded" style="width:8%;background:linear-gradient(90deg,rgba(255,159,69,0.4),rgba(255,159,69,0.15));"></div>
+            <div class="absolute inset-y-0 left-0 rounded" style="width:6%;background:var(--green);"></div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4 p-3 rounded-lg" style="background:rgba(255,92,124,0.08);border:1px solid rgba(255,92,124,0.25);">
+        <div class="text-sm" style="color:var(--text-2);line-height:1.7;">
+          <b style="color:var(--red);">▸ 朋友圈占大盘 31%，食饮只吃到 2%</b><br>
+          手动按版位逐一建广告，永远吃不完这么大的流量池
+        </div>
+      </div>
+    </div>
+
+    <!-- 右：三大论点 -->
+    <div class="col-span-6 space-y-3">
+      <div class="glass p-5 reveal reveal-delay-2" style="border-left:3px solid var(--purple-2);">
+        <div class="flex items-baseline gap-3 mb-2">
+          <div class="big-num text-3xl" style="color:var(--purple-2);">①</div>
+          <div class="text-base font-bold" style="color:var(--text-1);">降低学习门槛</div>
+        </div>
+        <div class="text-sm leading-relaxed" style="color:var(--text-2);">
+          腾讯广告系统非常复杂，新客从 0 学起需要数月周期。<br>
+          <b style="color:var(--purple-2);">智能投放 = 自动驾驶方向</b> —— 让新客几天就能上手，<b style="color:var(--text-1);">告别"投手 = 瓶颈"</b>。
+        </div>
+      </div>
+
+      <div class="glass p-5 reveal reveal-delay-3" style="border-left:3px solid var(--cyan);">
+        <div class="flex items-baseline gap-3 mb-2">
+          <div class="big-num text-3xl" style="color:var(--cyan);">②</div>
+          <div class="text-base font-bold" style="color:var(--text-1);">顺应 AI 自动驾驶大趋势</div>
+        </div>
+        <div class="text-sm leading-relaxed" style="color:var(--text-2);">
+          随着 AI 能力升级，<b style="color:var(--text-1);">投手手动操作的边际价值持续递减</b>。<br>
+          <b style="color:var(--cyan);">智投是腾讯广告平台重点投入的战略方向</b> —— 未来所有客户都需要关注，谁早上车谁吃到红利窗口。
+        </div>
+      </div>
+
+      <div class="glass-strong p-5 reveal reveal-delay-4 glow-border" style="border-left:3px solid var(--gold);">
+        <div class="flex items-baseline gap-3 mb-2">
+          <div class="big-num text-3xl gold-text">③</div>
+          <div class="text-base font-bold" style="color:var(--text-1);">吃下"低渗高势"版位红利</div>
+        </div>
+        <div class="text-sm leading-relaxed" style="color:var(--text-2);">
+          普通 3.0 需要你<b style="color:var(--text-1);">手动为每个版位单独建广告</b>，精力稀释 → 资源必然集中在最熟悉的 1~2 个版位，错失其他流量机会。<br>
+          <b style="color:var(--gold);">智投 = 通投逻辑</b>，系统自动在全版位寻找最优流量 —— 朋友圈/小程序等低渗版位才能被真正打开。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5 reveal reveal-delay-4 p-4 rounded-2xl text-center" style="background:linear-gradient(135deg,rgba(124,92,255,0.08),rgba(255,200,87,0.04));border:1px solid var(--line);">
+    <div class="text-base"><span class="gradient-text font-semibold">L2 的唯一主命题</span> · 不是"投得更多"，而是<span class="gold-text font-semibold">"全面拥抱智能投放"</span> —— 具体方案看下一页</div>
+  </div>
+  <div class="page-num">07 / 17</div>
+</section>
+
+<!-- ============ P8 L2 智投布局总览 · 全域通 + ADQ 智投矩阵 ============ -->
+<section class="slide" id="m2-layout">
+  <div class="force-nav">
+    <div class="force-pill green"><div class="dot"></div>商品力</div>
+    <div class="force-pill cyan"><div class="dot"></div>内容力</div>
+    <div class="force-pill gold"><div class="dot"></div>经营力</div>
+    <div class="force-pill active"><div class="dot"></div>投放力</div>
+  </div>
+  <div class="reveal">
+    <div class="module-tag" style="background:linear-gradient(135deg,rgba(124,92,255,0.15),rgba(56,214,255,0.08));border-color:rgba(124,92,255,0.3);"><span class="num">02</span><span>模块二 · L2 智投布局</span></div>
+    <div><span class="force-chip chip-buy">🚀 投放力 · 智能投放工具盒</span></div>
+    <h2 class="slide-title mt-3">两条入口、四种场景：<span class="gradient-text">全域通 + ADQ 智投 组合全景</span></h2>
+    <div class="subtitle">根据店铺类型与经营目标，把智投能力拆成<b style="color:var(--text-1);">4 个典型搭建场景</b> —— 找到自己的位置，一键入场。</div>
+  </div>
+
+  <!-- 两入口顶层对比 -->
+  <div class="grid grid-cols-12 gap-5 mt-8">
+    <div class="col-span-6 glass p-6 reveal reveal-delay-1" style="border-top:3px solid var(--cyan);">
+      <div class="flex items-center justify-between mb-3">
+        <div class="text-lg font-bold" style="color:var(--cyan);">🏪 全域通（CPA 兜底）</div>
+        <div class="text-xs px-2 py-0.5 rounded" style="background:rgba(56,214,255,0.15);color:var(--cyan);">低门槛入口</div>
+      </div>
+      <div class="text-sm" style="color:var(--text-2);line-height:1.7;">
+        面向<b style="color:var(--text-1);">小店商家</b>的零门槛入口 · 直接对 CPA 结果出价<br>
+        系统在<b style="color:var(--text-1);">全域流量</b>中自动寻找符合目标的人群
+      </div>
+      <div class="mt-3 text-xs" style="color:var(--text-3);">▸ 适合：新商家快速起量 / 还没有专职投手</div>
+    </div>
+    <div class="col-span-6 glass-strong p-6 reveal reveal-delay-2 glow-border" style="border-top:3px solid var(--purple-2);">
+      <div class="flex items-center justify-between mb-3">
+        <div class="text-lg font-bold" style="color:var(--purple-2);">🎯 ADQ 智投（AIM+）</div>
+        <div class="text-xs px-2 py-0.5 rounded" style="background:rgba(124,92,255,0.18);color:var(--purple-2);">重点项目</div>
+      </div>
+      <div class="text-sm" style="color:var(--text-2);line-height:1.7;">
+        ADQ 平台的<b style="color:var(--text-1);">战略级智能投放矩阵</b>，包含全店托管 / 短直双开 / 小店单链路等细分能力<br>
+        <b style="color:var(--text-1);">底层 AIGC 自动补齐素材</b>，智能中控盯盘决策
+      </div>
+      <div class="mt-3 text-xs" style="color:var(--text-3);">▸ 适合：已经有一定投放基础，要做规模扩张</div>
+    </div>
+  </div>
+
+  <!-- 4 场景矩阵 -->
+  <div class="mt-5 glass p-5 reveal reveal-delay-3">
+    <div class="text-sm font-semibold mb-3" style="color:var(--gold);">📋 ADQ 智投 · 4 大搭建场景 × 适配客群</div>
+    <table class="exec-table">
+      <thead>
+        <tr>
+          <th style="width:18%;">搭建类型</th>
+          <th>一句话定位</th>
+          <th>直播/直购链路</th>
+          <th>适配客户</th>
+        </tr>
+      </thead>
       <tbody>
-        <tr><td><b>商品数稀释偏差</b></td><td>A客户投50个SPU、B客户投5个SPU，A的"创意数"天然是B的10倍 → 把"商品多"误判为"勤奋"</td><td>单品级基建强度可比，无论客户大小都在同一标尺上 ✅</td></tr>
-        <tr><td><b>客户类型混淆</b></td><td>大客户（多SKU铺货型）vs 小客户（单品爆款型）放一起算，基线被大客户拉高 → 小客户全部"被躺平"</td><td>每个 SPU 独立评分，避免类型混淆 ✅</td></tr>
-        <tr><td><b>无法指导动作</b></td><td>客户看到"你创意数不够"，不知道是哪个商品不够</td><td>诊断结果直接告诉客户"哪个 SPU 的创意数不够"，可立刻执行 ✅</td></tr>
+        <tr>
+          <td><b style="color:var(--purple-2);">短直双开</b><br><span class="text-xs" style="color:var(--text-3);">推直播</span></td>
+          <td class="text-xs">直播 + 直购链路<b style="color:var(--text-1);">同时投放</b>，短视频拉新 × 直播间承接</td>
+          <td class="text-xs">直播开时同时推直购；直播关时仅推小店</td>
+          <td class="text-xs" style="color:var(--text-2);">有<b style="color:var(--text-1);">爆品直播间</b> · 希望既要直播间经营、又要拓量</td>
+        </tr>
+        <tr>
+          <td><b style="color:var(--cyan);">小店单链路</b><br><span class="text-xs" style="color:var(--text-3);">推直购</span></td>
+          <td class="text-xs">仅在<b style="color:var(--text-1);">小店直购链路</b>经营，主打单款/几款爆品</td>
+          <td class="text-xs">仅直购（商品卡） · 受三率治理影响</td>
+          <td class="text-xs" style="color:var(--text-2);">单品/几款爆品<b style="color:var(--text-1);">独立考核</b>的品牌广告主</td>
+        </tr>
+        <tr>
+          <td><b style="color:var(--gold);">全店托管</b><br><span class="text-xs" style="color:var(--text-3);">推多品</span></td>
+          <td class="text-xs">系统自动从<b style="color:var(--text-1);">全店商品</b>中选品投放，多品测跑</td>
+          <td class="text-xs">全店商品集合下所有商品可直接投放</td>
+          <td class="text-xs" style="color:var(--text-2);"><b style="color:var(--text-1);">小白商家</b>求全店 ROI · <b style="color:var(--text-1);">多品测跑</b>（贸易商/入场商品多）</td>
+        </tr>
+        <tr>
+          <td><b style="color:var(--green);">引流/电商</b><br><span class="text-xs" style="color:var(--text-3);">推商品</span></td>
+          <td class="text-xs">引流<b style="color:var(--text-1);">小程序 / 表达商品</b>聚合页</td>
+          <td class="text-xs">推商品-页面跳转 / 推店铺-页面跳转</td>
+          <td class="text-xs" style="color:var(--text-2);">有<b style="color:var(--text-1);">域外（小程序/APP）</b>开店/引流诉求的客户&服务商</td>
+        </tr>
       </tbody>
     </table>
-    <h3 class="section-h">「商品 × 客户」二元颗粒度原则</h3>
-    <table>
-      <thead><tr><th>分析场景</th><th>主颗粒度</th><th>辅颗粒度</th></tr></thead>
-      <tbody>
-        <tr><td>基建勤奋度Benchmark</td><td><b style="color:var(--accent);">商品级</b></td><td>客户级（看货盘策略）</td></tr>
-        <tr><td>创意有效性分析</td><td><b style="color:var(--accent);">商品级</b></td><td>创意级（看单创意效果）</td></tr>
-        <tr><td>货组策略分析</td><td>商品级</td><td><b style="color:var(--accent);">客户级</b>（看货盘组合）</td></tr>
-        <tr><td>客群分层</td><td><b style="color:var(--accent);">客户级</b></td><td>商品级（看单客户的SPU质量）</td></tr>
-        <tr><td>爆款标杆复盘</td><td><b style="color:var(--accent);">商品级</b></td><td>创意级 + 客户级</td></tr>
-      </tbody>
-    </table>
-  </section>
+  </div>
 
-  <section class="slide">
-    <span class="slide-num">11 / 18</span>
-    <span class="slide-tag">MODULE 03 · 占位SPU</span>
-    <h1 class="slide-title">食饮行业最大的"勤奋假象"：占位SPU</h1>
-    <h2 class="slide-subtitle">客户铺了100个SPU，但70个是"挂着没动"的占位货</h2>
-    <h3 class="section-h">行业占位SPU扫描结果</h3>
-    <div class="stats-grid">
-      <div class="stat danger"><div class="label">占位SPU占比</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">单品近4周活跃创意 &lt;3条</div></div>
-      <div class="stat warning"><div class="label">这些SPU消耗占比</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">实际消耗贡献极低</div></div>
-      <div class="stat"><div class="label">头部20%SPU消耗占比</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">符合"二八定律"</div></div>
-      <div class="stat success"><div class="label">货组聚焦优秀客户</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">Top3 SPU消耗占比 ≥60%</div></div>
-    </div>
-    <h3 class="section-h">"挂着没投"的SPU正在拖垮客户的整体效率</h3>
-    <div class="grid-2">
-      <div class="card warn"><div class="ct">表象：客户在投100个SPU，看起来很勤奋</div><div class="cb">服务商看消耗大盘正常，认为客户在做事；客户看自己的"商品矩阵"很完整，安心。</div></div>
-      <div class="card danger"><div class="ct">真相：70个SPU只是占位，30个SPU扛着所有消耗</div><div class="cb"><b>风险</b>：30个SPU一旦衰退，客户大盘断崖式下滑；而70个占位SPU没有被识别和优化，资源浪费。</div></div>
-    </div>
-    <div class="quote"><span class="qmark">"</span> 与其铺 100 个躺平 SPU，不如把 10 个 SPU 打透。<span class="qmark">"</span></div>
-    <h3 class="section-h">推荐的"货组聚焦"动作</h3>
-    <div class="flow">
-      <div class="node"><div class="nt">第1步</div><div class="nb">圈出近4周<br/>占位SPU清单</div></div>
-      <div class="arrow">→</div>
-      <div class="node"><div class="nt">第2步</div><div class="nb">逐个判断：<br/>砍 / 重做 / 加投</div></div>
-      <div class="arrow">→</div>
-      <div class="node"><div class="nt">第3步</div><div class="nb">资源向Top10<br/>潜力SPU倾斜</div></div>
-      <div class="arrow">→</div>
-      <div class="node" style="border-color:var(--success);"><div class="nt" style="color:var(--success);">结果</div><div class="nb">单品级勤奋度<br/>整体抬升</div></div>
-    </div>
-  </section>
+  <!-- 配套文档 -->
+  <div class="mt-4 reveal reveal-delay-4 grid grid-cols-2 gap-3">
+    <a href="https://docs.qq.com/doc/DUGtpRU5xU1RJTXhj?nlc=1" target="_blank" rel="noopener" class="doc-card"><div class="doc-icon">📘</div><div class="doc-body"><div class="doc-title"><span class="doc-tag ">腾讯文档</span>全域通（小店广告）使用指南</div><div class="doc-sub">对外名称"小店广告" · CPA 兜底 · 低门槛入口</div></div><div class="doc-go">打开 →</div></a>
+    <a href="https://doc.weixin.qq.com/doc/w3_AZ4A1wZyAN4kVfpjIilTZibAoWwCr?scode=AJEAIQdfAAoxtS46VGAGYAPQbmACg" target="_blank" rel="noopener" class="doc-card"><div class="doc-icon">📘</div><div class="doc-body"><div class="doc-title"><span class="doc-tag purple">企微文档</span>ADQ 智投（小店艾米）产品介绍</div><div class="doc-sub">对外名称"小店艾米" · AIM+ · 战略级智能投放</div></div><div class="doc-go">打开 →</div></a>
+  </div>
+  <div class="mt-3 reveal reveal-delay-4 text-center text-sm" style="color:var(--text-3);">
+    <span style="color:var(--gold);">▸</span> 先把自己归到某个场景 → 再看下一页"4 类工具组合"怎么搭
+  </div>
+  <div class="page-num">08 / 17</div>
+</section>
 
-  <!-- =================== 模块四 =================== -->
-  <section class="slide">
-    <span class="slide-num">12 / 18</span>
-    <span class="slide-tag">MODULE 04 · 客群分层</span>
-    <h1 class="slide-title">食饮服务商面对的四类客群</h1>
-    <h2 class="slide-subtitle">不同客群的"勤奋度阻碍"完全不同 —— 服务动作必须分型施策</h2>
-    <div class="grid-2">
-      <div class="seg-card s1">
-        <div class="hdr"><div class="name">① 大健康保健品</div><div class="tag">高客单 · 内容驱动</div></div>
-        <div class="row"><b>客户画像：</b>大健康赛道头部品牌，客单价 200~800 元</div>
-        <div class="row"><b>勤奋度卡点：</b>素材合规审核慢，迭代节奏跟不上</div>
-        <div class="row"><b>典型问题：</b>L2 周节奏卡死 —— 1条素材跑2周，无新增</div>
-        <div class="row"><b>核心打法：</b>内容力 + 投放力 ADQ vs 微信豆双引擎</div>
-      </div>
-      <div class="seg-card s2">
-        <div class="hdr"><div class="name">② 预包装食品（新锐）</div><div class="tag">中客单 · 种草驱动</div></div>
-        <div class="row"><b>客户画像：</b>新锐零食/饮料品牌，客单价 30~100 元</div>
-        <div class="row"><b>勤奋度卡点：</b>团队小，无法持续产出二创素材</div>
-        <div class="row"><b>典型问题：</b>L1 活跃水位偏低 —— 单SPU活跃创意 &lt;3条</div>
-        <div class="row"><b>核心打法：</b>KOC 种草矩阵 + 二创素材规模化</div>
-      </div>
-      <div class="seg-card s3">
-        <div class="hdr"><div class="name">③ 产业带源头</div><div class="tag">低客单 · 溯源驱动</div></div>
-        <div class="row"><b>客户画像：</b>产业带源头工厂/合作社，客单价 20~60 元</div>
-        <div class="row"><b>勤奋度卡点：</b>不会做内容，开播节奏不稳</div>
-        <div class="row"><b>典型问题：</b>L2 周开播天数仅 1~2 天，活跃率极低</div>
-        <div class="row"><b>核心打法：</b>溯源直播 + 标准化开播节奏</div>
-      </div>
-      <div class="seg-card s4">
-        <div class="hdr"><div class="name">④ 传统品牌</div><div class="tag">中高客单 · 代运营驱动</div></div>
-        <div class="row"><b>客户画像：</b>传统快消品牌，客单价 50~200 元</div>
-        <div class="row"><b>勤奋度卡点：</b>四力不齐 —— 有内容缺投放、有投放缺直播</div>
-        <div class="row"><b>典型问题：</b>客户层活跃SPU多但深度不够，雷达图严重偏科</div>
-        <div class="row"><b>核心打法：</b>代运营补齐四力，端到端托管</div>
-      </div>
-    </div>
-  </section>
+<!-- ============ P9 L2 智投能力 · 4 类工具组合 ============ -->
+<section class="slide" id="m2-tools">
+  <div class="force-nav">
+    <div class="force-pill green"><div class="dot"></div>商品力</div>
+    <div class="force-pill cyan"><div class="dot"></div>内容力</div>
+    <div class="force-pill gold"><div class="dot"></div>经营力</div>
+    <div class="force-pill active"><div class="dot"></div>投放力</div>
+  </div>
+  <div class="reveal">
+    <div class="module-tag" style="background:linear-gradient(135deg,rgba(124,92,255,0.15),rgba(56,214,255,0.08));border-color:rgba(124,92,255,0.3);"><span class="num">02</span><span>模块二 · L2 智投能力工具盒</span></div>
+    <div><span class="force-chip chip-buy">🚀 投放力 · 策略 × 创意 × 拿量 × 保障</span></div>
+    <h2 class="slide-title mt-3">智投的四类"增肌工具"：<span class="gradient-text">点哪个就涨哪个</span></h2>
+    <div class="subtitle">围绕策略、创意、拿量、效果保障四个环节，每一类都有对应的增益工具 —— <b style="color:var(--text-1);">不是打包开全，而是缺什么补什么</b>。</div>
+  </div>
 
-  <section class="slide">
-    <span class="slide-num">13 / 18</span>
-    <span class="slide-tag">MODULE 04 · 四类客群基线对比</span>
-    <h1 class="slide-title">四类客群的勤奋度基线差异</h1>
-    <h2 class="slide-subtitle">为什么需要"分客群独立设档" —— 而不是用统一基线一刀切</h2>
-    <table>
-      <thead><tr><th>客群</th><th class="center">单SPU活跃创意 · 合格线</th><th class="center">周创意上新 · 合格线</th><th class="center">周勤奋活跃率 · 合格线</th><th class="center">月开播天数 · 合格线</th><th class="center">爆款门槛 · 合格线</th></tr></thead>
-      <tbody>
-        <tr><td><b>① 大健康</b></td><td class="center"><span class="ph">≥X 条</span></td><td class="center"><span class="ph">≥X 条</span></td><td class="center"><span class="ph">≥X%</span></td><td class="center"><span class="ph">≥X 天</span></td><td class="center"><span class="ph">≥X 万</span></td></tr>
-        <tr><td><b>② 预包装新锐</b></td><td class="center"><span class="ph">≥X 条</span></td><td class="center"><span class="ph">≥X 条</span></td><td class="center"><span class="ph">≥X%</span></td><td class="center"><span class="ph">≥X 天</span></td><td class="center"><span class="ph">≥X 万</span></td></tr>
-        <tr><td><b>③ 产业带</b></td><td class="center"><span class="ph">≥X 条</span></td><td class="center"><span class="ph">≥X 条</span></td><td class="center"><span class="ph">≥X%</span></td><td class="center"><span class="ph">≥X 天</span></td><td class="center"><span class="ph">≥X 万</span></td></tr>
-        <tr><td><b>④ 传统品牌</b></td><td class="center"><span class="ph">≥X 条</span></td><td class="center"><span class="ph">≥X 条</span></td><td class="center"><span class="ph">≥X%</span></td><td class="center"><span class="ph">≥X 天</span></td><td class="center"><span class="ph">≥X 万</span></td></tr>
-      </tbody>
-    </table>
-    <h3 class="section-h">分客群施策的服务动作清单</h3>
-    <div class="grid-4">
-      <div class="card"><div class="ct">大健康</div><ul><li>合规预审通道，迭代周期 14天→5天</li><li>内容力工作坊：专业感叙事</li><li>ADQ vs 微信豆双引擎对比测试</li></ul></div>
-      <div class="card"><div class="ct">预包装新锐</div><ul><li>对接 KOC 团长，每周 <span class="ph">XX</span> 条种草</li><li>二创素材标准化模板</li><li>AIGC 工具批量产基础物料</li></ul></div>
-      <div class="card"><div class="ct">产业带</div><ul><li>溯源直播 SOP — 工厂场景脚本</li><li>标准化开播：每天固定 4 小时</li><li>低客单货组优化 — "买二赠一"提客单</li></ul></div>
-      <div class="card"><div class="ct">传统品牌</div><ul><li>代运营撮合，端到端补齐四力</li><li>展会溯源资源 — 信任感叙事</li><li>达播 + KOC + 自播三层矩阵</li></ul></div>
-    </div>
-  </section>
-
-  <!-- =================== 模块五 =================== -->
-  <section class="slide">
-    <span class="slide-num">14 / 18</span>
-    <span class="slide-tag">MODULE 05 · 场景感知召回</span>
-    <h1 class="slide-title">场景感知召回：把"勤奋"从体力活变成"杠杆活"</h1>
-    <h2 class="slide-subtitle">四大场景作为"导航引擎"，指导商家开品、重组货盘</h2>
-    <div class="grid-4">
-      <div class="card"><div class="ct">① 时令应季</div><div class="cb">夏季饮料、冬季滋补 —— 提前 2 周布局应季 SPU 与素材，抢占自然流量。</div></div>
-      <div class="card"><div class="ct">② 大促节点</div><div class="cb">618 / 双11 / 年货节 —— 大包装 / 囤货组合，提前 30 天预热。</div></div>
-      <div class="card"><div class="ct">③ 客户创新干预</div><div class="cb">微信小店补贴、新人券、达人专享 —— 主动干预人货场，制造场景化心智。</div></div>
-      <div class="card"><div class="ct">④ 热点&流行文化</div><div class="cb">爆款话题、综艺联名 —— 1~2 周内快速跟进素材产出。</div></div>
-    </div>
-    <h3 class="section-h">四力飞轮 × 场景感知召回 = 拿量确定性</h3>
-    <div class="flow">
-      <div class="node"><div class="nt">货品力</div><div class="nb">场景化开品</div></div>
-      <div class="arrow">+</div>
-      <div class="node"><div class="nt">内容力</div><div class="nb">场景化素材</div></div>
-      <div class="arrow">+</div>
-      <div class="node"><div class="nt">投放力</div><div class="nb">场景化投放</div></div>
-      <div class="arrow">+</div>
-      <div class="node"><div class="nt">直播力</div><div class="nb">场景化开播</div></div>
-      <div class="arrow">→</div>
-      <div class="node" style="border-color:var(--success);"><div class="nt" style="color:var(--success);">飞轮转动</div><div class="nb">勤奋度的<br/>"杠杆放大"</div></div>
-    </div>
-    <div class="quote">场景感知召回不是新流量入口，而是 <b>「让勤奋更值得做」</b> 的导航系统 —— 同样上 10 条素材，踩对场景能比错的拿量高 <span class="ph">XX</span> 倍。</div>
-  </section>
-
-  <section class="slide">
-    <span class="slide-num">15 / 18</span>
-    <span class="slide-tag">MODULE 05 · AI 赋能</span>
-    <h1 class="slide-title">三力 AI 工具：让单人产能提升 3~5 倍</h1>
-    <h2 class="slide-subtitle">把服务商从"重复劳动"中解放出来，专注高价值动作</h2>
-    <div class="grid-3">
-      <div class="diagcard" style="border-color:var(--primary);">
-        <h4>AI 选品洞察</h4>
-        <p style="font-size:14px;">基于场景感知召回，反向推荐"该上什么品 + 当前货盘里哪些 SPU 勤奋度不够需要加投"。</p>
-        <div class="badges"><span class="badge">货品力</span><span class="badge">场景驱动</span></div>
-        <div style="margin-top:12px;font-size:13px;color:var(--gray-700);"><b>典型场景：</b>5月推荐"夏季应季饮料"开品 + 圈出已上但无消耗的占位 SPU</div>
-      </div>
-      <div class="diagcard" style="border-color:var(--accent);">
-        <h4>AI 创意脚本解析</h4>
-        <p style="font-size:14px;">解析爆款素材的"钩子结构 / 卖点排序 / 节奏曲线"，一键生成脚本变体。</p>
-        <div class="badges"><span class="badge warn">内容力</span><span class="badge warn">规模化</span></div>
-        <div style="margin-top:12px;font-size:13px;color:var(--gray-700);"><b>典型场景：</b>把 1 条爆款素材在 24 小时内裂变出 <span class="ph">XX</span> 条二创变体</div>
-      </div>
-      <div class="diagcard" style="border-color:var(--success);">
-        <h4>AI 直播间诊断</h4>
-        <p style="font-size:14px;">实时分析直播间的"流量结构 / 转化漏斗 / 主播话术效率"，给出具体改进项。</p>
-        <div class="badges"><span class="badge ok">直播力</span><span class="badge ok">即时反馈</span></div>
-        <div style="margin-top:12px;font-size:13px;color:var(--gray-700);"><b>典型场景：</b>下播后 30 分钟出诊断报告，次日开播即调整</div>
+  <div class="grid grid-cols-12 gap-5 mt-8 flex-1">
+    <!-- 类别 1: 策略 -->
+    <div class="col-span-3 glass p-5 reveal reveal-delay-1" style="border-top:3px solid var(--green);">
+      <div class="text-xs tracking-widest mb-2" style="color:var(--green);">类别 ①</div>
+      <div class="text-lg font-bold mb-3" style="color:var(--text-1);">策略工具</div>
+      <div class="space-y-3">
+        <div class="p-3 rounded-lg" style="background:rgba(20,229,160,0.06);border:1px solid rgba(20,229,160,0.2);">
+          <div class="text-sm font-semibold mb-1" style="color:var(--green);">全库智选</div>
+          <div class="text-xs" style="color:var(--text-2);line-height:1.6;">引用同账户下同推广产品的<b style="color:var(--text-1);">优质历史组件</b>自动进行广告搭建，高效补齐基建</div>
+          <div class="mt-2 text-xs" style="color:var(--text-3);">适配目标：<b style="color:var(--green);">基建补充</b></div>
+        </div>
       </div>
     </div>
-    <h3 class="section-h">AI 工具如何嵌入"勤奋度提升路径"</h3>
-    <table>
-      <thead><tr><th>诊断关卡</th><th>客户问题</th><th>AI 工具介入</th><th>预期效果</th></tr></thead>
-      <tbody>
-        <tr><td><b style="color:var(--danger);">L1 没过</b></td><td>占位 SPU 太多，不知道砍哪些</td><td>AI 选品洞察 → 占位 SPU 清单 + 替代品建议</td><td>2 周内活跃 SPU 占比 30%→60%</td></tr>
-        <tr><td><b style="color:var(--warning);">L2 没过</b></td><td>素材产能跟不上，周节奏断档</td><td>AI 创意脚本解析 → 单人单日产 10+ 条变体</td><td>周勤奋活跃率 25%→75%</td></tr>
-        <tr><td><b style="color:var(--primary);">L3 没过</b></td><td>爆款无法稳定复制</td><td>AI 直播间诊断 → 找到爆量瓶颈点</td><td>每月稳定产 <span class="ph">XX</span> 条 5万+ 素材</td></tr>
-      </tbody>
-    </table>
-  </section>
 
-  <section class="slide">
-    <span class="slide-num">16 / 18</span>
-    <span class="slide-tag">MODULE 05 · 资源赋能</span>
-    <h1 class="slide-title">三大资源赋能 · 把"做不到"变成"做得到"</h1>
-    <h2 class="slide-subtitle">服务商单打独斗的时代结束 —— 平台资源全面下发</h2>
-    <div class="grid-3">
-      <div class="card ok"><div class="ct">🏭 展会溯源撮合</div><ul><li>对接 <span class="ph">XX</span> 个产业带源头工厂</li><li>提供溯源直播标准化 SOP</li><li>每月 <span class="ph">XX</span> 场展会专属直通车</li></ul></div>
-      <div class="card ok"><div class="ct">🤝 代运营撮合</div><ul><li>对接腾讯广告认证代运营服务商池</li><li>四力托管：货品 / 内容 / 投放 / 直播</li><li>分润机制 —— 服务商参与长期收益</li></ul></div>
-      <div class="card ok"><div class="ct">📣 达播&KOC团长撮合</div><ul><li>食饮垂类达人 <span class="ph">XX</span> 名直连</li><li>KOC 矩阵 <span class="ph">XX</span>+，覆盖主流话题圈层</li><li>团长统筹 + 内容矩阵化分发</li></ul></div>
-    </div>
-    <h3 class="section-h">资源赋能与"诊断卡"形成闭环</h3>
-    <div class="flow">
-      <div class="node"><div class="nt">诊断</div><div class="nb">客户卡在哪一关？<br/>L1 / L2 / L3</div></div>
-      <div class="arrow">→</div>
-      <div class="node"><div class="nt">匹配资源</div><div class="nb">AI工具 + 撮合资源<br/>对症下药</div></div>
-      <div class="arrow">→</div>
-      <div class="node"><div class="nt">执行</div><div class="nb">服务商落地<br/>1对1陪跑</div></div>
-      <div class="arrow">→</div>
-      <div class="node" style="border-color:var(--success);"><div class="nt" style="color:var(--success);">复盘</div><div class="nb">下一周再诊断<br/>看活跃率提升</div></div>
-    </div>
-  </section>
-
-  <!-- =================== 模块六：行动指引 =================== -->
-  <section class="slide">
-    <span class="slide-num">17 / 18</span>
-    <span class="slide-tag">MODULE 06 · 行动指引</span>
-    <h1 class="slide-title">服务商行动指引 · 本周 / 本月 / 本季度</h1>
-    <h2 class="slide-subtitle">把诊断结论转化为"立刻可执行"的动作清单</h2>
-    <div class="grid-3">
-      <div class="card danger">
-        <div class="ct">📅 本周 · 立刻做</div>
-        <ul>
-          <li>把每个客户的 SPU 跑一遍 <b>"周勤奋活跃率"</b> 自检表</li>
-          <li>圈出"<b>占位 SPU 清单</b>"（活跃创意 &lt;3条）</li>
-          <li>选 1 个客户做诊断卡试点，给客户雷达图</li>
-          <li>对接 AI 创意脚本解析，跑通 1 个 SPU 的素材裂变</li>
-        </ul>
-      </div>
-      <div class="card warn">
-        <div class="ct">📆 本月 · 跑通流程</div>
-        <ul>
-          <li>覆盖 <b>Top20 重客</b>，每个客户出诊断卡</li>
-          <li>给每个客户定"<b>周创意上新承诺数</b>"</li>
-          <li>低活跃客户接入 AI 创意工具，提产能</li>
-          <li>启动 <b>1 个产业带溯源直播</b> 试点项目</li>
-        </ul>
-      </div>
-      <div class="card ok">
-        <div class="ct">🗓 本季度 · 形成体系</div>
-        <ul>
-          <li>诊断卡纳入服务商 <b>月度KPI</b>，从"做了多少"改为"持续做了多少周"</li>
-          <li>每月发布"<b>食饮服务商勤奋度榜单</b>"，公开透明</li>
-          <li>四类客群全部建立 <b>差异化服务SOP</b></li>
-          <li>跑通 <b>诊断 → AI赋能 → 资源撮合</b> 完整闭环</li>
-        </ul>
+    <!-- 类别 2: 创意工具 -->
+    <div class="col-span-3 glass p-5 reveal reveal-delay-2" style="border-top:3px solid var(--cyan);">
+      <div class="text-xs tracking-widest mb-2" style="color:var(--cyan);">类别 ②</div>
+      <div class="text-lg font-bold mb-3" style="color:var(--text-1);">创意工具</div>
+      <div class="space-y-3">
+        <div class="p-3 rounded-lg" style="background:rgba(56,214,255,0.06);border:1px solid rgba(56,214,255,0.2);">
+          <div class="text-sm font-semibold mb-1" style="color:var(--cyan);">AIGC 创意</div>
+          <div class="text-xs" style="color:var(--text-2);line-height:1.6;">系统利用 AIGC，基于客户原有素材&推广产品<b style="color:var(--text-1);">自动衍生</b>适配腾讯全流量的多规格素材</div>
+          <div class="mt-2 text-xs" style="color:var(--text-3);">适配目标：<b style="color:var(--cyan);">基建补充</b></div>
+        </div>
+        <div class="p-3 rounded-lg" style="background:rgba(56,214,255,0.06);border:1px solid rgba(56,214,255,0.2);">
+          <div class="text-sm font-semibold mb-1" style="color:var(--cyan);">创意优投</div>
+          <div class="text-xs" style="color:var(--text-2);line-height:1.6;">对项目下<b style="color:var(--text-1);">判定的优质素材</b>进行追加预算+出价测投</div>
+          <div class="mt-2 text-xs" style="color:var(--text-3);">适配目标：<b style="color:var(--cyan);">素材追测</b></div>
+        </div>
       </div>
     </div>
-    <h3 class="section-h">服务商三件事自检清单</h3>
-    <div class="stats-grid">
-      <div class="stat"><div class="label">事一：你的客户里</div><div class="value"><span class="ph">XX</span></div><div class="desc">个 SPU 是占位 SPU？</div></div>
-      <div class="stat warning"><div class="label">事二：你的客户里</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">的客户周活跃率 &lt;25%？</div></div>
-      <div class="stat success"><div class="label">事三：你过去4周</div><div class="value"><span class="ph">XX</span></div><div class="desc">条素材进入了爆款档？</div></div>
-      <div class="stat danger"><div class="label">事四：你的服务团队</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">已经接入 AI 工具？</div></div>
+
+    <!-- 类别 3: 拿量助手 -->
+    <div class="col-span-3 glass-strong p-5 reveal reveal-delay-3 glow-border" style="border-top:3px solid var(--gold);">
+      <div class="text-xs tracking-widest mb-2" style="color:var(--gold);">类别 ③</div>
+      <div class="text-lg font-bold mb-3" style="color:var(--text-1);">拿量助手</div>
+      <div class="space-y-3">
+        <div class="p-3 rounded-lg" style="background:rgba(255,200,87,0.06);border:1px solid rgba(255,200,87,0.2);">
+          <div class="text-sm font-semibold mb-1" style="color:var(--gold);">直播快推</div>
+          <div class="text-xs" style="color:var(--text-2);line-height:1.6;">系统激进探索，<b style="color:var(--text-1);">提升项目起量和跑量速度</b>；预算设置后不可修改，但策略可多次开启</div>
+          <div class="mt-2 text-xs" style="color:var(--text-3);">适配：<b style="color:var(--gold);">日播灵活拿量 · 长跑衰退刺激</b></div>
+        </div>
+        <div class="p-3 rounded-lg" style="background:rgba(255,200,87,0.06);border:1px solid rgba(255,200,87,0.2);">
+          <div class="text-sm font-semibold mb-1" style="color:var(--gold);">专场放量</div>
+          <div class="text-xs" style="color:var(--text-2);line-height:1.6;">指定一笔预算，系统以<b style="color:var(--text-1);">不超过成本 20%</b>为目标进行放量；对一批项目以价换量</div>
+          <div class="mt-2 text-xs" style="color:var(--text-3);">适配：<b style="color:var(--gold);">专场/大场节点冲规模</b></div>
+        </div>
+      </div>
     </div>
-    <div class="quote"><span class="qmark">"</span> 勤奋不是结果，<b>持续</b> 才是 —— 让我们一起，把每个客户从 L0 推到 L3。<span class="qmark">"</span></div>
-  </section>
 
-  <!-- ============ 结尾页 ============ -->
-  <section class="slide closing">
-    <h1>持续在做，<br/>才是真勤奋</h1>
-    <p>欢迎与食饮行业中心沟通诊断卡试点 ·<br/>让我们用数据替服务商背书，把"勤奋度"做成可衡量、可牵引、可成长的硬实力。</p>
-    <div class="signature">TENCENT ADS · FOOD &amp; BEVERAGE  ·  2026 K1</div>
-  </section>
+    <!-- 类别 4: 效果保障 -->
+    <div class="col-span-3 glass p-5 reveal reveal-delay-4" style="border-top:3px solid var(--purple-2);">
+      <div class="text-xs tracking-widest mb-2" style="color:var(--purple-2);">类别 ④</div>
+      <div class="text-lg font-bold mb-3" style="color:var(--text-1);">效果保障</div>
+      <div class="space-y-3">
+        <div class="p-3 rounded-lg" style="background:rgba(124,92,255,0.06);border:1px solid rgba(124,92,255,0.2);">
+          <div class="text-sm font-semibold mb-1" style="color:var(--purple-2);">新客探索</div>
+          <div class="text-xs" style="color:var(--text-2);line-height:1.6;">自动探索投放同业务单元下、同优化目标且<b style="color:var(--text-1);">6 个月内未转化用户</b>，定向潜在高价值人群</div>
+          <div class="mt-2 text-xs" style="color:var(--text-3);">适配：<b style="color:var(--purple-2);">新客获取 · 人群破圈</b></div>
+        </div>
+        <div class="p-3 rounded-lg relative" style="background:rgba(124,92,255,0.06);border:1px solid rgba(124,92,255,0.2);">
+          <div class="absolute -top-2 right-2 px-2 py-0.5 rounded text-[10px] font-bold" style="background:linear-gradient(135deg,#ff5c7c,#ffc857);color:#fff;letter-spacing:0.5px;">NEW · 开白测试中</div>
+          <div class="text-sm font-semibold mb-1" style="color:var(--purple-2);">潜客优投</div>
+          <div class="text-xs" style="color:var(--text-2);line-height:1.6;">智能识别<b style="color:var(--text-1);">高购买意向潜客</b>（浏览过商品/看过直播间），客户自主设置<b style="color:var(--text-1);">提价系数 1.1~2.0</b>，对潜客人群定向提价竞争，拉转化</div>
+          <div class="mt-2 text-xs" style="color:var(--text-3);">适配：<b style="color:var(--purple-2);">转化提效 · 潜客承接</b>　<span style="color:var(--text-3);opacity:.7;">｜预计 6 月初全量</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-</div>
+  <!-- 典型案例脚注 -->
+  <div class="mt-5 reveal reveal-delay-4 grid grid-cols-3 gap-3 text-xs">
+    <div class="p-3 rounded-lg" style="background:rgba(56,214,255,0.05);border:1px solid rgba(56,214,255,0.15);color:var(--text-2);">
+      <b style="color:var(--cyan);">创意优投 · 某美护客户</b>：优投项目条均消耗相较普通智投 <b style="color:var(--text-1);">+2.5 倍</b>，日均 2w/d
+    </div>
+    <div class="p-3 rounded-lg" style="background:rgba(255,200,87,0.05);border:1px solid rgba(255,200,87,0.15);color:var(--text-2);">
+      <b style="color:var(--gold);">直播快推 · 某茶叶客户</b>：单场直播消耗翻 <b style="color:var(--text-1);">3 倍</b>，广告条均 ARPU <b style="color:var(--text-1);">+189%</b>
+    </div>
+    <div class="p-3 rounded-lg" style="background:rgba(124,92,255,0.05);border:1px solid rgba(124,92,255,0.15);color:var(--text-2);">
+      <b style="color:var(--purple-2);">测试金赔付</b>：线上赔付 20w 消耗以上封顶 <b style="color:var(--text-1);">10w</b>；20w 以下封顶 <b style="color:var(--text-1);">5w</b>
+    </div>
+  </div>
+  <!-- 配套文档 -->
+  <div class="mt-4 reveal reveal-delay-5">
+    <div class="doc-section-title">📎 配套文档 · 智投能力工具盒一览表</div>
+    <a href="https://doc.weixin.qq.com/doc/w3_AN0ARwawACgCNrMSgvto1QbaRTUCL?scode=AJEAIQdfAAoRj7LOszAaEAUgbuAPU" target="_blank" rel="noopener" class="doc-card"><div class="doc-icon">📘</div><div class="doc-body"><div class="doc-title"><span class="doc-tag gold">企微文档</span>智投能力工具盒 · 投放功能指南一览表</div><div class="doc-sub">策略 × 创意 × 拿量 × 效果保障 · 全工具操作 SOP</div></div><div class="doc-go">打开 →</div></a>
+  </div>
+  <div class="page-num">09 / 17</div>
+</section>
+
+<!-- ============ P10 L2 真实案例 · 锋味派全店托管 ============ -->
+<section class="slide" id="m2-case">
+  <div class="force-nav">
+    <div class="force-pill green"><div class="dot"></div>商品力</div>
+    <div class="force-pill cyan"><div class="dot"></div>内容力</div>
+    <div class="force-pill gold"><div class="dot"></div>经营力</div>
+    <div class="force-pill active"><div class="dot"></div>投放力</div>
+  </div>
+  <div class="reveal">
+    <div class="module-tag"><span class="num">02</span><span>模块二 · L2 真实案例</span></div>
+    <div><span class="force-chip chip-buy">🚀 投放力 · 全店托管实证</span></div>
+    <h2 class="slide-title mt-3">小店艾米 · 锋味派：<span class="gradient-text">一键托管全店商品，渠道新品即刻轻松跑出</span></h2>
+    <div class="subtitle">主营冻品速食 / 米面油等品类 —— 通过"全店托管 + AIGC 创意自适配 + 模型智能选品"组合，<b style="color:var(--text-1);">一键释放全店商品跑量潜力</b>。</div>
+  </div>
+  <div class="grid grid-cols-12 gap-6 mt-8 flex-1">
+    <!-- 三大亮点 -->
+    <div class="col-span-8 grid grid-cols-3 gap-4 reveal reveal-delay-1">
+      <div class="glass p-5 relative overflow-hidden">
+        <div class="text-xs px-2 py-0.5 rounded inline-block mb-3" style="background:rgba(20,229,160,0.12);color:var(--green);">亮点 ①</div>
+        <div class="text-base font-bold mb-2" style="color:var(--text-1);">仅需 3 步<br>实现一键托管</div>
+        <div class="text-xs leading-relaxed" style="color:var(--text-2);">
+          极简创编流程，<b style="color:var(--text-1);">降低品牌测投难度</b><br>
+          ▸ 选托管店铺<br>
+          ▸ 设下单 ROI 出价<br>
+          ▸ 设日预算
+        </div>
+        <div class="mt-3 p-2 rounded text-xs" style="background:rgba(255,255,255,0.03);color:var(--text-3);">智能创意设置：AIGC 妙思 max + 组件全库智选 系统自补齐</div>
+      </div>
+      <div class="glass p-5 relative overflow-hidden">
+        <div class="text-xs px-2 py-0.5 rounded inline-block mb-3" style="background:rgba(56,214,255,0.12);color:var(--cyan);">亮点 ②</div>
+        <div class="text-base font-bold mb-2" style="color:var(--text-1);">AIGC 创意自适配<br>新品不怕没创意</div>
+        <div class="text-xs leading-relaxed" style="color:var(--text-2);">
+          AIGC + 全库智选实现多版位覆盖，<b style="color:var(--text-1);">无需额外上传素材</b>即可投放
+        </div>
+        <div class="mt-3 space-y-2">
+          <div class="p-2 rounded text-xs" style="background:rgba(56,214,255,0.06);color:var(--text-2);">
+            <b style="color:var(--cyan);">AIGC + 自拉取</b> 贡献 <span class="num font-bold" style="color:var(--cyan);">100%</span> 消耗
+          </div>
+          <div class="p-2 rounded text-xs" style="background:rgba(56,214,255,0.06);color:var(--text-2);">
+            <b style="color:var(--cyan);">数字人口播</b> CTR <span class="num font-bold" style="color:var(--cyan);">3%+</span>
+          </div>
+        </div>
+      </div>
+      <div class="glass p-5 relative overflow-hidden">
+        <div class="text-xs px-2 py-0.5 rounded inline-block mb-3" style="background:rgba(255,200,87,0.12);color:var(--gold);">亮点 ③</div>
+        <div class="text-base font-bold mb-2" style="color:var(--text-1);">模型智能选品<br>托管测品效率高</div>
+        <div class="text-xs leading-relaxed" style="color:var(--text-2);">
+          系统依据节点智能推品，<b style="color:var(--text-1);">助力品牌发现渠道潜力新品</b>
+        </div>
+        <div class="mt-3 p-2 rounded text-xs" style="background:rgba(255,200,87,0.06);">
+          <span style="color:var(--text-2);">模型选品 + 系统编创汰换 →</span><br>
+          <span style="color:var(--gold);font-weight:600;">高效测出「饭团」新品</span><br>
+          <span style="color:var(--text-3);">→ 机会品追投（能力建设中）</span>
+        </div>
+      </div>
+    </div>
+    <!-- 效果数据墙（V4 版 · 无图） -->
+    <div class="col-span-4 glass-strong p-7 reveal reveal-delay-2 glow-border" style="background:linear-gradient(180deg,rgba(20,229,160,0.08),rgba(56,214,255,0.04));">
+      <div class="text-sm tracking-widest mb-4" style="color:var(--gold);">📊 效果数据 · 锋味派</div>
+
+      <div class="space-y-4">
+        <div>
+          <div class="text-xs" style="color:var(--text-3);">新品增益</div>
+          <div class="big-num text-5xl mt-1 gold-text">38<span class="text-2xl">%</span></div>
+          <div class="text-xs mt-1" style="color:var(--text-2);">贡献全店消耗占比</div>
+        </div>
+        <div class="pt-3" style="border-top:1px dashed var(--line);">
+          <div class="text-xs" style="color:var(--text-3);">达成表现</div>
+          <div class="big-num text-5xl mt-1" style="color:var(--green);">+21<span class="text-2xl">%</span></div>
+          <div class="text-xs mt-1" style="color:var(--text-2);">下单 ROI 提升</div>
+        </div>
+        <div class="pt-3" style="border-top:1px dashed var(--line);">
+          <div class="text-xs" style="color:var(--text-3);">创意跑量</div>
+          <div class="big-num text-3xl mt-1" style="color:var(--cyan);">7天 8w+</div>
+          <div class="text-xs mt-1" style="color:var(--text-2);">AIGC + 自拉取生成 · 无额外上传</div>
+        </div>
+        <div class="pt-3" style="border-top:1px dashed var(--line);">
+          <div class="text-xs mb-1.5 flex items-center gap-1" style="color:var(--green);">
+            <span class="w-1.5 h-1.5 rounded-full" style="background:var(--green);box-shadow:0 0 4px var(--green);"></span>
+            模型识别新潜力品
+          </div>
+          <div class="text-xs" style="color:var(--text-2);line-height:1.7;">系统从全店 SPU 中跑出原本没重点投的 <b style="color:var(--text-1);">"饭团"</b> —— <b style="color:var(--green);">7 天 8w+</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-5 reveal reveal-delay-3 p-4 rounded-2xl flex items-center gap-4" style="background:linear-gradient(135deg,rgba(20,229,160,0.06),rgba(56,214,255,0.04));border:1px solid var(--line);">
+    <div class="text-base flex-1"><b class="gradient-text">关键启示</b> · 当 SPU 多到人工测不过来时，全店托管是唯一可规模化的解法 —— 让系统帮你发现"自己都没意识到"的潜力新品</div>
+    <div class="text-xs" style="color:var(--text-3);">* 当前能力需开白应用，请联系对应行业销售/运营伙伴</div>
+  </div>
+  <div class="page-num">10 / 17</div>
+</section>
+
+<!-- ============ P11 L2 双开大盘数据 · ADQ × 全域通 ============ -->
+<section class="slide" id="m2-dual">
+  <div class="force-nav">
+    <div class="force-pill green"><div class="dot"></div>商品力</div>
+    <div class="force-pill cyan"><div class="dot"></div>内容力</div>
+    <div class="force-pill gold"><div class="dot"></div>经营力</div>
+    <div class="force-pill active"><div class="dot"></div>投放力</div>
+  </div>
+  <div class="reveal">
+    <div class="module-tag"><span class="num">02</span><span>模块二 · L2 双开大盘实证</span></div>
+    <div><span class="force-chip chip-buy">🚀 投放力 · ADQ × 全域通双开</span></div>
+    <h2 class="slide-title mt-3">双开协同的<span class="gradient-text">确定性</span>：食饮行业大盘数据已经证明了</h2>
+    <div class="subtitle">只开一侧 vs 两侧同开，<b style="color:var(--text-1);">消耗 × ROI 同步上行</b> —— 这是 L2 阶段最稳的提收路径。</div>
+  </div>
+  <div class="grid grid-cols-12 gap-6 mt-8 flex-1">
+    <!-- 双向数据 -->
+    <div class="col-span-8 glass-strong p-7 reveal reveal-delay-1 glow-border" style="background:linear-gradient(180deg,rgba(255,200,87,0.08),rgba(124,92,255,0.04));">
+      <div class="flex items-center justify-between mb-5">
+        <div class="text-sm font-semibold" style="color:var(--gold);">📊 食饮行业大盘 · 单开 → 双开协同实证</div>
+        <div class="text-xs px-2 py-0.5 rounded" style="background:rgba(255,200,87,0.15);color:var(--gold);">真实数据</div>
+      </div>
+      <div class="grid grid-cols-2 gap-5">
+        <div class="p-5 rounded-xl" style="background:rgba(124,92,255,0.1);border:1px solid rgba(124,92,255,0.35);">
+          <div class="flex items-center justify-between mb-3">
+            <div class="text-xs px-2 py-0.5 rounded" style="background:rgba(124,92,255,0.2);color:var(--purple-2);">全域通 → 双开</div>
+            <div class="text-xs" style="color:var(--text-3);">扩量场景</div>
+          </div>
+          <div class="text-xs mb-2" style="color:var(--text-3);">消耗增长</div>
+          <div class="big-num" style="font-size:64px;color:var(--purple-2);line-height:1;">+257.2<span class="text-2xl">%</span></div>
+          <div class="text-xs mt-3" style="color:var(--text-2);line-height:1.7;">
+            <b style="color:var(--text-1);">主要增量贡献来自 ADQ</b><br>
+            → 原本只开全域通的客户增投 ADQ 后，整体消耗实现<b style="color:var(--purple-2);">倍数级扩量</b>
+          </div>
+        </div>
+        <div class="p-5 rounded-xl" style="background:rgba(255,200,87,0.1);border:1px solid rgba(255,200,87,0.35);">
+          <div class="flex items-center justify-between mb-3">
+            <div class="text-xs px-2 py-0.5 rounded" style="background:rgba(255,200,87,0.2);color:var(--gold);">ADQ → 双开</div>
+            <div class="text-xs" style="color:var(--text-3);">提效场景</div>
+          </div>
+          <div class="text-xs mb-2" style="color:var(--text-3);">消耗增长</div>
+          <div class="big-num" style="font-size:64px;color:var(--gold);line-height:1;">+9.9<span class="text-2xl">%</span></div>
+          <div class="text-xs mt-3" style="color:var(--text-2);line-height:1.7;">
+            <b style="color:var(--text-1);">关键价值在 ROI 提升</b><br>
+            ROI <span class="num font-bold" style="color:var(--text-1);">2.84 → 3.31</span> · <span style="color:var(--gold);font-weight:600;">23.1% 客户 ROI 改善</span>
+          </div>
+        </div>
+      </div>
+      <div class="mt-5 p-4 rounded-lg" style="background:rgba(20,229,160,0.08);border:1px solid rgba(20,229,160,0.25);">
+        <div class="text-sm font-semibold mb-1" style="color:var(--green);">💡 核心结论</div>
+        <div class="text-sm" style="color:var(--text-2);line-height:1.7;">
+          <b style="color:var(--text-1);">▸ 单开客户都应推进双开</b>：消耗 × ROI 同步上行<br>
+          <b style="color:var(--text-1);">▸ 全域通带 ROI 改善，ADQ 带消耗扩量</b> —— 不是二选一，是必须都有
+        </div>
+      </div>
+    </div>
+    <!-- 右：双开搭法 -->
+    <div class="col-span-4 space-y-4">
+      <div class="glass p-5 reveal reveal-delay-2">
+        <div class="text-xs tracking-widest mb-2" style="color:var(--cyan);">🏪 只开全域通的客户</div>
+        <div class="text-sm" style="color:var(--text-1);font-weight:600;">建议动作：增投 ADQ 智投</div>
+        <div class="text-xs mt-2" style="color:var(--text-2);">ADQ 智投承载扩量主力，全域通做 CPA 兜底 —— 消耗量有望<b style="color:var(--text-1);">倍数级增长</b></div>
+      </div>
+      <div class="glass p-5 reveal reveal-delay-3">
+        <div class="text-xs tracking-widest mb-2" style="color:var(--purple-2);">🎯 只开 ADQ 智投的客户</div>
+        <div class="text-sm" style="color:var(--text-1);font-weight:600;">建议动作：增投全域通</div>
+        <div class="text-xs mt-2" style="color:var(--text-2);">全域通补齐<b style="color:var(--text-1);">ROI 管控维度</b> —— 超 2 成客户会获 ROI 改善</div>
+      </div>
+      <div class="glass-strong p-5 reveal reveal-delay-4 glow-border">
+        <div class="text-xs tracking-widest mb-2" style="color:var(--gold);">✨ 已双开的客户</div>
+        <div class="text-sm" style="color:var(--text-1);font-weight:600;">建议动作：提升双开消耗占比</div>
+        <div class="text-xs mt-2" style="color:var(--text-2);">把<b style="color:var(--text-1);">普通 3.0 逐步替换为智投</b>，让智投成为主力大盘</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-num">11 / 17</div>
+</section>
+
+<!-- ============ P12 L2 行动 KPI · 智投消耗占比 ============ -->
+<section class="slide" id="m2-kpi">
+  <div class="force-nav">
+    <div class="force-pill green"><div class="dot"></div>商品力</div>
+    <div class="force-pill cyan"><div class="dot"></div>内容力</div>
+    <div class="force-pill gold"><div class="dot"></div>经营力</div>
+    <div class="force-pill active"><div class="dot"></div>投放力</div>
+  </div>
+  <div class="reveal">
+    <div class="module-tag" style="background:linear-gradient(135deg,rgba(124,92,255,0.15),rgba(56,214,255,0.08));border-color:rgba(124,92,255,0.3);"><span class="num">02</span><span>模块二 · L2 收束</span></div>
+    <div><span class="force-chip chip-buy">🚀 L2 投放力 · 核心 KPI</span></div>
+    <h2 class="slide-title mt-3">L2 只盯一个数：<span class="gradient-text">智投消耗占比</span></h2>
+    <div class="subtitle">把"忙碌程度"换成"智投渗透率"作为 L2 阶段的<b style="color:var(--text-1);">唯一北极星</b> —— 它涨，L2 才真的跃迁。</div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-6 mt-10 flex-1">
+    <!-- 核心 KPI 卡 -->
+    <div class="col-span-5 glass-strong p-8 reveal reveal-delay-1 glow-border relative overflow-hidden">
+      <div class="absolute -right-20 -top-20 w-80 h-80 rounded-full" style="background:radial-gradient(circle,rgba(124,92,255,0.2),transparent 70%);"></div>
+      <div class="text-sm tracking-widest mb-3" style="color:var(--purple-2);">⭐ L2 核心 KPI</div>
+      <div class="text-3xl font-bold mb-3 gradient-text">智投消耗占比</div>
+      <div class="text-sm" style="color:var(--text-2);line-height:1.8;">
+        <span style="color:var(--text-3);">= </span><b style="color:var(--text-1);">全域通 + ADQ 智投消耗</b> / 总消耗
+      </div>
+      <div class="mt-6 space-y-3">
+        <div class="p-3 rounded-lg" style="background:rgba(255,92,124,0.08);border:1px solid rgba(255,92,124,0.25);">
+          <div class="text-xs" style="color:var(--text-3);">行业当前中位</div>
+          <div class="big-num text-2xl mt-1" style="color:var(--red);">30~40<span class="text-sm">%</span></div>
+          <div class="text-xs mt-1" style="color:var(--text-3);">大部分腰部客户停在这里</div>
+        </div>
+        <div class="p-3 rounded-lg" style="background:rgba(255,200,87,0.08);border:1px solid rgba(255,200,87,0.25);">
+          <div class="text-xs" style="color:var(--text-3);">L2 跃迁目标</div>
+          <div class="big-num text-2xl mt-1 gold-text">≥ 70<span class="text-sm">%</span></div>
+          <div class="text-xs mt-1" style="color:var(--text-3);">头部客户普遍已突破此线</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右：落地动作 -->
+    <div class="col-span-7 space-y-4">
+      <div class="glass p-6 reveal reveal-delay-2">
+        <div class="text-base font-semibold mb-3" style="color:var(--purple-2);">📋 3 个月跃迁动作清单</div>
+        <div class="space-y-3 text-sm" style="color:var(--text-2);">
+          <div class="flex gap-3">
+            <div class="flex-none w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold" style="background:rgba(124,92,255,0.2);color:var(--purple-2);">1</div>
+            <div><b style="color:var(--text-1);">第 1 个月：</b>摸清自己当前智投占比，把最大一条普通 3.0 广告转为 ADQ 智投对照测跑</div>
+          </div>
+          <div class="flex gap-3">
+            <div class="flex-none w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold" style="background:rgba(124,92,255,0.2);color:var(--purple-2);">2</div>
+            <div><b style="color:var(--text-1);">第 2 个月：</b>按 P8 场景选型 → 开全店托管 / 短直双开 / 小店单链路中至少一项，智投占比推至 <b style="color:var(--gold);">50%</b></div>
+          </div>
+          <div class="flex gap-3">
+            <div class="flex-none w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold" style="background:rgba(124,92,255,0.2);color:var(--purple-2);">3</div>
+            <div><b style="color:var(--text-1);">第 3 个月：</b>补齐另一侧（只开 ADQ 的加全域通 / 反之亦然），冲 <b style="color:var(--gold);">70%+</b> 红线</div>
+          </div>
+        </div>
+      </div>
+      <div class="glass-strong p-5 glow-border reveal reveal-delay-3">
+        <div class="flex items-start gap-3">
+          <div class="text-2xl">💡</div>
+          <div class="text-sm" style="color:var(--text-2);line-height:1.8;">
+            <b style="color:var(--gold);">给投手的话：</b>你的 KPI 不再是"今天优化了多少条计划"，而是"本月智投占比涨了几个点"。<br>
+            <b style="color:var(--gold);">给老板的话：</b>别让投手纠结普通 3.0 细节 —— <b style="color:var(--text-1);">让他把时间花在盯智投盘、跑智投新能力上</b>。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-num">12 / 17</div>
+</section>
+
+
+<!-- ============ P13 L3 引子 · 头部围绕"人"卷三力 ============ -->
+<section class="slide" id="m3">
+  <div class="reveal">
+    <div class="module-tag" style="background:linear-gradient(135deg,rgba(255,200,87,0.12),rgba(124,92,255,0.08));border-color:rgba(255,200,87,0.3);"><span class="num">03</span><span>模块三 · 5W+/日的头部客户</span></div>
+    <h2 class="slide-title">头部 L3：投放力已经拉满，<span class="gold-text">下一格油门，藏在"三力"里</span></h2>
+    <div class="subtitle">当智投消耗占比已到 70%+，继续靠"加预算、加计划"换量的边际越来越差。<b style="color:var(--text-1);">L3 的新增量，来自更底层的三力 —— 商品力 · 内容力 · 经营力</b>，围绕"人"去卷资源、卷投入。</div>
+  </div>
+
+  <!-- 投放力 vs 三力 的分层示意 -->
+  <div class="grid grid-cols-12 gap-6 mt-10 flex-1">
+    <!-- 左 三力围绕"人" -->
+    <div class="col-span-5 glass-strong p-7 reveal reveal-delay-1 relative overflow-hidden glow-border">
+      <div class="absolute -right-16 -top-16 w-72 h-72 rounded-full" style="background:radial-gradient(circle,rgba(255,200,87,0.18),transparent 70%);"></div>
+      <div class="text-sm tracking-widest mb-4" style="color:var(--gold);">🎯 L3 三个卷点 · 全部围绕"人"，进一步升级投放力动能</div>
+      <div class="relative" style="height:280px;">
+        <!-- 中心 人 -->
+        <div class="absolute" style="left:50%;top:50%;transform:translate(-50%,-50%);width:92px;height:92px;border-radius:50%;background:linear-gradient(135deg,#FFD27A,#FF9F45);display:flex;align-items:center;justify-content:center;color:#1a1a1a;font-weight:800;font-size:15px;box-shadow:0 0 40px rgba(255,200,87,0.5);z-index:3;">
+          围绕<br>"人"
+        </div>
+        <!-- 上 商品力 -->
+        <div class="absolute float" style="left:50%;top:4px;transform:translateX(-50%);">
+          <div class="px-4 py-2 rounded-xl text-center" style="background:rgba(20,229,160,0.15);border:1px solid rgba(20,229,160,0.4);min-width:160px;">
+            <div class="text-xs" style="color:var(--green);">🌱 商品力</div>
+            <div class="text-xs mt-1" style="color:var(--text-1);font-weight:600;">人会转化什么商品</div>
+          </div>
+        </div>
+        <!-- 右 经营力 -->
+        <div class="absolute float" style="right:0;top:50%;transform:translateY(-50%);animation-delay:-1.5s;">
+          <div class="px-3 py-2 rounded-xl text-center" style="background:rgba(255,200,87,0.15);border:1px solid rgba(255,200,87,0.4);min-width:170px;">
+            <div class="text-xs" style="color:var(--gold);">🏠 经营力</div>
+            <div class="text-xs mt-1" style="color:var(--text-1);font-weight:600;">人喜欢什么<br>购物路径和消费场景</div>
+          </div>
+        </div>
+        <!-- 下 内容力 -->
+        <div class="absolute float" style="left:50%;bottom:4px;transform:translateX(-50%);animation-delay:-2s;">
+          <div class="px-4 py-2 rounded-xl text-center" style="background:rgba(56,214,255,0.12);border:1px solid rgba(56,214,255,0.4);min-width:160px;">
+            <div class="text-xs" style="color:var(--cyan);">⚡ 内容力</div>
+            <div class="text-xs mt-1" style="color:var(--text-1);font-weight:600;">人喜欢什么内容</div>
+          </div>
+        </div>
+        <!-- 左 投放力（淡化） -->
+        <div class="absolute" style="left:0;top:50%;transform:translateY(-50%);opacity:0.55;">
+          <div class="px-4 py-2 rounded-xl text-center" style="background:rgba(124,92,255,0.10);border:1px dashed rgba(124,92,255,0.35);min-width:140px;">
+            <div class="text-xs" style="color:var(--purple-2);">🚀 投放力</div>
+            <div class="text-xs mt-1" style="color:var(--text-3);font-weight:600;">L2 已接管</div>
+          </div>
+        </div>
+        <svg class="absolute inset-0 w-full h-full" style="pointer-events:none;opacity:0.3;">
+          <line x1="50%" y1="50" x2="50%" y2="50%" stroke="var(--gold)" stroke-width="1" stroke-dasharray="3 3"/>
+          <line x1="50%" y1="50%" x2="100%" y2="50%" stroke="var(--gold)" stroke-width="1" stroke-dasharray="3 3"/>
+          <line x1="50%" y1="50%" x2="50%" y2="90%" stroke="var(--gold)" stroke-width="1" stroke-dasharray="3 3"/>
+        </svg>
+      </div>
+      <div class="mt-4 p-3 rounded text-center text-sm" style="background:linear-gradient(135deg,rgba(255,200,87,0.08),rgba(124,92,255,0.04));border:1px solid rgba(255,200,87,0.25);color:var(--text-1);">
+        L3 = <b class="gold-text">卷资源、卷投入</b>，把三力围绕"人"极致展开<br>
+        <span class="text-xs" style="color:var(--text-3);">→ 进一步反向<b style="color:var(--purple-2);">升级投放力</b>动能（更高 BID / CTR / CVR）</span>
+      </div>
+    </div>
+
+    <!-- 右 双案例引子（双视角） -->
+    <div class="col-span-7 space-y-4">
+      <!-- 视角 1 单链路打透 -->
+      <div class="glass p-5 reveal reveal-delay-2 relative overflow-hidden" style="border-left:4px solid var(--green);">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <div class="text-[10px] tracking-widest mb-1" style="color:var(--text-3);">视角 1 · <b style="color:var(--green);">单链路打透</b></div>
+            <div class="text-base font-bold" style="color:var(--text-1);">客户 A · 三阶段跃迁</div>
+            <div class="text-[11px] mt-0.5" style="color:var(--text-3);">高客单 / 长决策赛道 · 微信小店直播</div>
+          </div>
+          <div class="text-[10px] px-2 py-1 rounded" style="background:rgba(20,229,160,0.12);color:var(--green);border:1px solid rgba(20,229,160,0.3);">商品力 × 内容力 × 经营力 三阶递进</div>
+        </div>
+        <!-- 三阶段 + 对应三力 -->
+        <div class="grid grid-cols-3 gap-2.5 text-center text-[11px]">
+          <div class="p-2.5 rounded relative" style="background:rgba(20,229,160,0.06);border:1px solid rgba(20,229,160,0.25);">
+            <div class="absolute -top-1.5 left-2 px-1.5 py-0.5 rounded text-[9px] font-bold" style="background:var(--green);color:#0B0F22;">V1.0</div>
+            <div class="big-num text-lg mt-1.5" style="color:var(--text-1);">0→30w/d</div>
+            <div class="text-[10px] mt-0.5" style="color:var(--text-3);">直播准入期</div>
+            <div class="mt-2 pt-2 border-t border-dashed text-[10px]" style="border-color:rgba(20,229,160,0.25);color:var(--green);font-weight:600;">🌱 商品力突破</div>
+            <div class="text-[10px]" style="color:var(--text-2);">基准出价 185→265 <b style="color:var(--green);">+43%</b></div>
+          </div>
+          <div class="p-2.5 rounded relative" style="background:rgba(56,214,255,0.06);border:1px solid rgba(56,214,255,0.25);">
+            <div class="absolute -top-1.5 left-2 px-1.5 py-0.5 rounded text-[9px] font-bold" style="background:var(--cyan);color:#0B0F22;">V2.0</div>
+            <div class="big-num text-lg mt-1.5" style="color:var(--text-1);">40w/d</div>
+            <div class="text-[10px] mt-0.5" style="color:var(--text-3);">信任升维</div>
+            <div class="mt-2 pt-2 border-t border-dashed text-[10px]" style="border-color:rgba(56,214,255,0.25);color:var(--cyan);font-weight:600;">⚡ 内容力突破</div>
+            <div class="text-[10px]" style="color:var(--text-2);">3s 快滑率 68%→33% <b style="color:var(--cyan);">-51.5%</b></div>
+          </div>
+          <div class="p-2.5 rounded relative" style="background:rgba(255,200,87,0.08);border:1px solid rgba(255,200,87,0.35);">
+            <div class="absolute -top-1.5 left-2 px-1.5 py-0.5 rounded text-[9px] font-bold" style="background:var(--gold);color:#1a1a1a;">V3.0</div>
+            <div class="big-num text-lg mt-1.5 gold-text">100w+/d</div>
+            <div class="text-[10px] mt-0.5" style="color:var(--text-3);">全域爆发</div>
+            <div class="mt-2 pt-2 border-t border-dashed text-[10px]" style="border-color:rgba(255,200,87,0.35);color:var(--gold);font-weight:600;">🏠 经营力突破</div>
+            <div class="text-[10px]" style="color:var(--text-2);">直播间 CVR <b style="color:var(--gold);">+30%</b></div>
+          </div>
+        </div>
+        <div class="mt-3 text-[11px] flex items-center justify-between p-2 rounded" style="background:rgba(124,92,255,0.05);border:1px dashed rgba(124,92,255,0.25);">
+          <span style="color:var(--text-2);">→ <b style="color:var(--text-1);">同一直播链路</b>，三阶段每阶段聚焦突破一力，最终三力协同</span>
+          <span class="text-[10px]" style="color:var(--purple-2);">下页详细拆解 →</span>
+        </div>
+      </div>
+
+      <!-- 视角 2 多生意结构组合 -->
+      <div class="glass p-5 reveal reveal-delay-3 relative overflow-hidden" style="border-left:4px solid var(--cyan);">
+        <div class="flex items-start justify-between mb-3">
+          <div>
+            <div class="text-[10px] tracking-widest mb-1" style="color:var(--text-3);">视角 2 · <b style="color:var(--cyan);">多生意结构组合</b></div>
+            <div class="text-base font-bold" style="color:var(--text-1);">客户 B · 直购 × 直播 × 分销 三组合</div>
+            <div class="text-[11px] mt-0.5" style="color:var(--text-3);">速食预制菜赛道 · 经营力多链路重组</div>
+          </div>
+          <div class="text-[10px] px-2 py-1 rounded" style="background:rgba(56,214,255,0.12);color:var(--cyan);border:1px solid rgba(56,214,255,0.3);">经营力 · 生意结构</div>
+        </div>
+        <!-- 三组合 + 占比 -->
+        <div class="grid grid-cols-3 gap-2.5 text-[11px]">
+          <div class="p-2.5 rounded" style="background:rgba(124,92,255,0.08);border:1px solid rgba(124,92,255,0.25);">
+            <div class="flex items-baseline justify-between mb-1">
+              <div class="font-bold" style="color:var(--purple-2);">① 小店直购</div>
+              <div class="big-num text-base" style="color:var(--purple-2);">22<span class="text-[10px]">%</span></div>
+            </div>
+            <div class="text-[10px]" style="color:var(--text-2);line-height:1.5;">稳定底盘 · 常态化在投，承接搜索/兴趣冷流量</div>
+          </div>
+          <div class="p-2.5 rounded relative" style="background:rgba(20,229,160,0.06);border:1px solid rgba(20,229,160,0.25);">
+            <div class="flex items-baseline justify-between mb-1">
+              <div class="font-bold" style="color:var(--green);">② 直播间</div>
+              <div class="big-num text-base" style="color:var(--green);">63<span class="text-[10px]">%</span></div>
+            </div>
+            <div class="text-[10px]" style="color:var(--text-2);line-height:1.5;"><b style="color:var(--text-1);">主战场</b> · 高转化场域，集中放大单品</div>
+            <div class="absolute top-1 right-1 text-[8px] px-1 py-0.5 rounded" style="background:var(--green);color:#0B0F22;font-weight:700;">主力</div>
+          </div>
+          <div class="p-2.5 rounded" style="background:rgba(255,200,87,0.08);border:1px solid rgba(255,200,87,0.30);">
+            <div class="flex items-baseline justify-between mb-1">
+              <div class="font-bold" style="color:var(--gold);">③ 达人分销</div>
+              <div class="big-num text-base" style="color:var(--gold);">15<span class="text-[10px]">%</span></div>
+            </div>
+            <div class="text-[10px]" style="color:var(--text-2);line-height:1.5;">杠杆放大 · KOC/团长内容分发 · 撬增量</div>
+          </div>
+        </div>
+        <!-- 占比可视化条 -->
+        <div class="mt-3 relative h-2 rounded-full overflow-hidden flex" style="background:rgba(255,255,255,0.04);">
+          <div style="width:22%;background:linear-gradient(90deg,var(--purple-2),rgba(124,92,255,0.6));"></div>
+          <div style="width:63%;background:linear-gradient(90deg,var(--green),rgba(20,229,160,0.6));"></div>
+          <div style="width:15%;background:linear-gradient(90deg,rgba(255,200,87,0.9),rgba(255,159,69,0.7));"></div>
+        </div>
+        <div class="mt-2 text-[11px] p-2 rounded" style="background:rgba(56,214,255,0.05);border:1px dashed rgba(56,214,255,0.25);color:var(--text-2);">
+          → 不同组合承接不同心智阶段人群，<b style="color:var(--text-1);">"经营结构 = 拿量上限"</b>。直购托底 + 直播主攻 + 分销加杠杆，三链协同。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">13 / 17</div>
+</section>
+
+<!-- ============ P14 L3 客户A 三力下钻 · 商品力×内容力×经营力 一体化案例 ============ -->
+<section class="slide" id="m3-huada">
+  <div class="force-nav">
+    <div class="force-pill green active"><div class="dot"></div>商品力</div>
+    <div class="force-pill cyan active"><div class="dot"></div>内容力</div>
+    <div class="force-pill gold active"><div class="dot"></div>经营力</div>
+  </div>
+  <div class="reveal">
+    <div class="module-tag"><span class="num">03-A</span><span>模块三 · L3 视角 1 · 单链路打透 · 客户 A 三阶段</span></div>
+    <h2 class="slide-title">客户 A：<span class="gradient-text">高客单 / 长决策 / 强信任</span>赛道，三力工业化打穿 <span class="gold-text">100w+</span></h2>
+    <div class="subtitle">大健康赛道（均价 750 元）从 <b style="color:var(--text-1);">0 冷启 → 稳态 40-50w/d → 大场峰值 100w+</b>，三阶段背后是<b style="color:var(--text-1);">商品力 · 内容力 · 经营力</b>三条线<b style="color:var(--text-1);">协同</b>升级，且持续向新品类裂变。</div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-4 mt-4 flex-1">
+    <!-- 左：三阶段跃迁总览 + 直播间形象 -->
+    <div class="col-span-4 glass p-5 reveal reveal-delay-1 relative overflow-hidden">
+      <div class="text-xs tracking-widest mb-3" style="color:var(--purple-2);">📈 三阶段跃迁总览（25/4 - 26/2）</div>
+      <div class="grid grid-cols-3 gap-2 text-center text-[11px]">
+        <div class="p-2 rounded" style="background:rgba(20,229,160,0.06);border:1px solid rgba(20,229,160,0.25);">
+          <div style="color:var(--green);">V1.0 · 4-8月</div>
+          <div class="big-num text-base mt-1" style="color:var(--text-1);">30w/d</div>
+          <div class="mt-1" style="color:var(--text-3);">单品破局</div>
+        </div>
+        <div class="p-2 rounded" style="background:rgba(56,214,255,0.06);border:1px solid rgba(56,214,255,0.25);">
+          <div style="color:var(--cyan);">V2.0 · 9-10月</div>
+          <div class="big-num text-base mt-1" style="color:var(--text-1);">40w+/d</div>
+          <div class="mt-1" style="color:var(--text-3);">矩阵拓展</div>
+        </div>
+        <div class="p-2 rounded" style="background:rgba(255,200,87,0.08);border:1px solid rgba(255,200,87,0.35);">
+          <div style="color:var(--gold);">V3.0 · 11月-至今</div>
+          <div class="big-num text-base mt-1 gold-text">100w+</div>
+          <div class="mt-1" style="color:var(--text-3);">全域爆发</div>
+        </div>
+      </div>
+
+      <!-- 消耗趋势条 -->
+      <div class="mt-4 p-3 rounded-xl" style="background:rgba(255,255,255,0.02);border:1px solid var(--line);">
+        <div class="text-[11px] mb-2" style="color:var(--text-3);">日均消耗趋势 (万/日)</div>
+        <div class="relative h-7">
+          <div class="absolute inset-y-0 left-0 rounded" style="width:20%;background:linear-gradient(90deg,rgba(20,229,160,0.5),rgba(20,229,160,0.25));display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;">30w</div>
+          <div class="absolute inset-y-0" style="left:20%;width:30%;background:linear-gradient(90deg,rgba(56,214,255,0.5),rgba(56,214,255,0.25));display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;">40w</div>
+          <div class="absolute inset-y-0 rounded-r" style="left:50%;width:50%;background:linear-gradient(90deg,rgba(255,200,87,0.6),rgba(255,159,69,0.4));display:flex;align-items:center;justify-content:center;font-size:12px;color:#1a1a1a;font-weight:700;">100w+</div>
+        </div>
+      </div>
+
+      <!-- 直播间形象（真实 3 张直播间截图） -->
+      <div class="mt-4">
+        <div class="text-[11px] tracking-widest mb-2" style="color:var(--text-3);">▶ 直播大场（手机端实拍）</div>
+        <div class="grid grid-cols-3 gap-2">
+          <!-- 直播间 1 -->
+          <div class="phone-card phone-card-real" style="background:#0a0d1a;">
+            <img src="assets/huada_live_1.png" alt="直播大场 1" loading="lazy" />
+          </div>
+          <!-- 直播间 2 -->
+          <div class="phone-card phone-card-real" style="background:#0a0d1a;">
+            <img src="assets/huada_live_2.png" alt="直播大场 2" loading="lazy" />
+          </div>
+          <!-- 直播间 3 -->
+          <div class="phone-card phone-card-real" style="background:#0a0d1a;">
+            <img src="assets/huada_live_3.png" alt="直播大场 3" loading="lazy" />
+          </div>
+        </div>
+        <div class="text-[9.5px] mt-2 text-center" style="color:var(--text-3);">* 丰富大场创新：科研溯源、总裁/专家空降、展播、会员日</div>
+      </div>
+    </div>
+
+    <!-- 中：三力下钻三栏（按 PDF 真实信息） -->
+    <div class="col-span-8 grid grid-cols-3 gap-3">
+      <!-- 商品力 -->
+      <div class="glass p-4 reveal reveal-delay-2 relative" style="border-top:3px solid var(--green);">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="force-chip chip-product">🌱 商品力</span>
+          <div class="text-[10px]" style="color:var(--text-3);">影响 BID</div>
+        </div>
+        <div class="big-num text-2xl gold-text mb-2">出价 185→265</div>
+        <div class="text-[11px]" style="color:var(--text-3);">+43% · 需求适配视频号人群</div>
+        <div class="space-y-2 mt-3">
+          <div class="p-2 rounded text-[11px]" style="background:rgba(20,229,160,0.05);border:1px solid rgba(20,229,160,0.18);">
+            <div class="font-semibold mb-0.5" style="color:var(--green);">① 抢新品类红利 · 大单品破局</div>
+            <div style="color:var(--text-2);line-height:1.5;">抓住<b style="color:var(--text-1);">大健康新开放品类</b>窗口，首推核心<b style="color:var(--text-1);">大单品</b> —— 把晦涩的<b style="color:var(--text-1);">"专业成分数据"转化为"功效场景化"</b>价值表达，需求精准适配视频号人群</div>
+          </div>
+          <div class="p-2 rounded text-[11px]" style="background:rgba(20,229,160,0.05);border:1px solid rgba(20,229,160,0.18);">
+            <div class="font-semibold mb-0.5" style="color:var(--green);">② 长效服用拉客单 · 主推 4 盒</div>
+            <div style="color:var(--text-2);line-height:1.5;">结合用户长期调理需求，<b style="color:var(--text-1);">从主推 2 盒升级到主推 4 盒</b>，客单价显著提升、LTV 拉升</div>
+          </div>
+          <div class="p-2 rounded text-[11px]" style="background:rgba(20,229,160,0.05);border:1px solid rgba(20,229,160,0.18);">
+            <div class="font-semibold mb-0.5" style="color:var(--green);">③ 供应链复用 · 持续开品</div>
+            <div style="color:var(--text-2);line-height:1.5;">围绕<b style="color:var(--text-1);">视频号核心人群痛点</b>陆续上新：<b style="color:var(--green);">睡眠场景新品</b>(V2) → <b style="color:var(--green);">体重管理新品</b>(V3, 一周从 0 到 13w/d)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 内容力 -->
+      <div class="glass-strong p-4 reveal reveal-delay-3 relative glow-border" style="border-top:3px solid var(--cyan);">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="force-chip chip-content">⚡ 内容力</span>
+          <div class="text-[10px]" style="color:var(--text-3);">影响 CTR / 3s 快滑率</div>
+        </div>
+        <div class="big-num text-2xl gradient-text mb-2">3s 快滑 68→33%</div>
+        <div class="text-[11px]" style="color:var(--text-3);">-51.5% · 信任向脚本破冷启</div>
+        <div class="space-y-2 mt-3">
+          <div class="p-2 rounded text-[11px]" style="background:rgba(56,214,255,0.05);border:1px solid rgba(56,214,255,0.18);">
+            <div class="font-semibold mb-0.5" style="color:var(--cyan);">① 集团 CEO 大 IP · 信任冷启</div>
+            <div style="color:var(--text-2);line-height:1.5;">深度挖掘集团 <b style="color:var(--text-1);">CEO 的科普 IP 势能</b>，提炼<b style="color:var(--text-1);">"专家科普 / 痛点解答"</b>信任向黄金脚本 —— 解决高客单赛道<b style="color:var(--text-1);">最难的"信任冷启"</b></div>
+          </div>
+          <div class="p-2 rounded text-[11px]" style="background:rgba(56,214,255,0.05);border:1px solid rgba(56,214,255,0.18);">
+            <div class="font-semibold mb-0.5" style="color:var(--cyan);">② 复制矩阵化人设 · 防风险</div>
+            <div style="color:var(--text-2);line-height:1.5;">突破单一 IP 瓶颈，叠加<b style="color:var(--text-1);">科研人员 + 专业营养师 + 品牌创始人</b>的多元矩阵 —— 从"个人 IP"升级为<b style="color:var(--text-1);">"组织化信任"</b></div>
+          </div>
+          <div class="p-2 rounded text-[11px]" style="background:rgba(56,214,255,0.05);border:1px solid rgba(56,214,255,0.18);">
+            <div class="font-semibold mb-0.5" style="color:var(--cyan);">③ 数字人口播 · 释放专家产能</div>
+            <div style="color:var(--text-2);line-height:1.5;">利用平台<b style="color:var(--text-1);">数字人口播</b>能力批量复刻专家素材 —— 释放 CEO / 科学家拍摄压力，让<b style="color:var(--text-1);">"科研背书"内容规模化供给</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 经营力 -->
+      <div class="glass p-4 reveal reveal-delay-4 relative" style="border-top:3px solid var(--gold);">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="force-chip chip-ops">🏠 经营力</span>
+          <div class="text-[10px]" style="color:var(--text-3);">影响 CVR · 大场放量</div>
+        </div>
+        <div class="big-num text-2xl gold-text mb-2">CVR +23%</div>
+        <div class="text-[11px]" style="color:var(--text-3);">客单 +30% · 单大场 5h GMV 120w+</div>
+        <div class="space-y-2 mt-3">
+          <div class="p-2 rounded text-[11px]" style="background:rgba(255,200,87,0.06);border:1px solid rgba(255,200,87,0.22);">
+            <div class="font-semibold mb-0.5" style="color:var(--gold);">① 丰富的差异化大场体系</div>
+            <div style="color:var(--text-2);line-height:1.5;"><b style="color:var(--text-1);">科研溯源 · 总裁/首席科学家空降 · 展播 · 会员日</b> —— 把前期蓄水的<b style="color:var(--text-1);">信任势能集中引爆</b>，打通"专业科普 → 大场转化"闭环</div>
+          </div>
+          <div class="p-2 rounded text-[11px]" style="background:rgba(255,200,87,0.06);border:1px solid rgba(255,200,87,0.22);">
+            <div class="font-semibold mb-0.5" style="color:var(--gold);">② 矩阵直播间搭建 · 多场共振</div>
+            <div style="color:var(--text-2);line-height:1.5;">围绕<b style="color:var(--text-1);">两个细分场景新品</b>分别搭建独立直播间 —— 形成<b style="color:var(--text-1);">3 个主力直播间</b> + 5+ 个小店直购爆品的生态矩阵</div>
+          </div>
+          <div class="p-2 rounded text-[11px]" style="background:rgba(255,200,87,0.06);border:1px solid rgba(255,200,87,0.22);">
+            <div class="font-semibold mb-0.5" style="color:var(--gold);">③ 大场速推 + 种草人群召回</div>
+            <div style="color:var(--text-2);line-height:1.5;">大场用<b style="color:var(--text-1);">专场放量工具</b>开播半小时极速拉升；<b style="color:var(--text-1);">直播种草人群出价</b>承接前期蓄水 → 种草人群 ROI 优于普通人群 <b style="color:var(--gold);">20%+</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部金句 -->
+  <div class="mt-4 reveal reveal-delay-5 p-4 rounded-2xl" style="background:linear-gradient(135deg,rgba(255,200,87,0.08),rgba(124,92,255,0.05));border:1px solid var(--line);">
+    <div class="text-sm text-center"><b class="gradient-text">核心启示</b> · 高客单 / 长决策赛道在视频号闭环的终极解法 = <b style="color:var(--green);">商品力</b>抢新品类 / 适配人群 × <b style="color:var(--cyan);">内容力</b>专家 IP / 矩阵信任 × <b style="color:var(--gold);">经营力</b>差异化大场 / 矩阵裂变 —— 三力工业化协同，撬动百万级大盘增量。</div>
+  </div>
+
+  <div class="page-num">14 / 17</div>
+</section>
+
+
+<!-- ============ P15 L3 三力通用策略页 · 三力提升方法论 ============ -->
+<section class="slide" id="m3-strategy">
+  <div class="reveal">
+    <div class="module-tag" style="background:linear-gradient(135deg,rgba(255,200,87,0.16),rgba(255,159,69,0.10));border-color:rgba(255,200,87,0.40);"><span class="num">03-S</span><span>模块三 · L3 三力通用策略</span></div>
+    <h2 class="slide-title">案例之外，三力跃迁的<span class="gradient-text">通用方法论</span><span class="gold-text">：商品力 · 内容力 · 经营力</span></h2>
+    <div class="subtitle">客户 A 是一个成功的"个例"，背后是<b style="color:var(--text-1);">可复制的方法论</b>。把三力的"公式 + 4 大抓手 + 配套工具/文档"沉淀下来，让客户随时可迁移到自己的赛道。</div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-4 mt-5 flex-1">
+
+    <!-- ============ 商品力 ============ -->
+    <div class="col-span-4 glass p-5 reveal reveal-delay-1 relative overflow-hidden" style="border-top:3px solid var(--green);">
+      <div class="absolute -right-12 -top-12 w-48 h-48 rounded-full" style="background:radial-gradient(circle,rgba(20,229,160,0.16),transparent 70%);"></div>
+
+      <div class="flex items-center justify-between mb-2 relative z-10">
+        <span class="force-chip chip-product">🌱 商品力</span>
+        <div class="text-[10px] px-2 py-0.5 rounded" style="background:rgba(20,229,160,0.12);color:var(--green);">从"有货"到"好卖"</div>
+      </div>
+
+      <!-- 商品力公式 -->
+      <div class="p-3 rounded-xl mb-3 relative z-10" style="background:linear-gradient(135deg,rgba(20,229,160,0.10),rgba(20,229,160,0.04));border:1px solid rgba(20,229,160,0.30);">
+        <div class="text-[10px] mb-1" style="color:var(--text-3);letter-spacing:1px;">商品力公式</div>
+        <div class="text-[13px] font-bold" style="color:var(--text-1);line-height:1.5;">
+          <span style="color:var(--green);">用户痛点</span> ×
+          (商品呈现 + 信任感 + 售卖机制)
+        </div>
+      </div>
+
+      <!-- 4 大抓手（细化食饮实情） -->
+      <div class="text-[11px] font-semibold mb-2" style="color:var(--green);">▶ 4 大抓手</div>
+      <div class="space-y-2 relative z-10">
+        <div class="p-2 rounded text-[11px]" style="background:rgba(20,229,160,0.05);border-left:2px solid var(--green);">
+          <div class="font-semibold" style="color:var(--text-1);">① 用户痛点洞察</div>
+          <div style="color:var(--text-2);line-height:1.45;">"用户有什么需求/痛点，xx 货可以满足" —— 用 <b style="color:var(--green);">商品 Agent</b> 锁定细分赛道趋势品</div>
+        </div>
+        <div class="p-2 rounded text-[11px]" style="background:rgba(20,229,160,0.05);border-left:2px solid var(--green);">
+          <div class="font-semibold" style="color:var(--text-1);">② 商品呈现升级</div>
+          <div style="color:var(--text-2);line-height:1.45;">围绕<b style="color:var(--text-1);">德芙"二包二创"</b>礼盒化包装重组（教师节书本礼盒、节点限定礼盒）；<b style="color:var(--text-1);">IP 联名</b>放大记忆点</div>
+        </div>
+        <div class="p-2 rounded text-[11px]" style="background:rgba(20,229,160,0.05);border-left:2px solid var(--green);">
+          <div class="font-semibold" style="color:var(--text-1);">③ 信任感构建</div>
+          <div style="color:var(--text-2);line-height:1.45;">主动申请小店<b style="color:var(--text-1);">官方标签</b>：<b style="color:var(--green);">地理标 · 老字号 · 有机认证</b> —— 标签自带流量与信任溢价</div>
+        </div>
+        <div class="p-2 rounded text-[11px]" style="background:rgba(20,229,160,0.05);border-left:2px solid var(--green);">
+          <div class="font-semibold" style="color:var(--text-1);">④ 售卖机制设计</div>
+          <div style="color:var(--text-2);line-height:1.45;">商家侧"<b style="color:var(--text-1);">主品 + 互补赠品</b>"堆叠 + 充分利用平台<b style="color:var(--text-1);">货补政策</b>（券补/坑位补/会场资源）</div>
+        </div>
+      </div>
+
+      <!-- 配套文档（货补案例从经营力迁过来） -->
+      <div class="mt-3 space-y-2 relative z-10">
+        <a href="https://nancy-alt9.github.io/huobu-guide" target="_blank" rel="noopener" class="doc-card" style="padding:8px 10px;">
+          <div class="doc-icon" style="width:28px;height:28px;font-size:13px;background:linear-gradient(135deg,rgba(20,229,160,0.20),rgba(20,229,160,0.08));border-color:rgba(20,229,160,0.35);">📊</div>
+          <div class="doc-body">
+            <div class="doc-title" style="font-size:11.5px;"><span class="doc-tag green">案例汇总</span>微信小店官方货补案例</div>
+            <div class="doc-sub" style="font-size:10px;">货补政策申报流程 + 食饮成功案例参考</div>
+          </div>
+          <div class="doc-go" style="font-size:10px;padding:2px 7px;">打开 →</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ============ 内容力 ============ -->
+    <div class="col-span-4 glass-strong p-5 reveal reveal-delay-2 relative overflow-hidden glow-border" style="border-top:3px solid var(--cyan);">
+      <div class="absolute -right-12 -top-12 w-48 h-48 rounded-full" style="background:radial-gradient(circle,rgba(56,214,255,0.18),transparent 70%);"></div>
+
+      <div class="flex items-center justify-between mb-2 relative z-10">
+        <span class="force-chip chip-content">⚡ 内容力</span>
+        <div class="text-[10px] px-2 py-0.5 rounded" style="background:rgba(56,214,255,0.14);color:var(--cyan);">从"有素材"到"强互动"</div>
+      </div>
+
+      <!-- 内容力公式 -->
+      <div class="p-3 rounded-xl mb-3 relative z-10" style="background:linear-gradient(135deg,rgba(56,214,255,0.10),rgba(124,92,255,0.05));border:1px solid rgba(56,214,255,0.35);">
+        <div class="text-[10px] mb-1" style="color:var(--text-3);letter-spacing:1px;">内容力公式</div>
+        <div class="text-[13px] font-bold" style="color:var(--text-1);line-height:1.5;">
+          <span style="color:var(--cyan);">人设本地化</span> ×
+          (脚本结构 + 视觉钩子 + 产能)
+        </div>
+      </div>
+
+      <!-- 4 大抓手 -->
+      <div class="text-[11px] font-semibold mb-2" style="color:var(--cyan);">▶ 4 大抓手</div>
+      <div class="space-y-2 relative z-10">
+        <div class="p-2 rounded text-[11px]" style="background:rgba(56,214,255,0.06);border-left:2px solid var(--cyan);">
+          <div class="font-semibold" style="color:var(--text-1);">① 视频号人设本地化</div>
+          <div style="color:var(--text-2);line-height:1.45;">从"姐妹/宝妈"切到 <b style="color:var(--text-1);">"叔叔阿姨/老妹"</b>；办公场景切到<b style="color:var(--text-1);">产地/工厂/家庭餐桌</b></div>
+        </div>
+        <div class="p-2 rounded text-[11px]" style="background:rgba(56,214,255,0.06);border-left:2px solid var(--cyan);">
+          <div class="font-semibold" style="color:var(--text-1);">② 5 类爆款脚本结构</div>
+          <div style="color:var(--text-2);line-height:1.45;">促销利益 / 原料可视化 / 匠人溯源 / 消费者证言 / 极简种草</div>
+        </div>
+        <div class="p-2 rounded text-[11px]" style="background:rgba(56,214,255,0.06);border-left:2px solid var(--cyan);">
+          <div class="font-semibold" style="color:var(--text-1);">③ 前 3-5s 视觉钩子</div>
+          <div style="color:var(--text-2);line-height:1.45;">AI 包装袋 / 原料全屏 / 创始人冲突开场 / 价格暴击</div>
+        </div>
+        <div class="p-2 rounded text-[11px]" style="background:rgba(56,214,255,0.06);border-left:2px solid var(--cyan);">
+          <div class="font-semibold" style="color:var(--text-1);">④ 明星 / 专家 / KOC 素材采买</div>
+          <div style="color:var(--text-2);line-height:1.45;">三类外部信任向素材<b style="color:var(--text-1);">主动采买入场</b>，再叠加 AIGC 二创放大产能</div>
+        </div>
+      </div>
+
+      <!-- 抖音 vs 视频号 对照表 -->
+      <div class="mt-3 p-3 rounded-lg relative z-10" style="background:rgba(56,214,255,0.04);border:1px solid rgba(56,214,255,0.20);">
+        <div class="text-[10px] mb-1" style="color:var(--text-3);">📺 抖音 vs 视频号 · 脚本本地化对照</div>
+        <div class="text-[10.5px]" style="color:var(--text-2);line-height:1.55;">
+          <b style="color:var(--cyan);">钩子</b>：产品特写 → AI 包装袋/价格<br>
+          <b style="color:var(--cyan);">动机</b>：给孩子 → <b style="color:var(--text-1);">给孙子</b><br>
+          <b style="color:var(--cyan);">话术</b>：性价比高 → <b style="color:var(--text-1);">抹掉 80 块/买三送三</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 经营力 ============ -->
+    <div class="col-span-4 glass p-5 reveal reveal-delay-3 relative overflow-hidden" style="border-top:3px solid var(--gold);">
+      <div class="absolute -right-12 -top-12 w-48 h-48 rounded-full" style="background:radial-gradient(circle,rgba(255,200,87,0.16),transparent 70%);"></div>
+
+      <div class="flex items-center justify-between mb-2 relative z-10">
+        <span class="force-chip chip-ops">🏠 经营力</span>
+        <div class="text-[10px] px-2 py-0.5 rounded" style="background:rgba(255,200,87,0.14);color:var(--gold);">日销 × 大场 双轮驱动</div>
+      </div>
+
+      <!-- 经营力公式 -->
+      <div class="p-3 rounded-xl mb-3 relative z-10" style="background:linear-gradient(135deg,rgba(255,200,87,0.10),rgba(255,159,69,0.05));border:1px solid rgba(255,200,87,0.35);">
+        <div class="text-[10px] mb-1" style="color:var(--text-3);letter-spacing:1px;">经营力公式</div>
+        <div class="text-[13px] font-bold" style="color:var(--text-1);line-height:1.5;">
+          <span style="color:var(--gold);">差异化大场</span> ×
+          (矩阵直播 + 节点放量 + 政策放大)
+        </div>
+      </div>
+
+      <!-- 4 大抓手（增加直播间本土化改造） -->
+      <div class="text-[11px] font-semibold mb-2" style="color:var(--gold);">▶ 4 大抓手</div>
+      <div class="space-y-2 relative z-10">
+        <div class="p-2 rounded text-[11px]" style="background:rgba(255,200,87,0.06);border-left:2px solid var(--gold);">
+          <div class="font-semibold" style="color:var(--text-1);">① 组合经营 · 三步打通闭环</div>
+          <div style="color:var(--text-2);line-height:1.45;"><b style="color:var(--text-1);">小店直购 → 直播 → 达人分销</b>，单点不再依赖直播一个场景，全链路承接流量</div>
+        </div>
+        <div class="p-2 rounded text-[11px]" style="background:rgba(255,200,87,0.06);border-left:2px solid var(--gold);">
+          <div class="font-semibold" style="color:var(--text-1);">② 直播间本土化改造</div>
+          <div style="color:var(--text-2);line-height:1.45;"><b style="color:var(--text-1);">双开 → 单开</b>专属本土化直播间（人设/货品/语速/场景）<br>抖音双开是承接，视频号单开才能聚焦</div>
+        </div>
+        <div class="p-2 rounded text-[11px]" style="background:rgba(255,200,87,0.06);border-left:2px solid var(--gold);">
+          <div class="font-semibold" style="color:var(--text-1);">③ 大场创新 · 节点放量</div>
+          <div style="color:var(--text-2);line-height:1.45;"><b style="color:var(--text-1);">总裁/厂长进直播间</b> + 重磅新品特殊机制 + <b style="color:var(--text-1);">展会/工厂/溯源</b>布景</div>
+        </div>
+        <div class="p-2 rounded text-[11px]" style="background:rgba(255,200,87,0.06);border-left:2px solid var(--gold);">
+          <div class="font-semibold" style="color:var(--text-1);">④ 平台政策放大</div>
+          <div style="color:var(--text-2);line-height:1.45;">冷启动+放量人群<b style="color:var(--text-1);">提权 1.1-1.2 倍</b>；大场<b style="color:var(--text-1);">激励金高达日耗 7%</b></div>
+        </div>
+      </div>
+
+      <!-- 配套文档（专场SOP + 视频号百宝箱2.0） -->
+      <div class="mt-3 space-y-2 relative z-10">
+        <a href="https://doc.weixin.qq.com/doc/w3_AY8AIQZXAAw0kJ8lDUaThG4VipnZm?scode=AJEAIQdfAAoiLEFIeZAPQAAwZ4ACc" target="_blank" rel="noopener" class="doc-card" style="padding:8px 10px;">
+          <div class="doc-icon" style="width:28px;height:28px;font-size:13px;background:linear-gradient(135deg,rgba(255,200,87,0.20),rgba(255,159,69,0.10));border-color:rgba(255,200,87,0.40);">📘</div>
+          <div class="doc-body">
+            <div class="doc-title" style="font-size:11.5px;"><span class="doc-tag gold">大场 SOP</span>食品饮料直播专场营销 SOP</div>
+            <div class="doc-sub" style="font-size:10px;">完整大场策划 · 人货场 · 政策申报</div>
+          </div>
+          <div class="doc-go" style="font-size:10px;padding:2px 7px;">打开 →</div>
+        </a>
+        <a href="https://doc.weixin.qq.com/doc/w3_AY8AIQZXAAwGWLcwWT4Q4ypkDBbFr?scode=AJEAIQdfAAoZCNDga6AY8AIQZXAAw" target="_blank" rel="noopener" class="doc-card" style="padding:8px 10px;">
+          <div class="doc-icon" style="width:28px;height:28px;font-size:13px;background:linear-gradient(135deg,rgba(255,200,87,0.20),rgba(255,159,69,0.10));border-color:rgba(255,200,87,0.40);">📘</div>
+          <div class="doc-body">
+            <div class="doc-title" style="font-size:11.5px;"><span class="doc-tag gold">行业百宝箱</span>食饮视频号直播百宝箱 2.0</div>
+            <div class="doc-sub" style="font-size:10px;">直播 0→1 起步 + 大场矩阵全套打法</div>
+          </div>
+          <div class="doc-go" style="font-size:10px;padding:2px 7px;">打开 →</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部金句 + 横跨三力的赛道方法论文档 -->
+  <div class="mt-3 reveal reveal-delay-4 relative">
+    <a href="https://doc.weixin.qq.com/doc/w3_AaEAUgbuAPUCNM1b9bqvcQAmL45Oq?scode=AJEAIQdfAAozOuTspLAPQAAwZ4ACc" target="_blank" rel="noopener" class="doc-card" style="padding:10px 14px;background:linear-gradient(135deg,rgba(124,92,255,0.10),rgba(56,214,255,0.06));border-color:rgba(124,92,255,0.35);">
+      <div class="doc-icon" style="background:linear-gradient(135deg,rgba(124,92,255,0.22),rgba(56,214,255,0.14));border-color:rgba(124,92,255,0.40);">📚</div>
+      <div class="doc-body">
+        <div class="doc-title" style="font-size:13px;"><span class="doc-tag purple">赛道全攻略 · 横跨三力</span>粮油调味速食小店增量密码：人货场全攻略</div>
+        <div class="doc-sub" style="font-size:11px;">从流量到销量高效经营 · <b style="color:#B9A8FF;">同时覆盖商品力（选品/货组）+ 内容力（脚本本地化）+ 经营力（直播大场）</b></div>
+      </div>
+      <div class="doc-go">打开 →</div>
+    </a>
+  </div>
+  <div class="mt-3 reveal reveal-delay-5 p-3 rounded-xl" style="background:linear-gradient(135deg,rgba(255,200,87,0.08),rgba(124,92,255,0.05));border:1px solid var(--line);">
+    <div class="text-[13px]"><b class="gold-text">三力策略 = 客户独有的"牌"</b> · <b style="color:var(--green);">商品力</b>靠供应链 + 平台货补 / <b style="color:var(--cyan);">内容力</b>靠人设本土化 + 外部素材采买 / <b style="color:var(--gold);">经营力</b>靠组合经营 + 大场创新 —— <b style="color:var(--text-1);">每个客户都能从这里挑出 1-2 个最适合自己赛道的抓手</b>，比照客户 A 案例迁移落地。</div>
+  </div>
+
+  <div class="page-num">15 / 17</div>
+</section>
+
+<!-- ============ P16 L3 油门工作台 · 三力全链路 AI 洞察 ============ -->
+<section class="slide" id="m3-buy">
+  <div class="reveal">
+    <div class="module-tag" style="background:linear-gradient(135deg,rgba(124,92,255,0.14),rgba(56,214,255,0.08));border-color:rgba(124,92,255,0.35);"><span class="num">03-B</span><span>模块三 · L3 油门工作台</span></div>
+    <h2 class="slide-title">油门工作台：围绕<span class="gradient-text">商品力 · 内容力 · 经营力</span>的<span class="gold-text">全链路洞察工具</span></h2>
+    <div class="subtitle">不止是"看直播间"—— 从<b style="color:var(--text-1);">选品洞察</b>、<b style="color:var(--text-1);">爆款素材脚本拆解</b>，到<b style="color:var(--text-1);">直播间人货场分析</b>，三力都有对应的 AI 工具供给，让 L3 客户每一步都有数据靶子。</div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-4 mt-4 flex-1">
+    <!-- ① 商品力：商品机会洞察 Agent -->
+    <div class="col-span-4 glass p-5 reveal reveal-delay-1 relative overflow-hidden" style="border-top:3px solid var(--green);">
+      <div class="absolute -right-12 -top-12 w-48 h-48 rounded-full" style="background:radial-gradient(circle,rgba(20,229,160,0.15),transparent 70%);"></div>
+      <div class="flex items-center gap-2 mb-2 relative z-10">
+        <span class="force-chip chip-product">🌱 商品力</span>
+        <div class="text-[10px] px-2 py-0.5 rounded" style="background:rgba(20,229,160,0.1);color:var(--green);">已上线</div>
+      </div>
+      <div class="text-base font-bold mb-1" style="color:var(--text-1);">商品机会洞察 Agent</div>
+      <div class="text-[11px] mb-3" style="color:var(--text-3);">"人会转化什么商品"—— AI 帮你选品 / 重组货盘</div>
+
+      <div class="space-y-2 relative z-10">
+        <div class="p-2 rounded text-[11px]" style="background:rgba(20,229,160,0.05);border:1px solid rgba(20,229,160,0.2);">
+          <div class="font-semibold mb-0.5" style="color:var(--green);">▸ 行业爆品挖掘</div>
+          <div style="color:var(--text-2);line-height:1.5;">基于全行业销售/曝光/搜索数据，识别<b style="color:var(--text-1);">细分赛道趋势品</b></div>
+        </div>
+        <div class="p-2 rounded text-[11px]" style="background:rgba(20,229,160,0.05);border:1px solid rgba(20,229,160,0.2);">
+          <div class="font-semibold mb-0.5" style="color:var(--green);">▸ 标杆店铺商品对标</div>
+          <div style="color:var(--text-2);line-height:1.5;">SPU 缺口 / 客单价差 / 货盘宽度 → 一眼看见差距</div>
+        </div>
+        <div class="p-2 rounded text-[11px]" style="background:rgba(20,229,160,0.05);border:1px solid rgba(20,229,160,0.2);">
+          <div class="font-semibold mb-0.5" style="color:var(--green);">▸ 场景感知召回适配</div>
+          <div style="color:var(--text-2);line-height:1.5;">应季 / 大促 / 热点节点商品自动推荐</div>
+        </div>
+      </div>
+      <a href="https://doc.weixin.qq.com/doc/w3_AewAuQanAD0CNrDl1XknsQ0mS8fwD?scode=AJEAIQdfAAoyn1vdTWAaEAUgbuAPU" target="_blank" rel="noopener" class="doc-card mt-3" style="position:relative;z-index:10;">
+        <div class="doc-icon" style="background:linear-gradient(135deg,rgba(20,229,160,0.20),rgba(20,229,160,0.08));border-color:rgba(20,229,160,0.35);">📘</div>
+        <div class="doc-body">
+          <div class="doc-title"><span class="doc-tag green">使用手册</span>商品机会洞察 Agent</div>
+          <div class="doc-sub">完整产品使用手册 · 选品 / 对标 / 召回</div>
+        </div>
+        <div class="doc-go">打开 →</div>
+      </a>
+    </div>
+
+    <!-- ② 内容力：创意机会洞察 -->
+    <div class="col-span-4 glass-strong p-5 reveal reveal-delay-2 relative overflow-hidden glow-border" style="border-top:3px solid var(--cyan);">
+      <div class="absolute -right-12 -top-12 w-48 h-48 rounded-full" style="background:radial-gradient(circle,rgba(56,214,255,0.18),transparent 70%);"></div>
+      <div class="flex items-center gap-2 mb-2 relative z-10">
+        <span class="force-chip chip-content">⚡ 内容力</span>
+        <div class="text-[10px] px-2 py-0.5 rounded" style="background:rgba(56,214,255,0.12);color:var(--cyan);">已上线</div>
+      </div>
+      <div class="text-base font-bold mb-1" style="color:var(--text-1);">创意机会洞察</div>
+      <div class="text-[11px] mb-3" style="color:var(--text-3);">"人喜欢看什么内容"—— 头部爆款脚本拆解</div>
+
+      <div class="space-y-2 relative z-10">
+        <div class="p-2 rounded text-[11px]" style="background:rgba(56,214,255,0.06);border:1px solid rgba(56,214,255,0.25);">
+          <div class="font-semibold mb-0.5" style="color:var(--cyan);">▸ 行业头部爆款素材聚合</div>
+          <div style="color:var(--text-2);line-height:1.5;">跨账户/跨主体的<b style="color:var(--text-1);">高跑量素材库</b>实时更新</div>
+        </div>
+        <div class="p-2 rounded text-[11px]" style="background:rgba(56,214,255,0.06);border:1px solid rgba(56,214,255,0.25);">
+          <div class="font-semibold mb-0.5" style="color:var(--cyan);">▸ AI 脚本结构化拆解</div>
+          <div style="color:var(--text-2);line-height:1.5;">钩子 / 痛点 / 证据 / CTA 四段拆出，<b style="color:var(--text-1);">直接复用</b></div>
+        </div>
+        <div class="p-2 rounded text-[11px]" style="background:rgba(56,214,255,0.06);border:1px solid rgba(56,214,255,0.25);">
+          <div class="font-semibold mb-0.5" style="color:var(--cyan);">▸ 深度内容洞察分析</div>
+          <div style="color:var(--text-2);line-height:1.5;">爆款共性归因（人设/痛点/卖点）→ 指导<b style="color:var(--text-1);">AIGC 批量生产</b></div>
+        </div>
+      </div>
+      <a href="https://doc.weixin.qq.com/doc/w3_ANMApgZ_ACcCNmdjf63zZSjmwdIa5?scode=AJEAIQdfAAo5CvHuAHAaEAUgbuAPU" target="_blank" rel="noopener" class="doc-card mt-3" style="position:relative;z-index:10;">
+        <div class="doc-icon" style="background:linear-gradient(135deg,rgba(56,214,255,0.20),rgba(56,214,255,0.08));border-color:rgba(56,214,255,0.40);">📘</div>
+        <div class="doc-body">
+          <div class="doc-title"><span class="doc-tag">操作手册</span>创意机会操作手册</div>
+          <div class="doc-sub">客户工作台 · 爆款脚本拆解 + AIGC 二创</div>
+        </div>
+        <div class="doc-go">打开 →</div>
+      </a>
+    </div>
+
+    <!-- ③ 经营力：直播间人货场分析 -->
+    <div class="col-span-4 glass p-5 reveal reveal-delay-3 relative overflow-hidden" style="border-top:3px solid var(--gold);">
+      <div class="absolute -right-12 -top-12 w-48 h-48 rounded-full" style="background:radial-gradient(circle,rgba(255,200,87,0.15),transparent 70%);"></div>
+      <div class="flex items-center gap-2 mb-2 relative z-10">
+        <span class="force-chip chip-ops">🏠 经营力</span>
+        <div class="text-[10px] px-2 py-0.5 rounded" style="background:linear-gradient(135deg,rgba(255,200,87,0.18),rgba(255,159,69,0.08));color:var(--gold);border:1px solid rgba(255,200,87,0.35);">研发中 · 即将开放</div>
+      </div>
+      <div class="text-base font-bold mb-1" style="color:var(--text-1);">直播间人货场分析</div>
+      <div class="text-[11px] mb-3" style="color:var(--text-3);">"人在哪个场被承接"—— 直播间运营复盘</div>
+
+      <div class="space-y-2 relative z-10">
+        <div class="p-2 rounded text-[11px]" style="background:rgba(255,200,87,0.06);border:1px solid rgba(255,200,87,0.25);">
+          <div class="font-semibold mb-0.5" style="color:var(--gold);">▸ 人 · 观众画像对标</div>
+          <div style="color:var(--text-2);line-height:1.5;">年龄重合度、兴趣标签差、高价值新客占比</div>
+        </div>
+        <div class="p-2 rounded text-[11px]" style="background:rgba(255,200,87,0.06);border:1px solid rgba(255,200,87,0.25);">
+          <div class="font-semibold mb-0.5" style="color:var(--gold);">▸ 货 · 直播间货盘对标</div>
+          <div style="color:var(--text-2);line-height:1.5;">SPU 结构、客单价、爆款趋势品</div>
+        </div>
+        <div class="p-2 rounded text-[11px]" style="background:rgba(255,200,87,0.06);border:1px solid rgba(255,200,87,0.25);">
+          <div class="font-semibold mb-0.5" style="color:var(--gold);">▸ 场 · 直播形态对标</div>
+          <div style="color:var(--text-2);line-height:1.5;">开播时段、内容结构、自然流占比</div>
+        </div>
+      </div>
+      <a href="https://doc.weixin.qq.com/doc/w3_AVoAWwb1ABACNZkxxjQLZQ4mY084v?scode=AJEAIQdfAAoVqcEfIVAaEAUgbuAPU" target="_blank" rel="noopener" class="doc-card mt-3" style="position:relative;z-index:10;">
+        <div class="doc-icon" style="background:linear-gradient(135deg,rgba(255,200,87,0.20),rgba(255,159,69,0.10));border-color:rgba(255,200,87,0.40);">📘</div>
+        <div class="doc-body">
+          <div class="doc-title"><span class="doc-tag gold">基础版</span>直播分析操作手册</div>
+          <div class="doc-sub">客户工作台 · 直播分析（待升级版）</div>
+        </div>
+        <div class="doc-go">打开 →</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 底部金句 -->
+  <div class="mt-4 reveal reveal-delay-4 p-4 rounded-2xl" style="background:linear-gradient(135deg,rgba(124,92,255,0.08),rgba(56,214,255,0.05));border:1px solid rgba(124,92,255,0.3);">
+    <div class="text-sm"><b class="gradient-text">油门工作台 = L3 三力的"全链路 AI 洞察引擎"</b> · 从<b style="color:var(--text-1);">选品洞察 → 创意脚本拆解 → 直播间人货场</b>三力一体化赋能 —— 把"经验驱动"升级为"数据驱动"，让每一个三力提升动作都有靶子。</div>
+  </div>
+
+  <div class="page-num">16 / 17</div>
+</section>
+
+
+<!-- ============ P18 收尾 · 三阶段行动清单 ============ -->
+<section class="slide" id="end">
+  <div class="aurora purple"></div>
+  <div class="aurora cyan"></div>
+  <div class="reveal">
+    <div class="module-tag" style="background:linear-gradient(135deg,rgba(20,229,160,0.12),rgba(56,214,255,0.08));border-color:rgba(20,229,160,0.3);"><span class="num">→</span><span>三阶段行动清单 · 回去就能做</span></div>
+    <h2 class="slide-title">下周一回到投放后台，<span class="gradient-text">先做什么、再做什么、最后做什么</span></h2>
+    <div class="subtitle">不再停留在 PPT 口号 —— 把每一阶段的关键动作沉淀为<b style="color:var(--text-1);">可执行清单</b>，对照自己的阶段直接落地。</div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-6 mt-10 flex-1 relative z-10">
+    <!-- L1 · 补齐基建 -->
+    <div class="glass p-7 reveal reveal-delay-1 relative" style="border-top:3px solid var(--red);">
+      <div class="absolute -top-4 left-7 px-3 py-1 rounded-full text-xs font-bold" style="background:var(--red);color:white;">L1 · 补齐基建</div>
+      <div class="big-num text-5xl mt-4 mb-2" style="color:var(--red);">L1</div>
+      <div class="text-base font-semibold mb-2" style="color:var(--text-1);">拼概率 · 卷勤奋</div>
+      <div class="text-xs mb-4" style="color:var(--text-3);">关键词：基建对照 · 数量先行</div>
+      <ul class="space-y-3 text-sm" style="color:var(--text-2);">
+        <li class="flex gap-2"><span style="color:var(--red);">✓</span><span>对照 P6 基建表自检：<b style="color:var(--text-1);">账户数 / 项目广告数 / 素材数 / 日预算</b></span></li>
+        <li class="flex gap-2"><span style="color:var(--red);">✓</span><span><b style="color:var(--text-1);">破解唯一性 ID 校验</b>：差异化定向/落地页 + AIGC 二创 + 封面前 3s 微调，把"创意池"做厚</span></li>
+        <li class="flex gap-2"><span style="color:var(--red);">✓</span><span>每周复盘"基建合格率"，把基建作为 KPI 第一项</span></li>
+      </ul>
+      <div class="mt-5 p-3 rounded text-xs" style="background:rgba(255,92,124,0.08);color:var(--red);">
+        🎯 目标：4 项基建指标达到 <b>腰部中位数</b>（账户 ≥4 / 项目 ≥44 / 素材 ≥536 / 日预算 ≥5W）
+      </div>
+    </div>
+
+    <!-- L2 · 借助智能投放实现跃迁 -->
+    <div class="glass p-7 reveal reveal-delay-2 relative" style="border-top:3px solid var(--cyan);">
+      <div class="absolute -top-4 left-7 px-3 py-1 rounded-full text-xs font-bold" style="background:var(--cyan);color:#0B0F22;">L2 · 借助智能投放实现跃迁</div>
+      <div class="big-num text-5xl mt-4 mb-2" style="color:var(--cyan);">L2</div>
+      <div class="text-base font-semibold mb-2" style="color:var(--text-1);">拼投放力 · 卷智投</div>
+      <div class="text-xs mb-4" style="color:var(--text-3);">关键词：智投占比 · 投放平权</div>
+
+      <div class="p-4 rounded-lg mb-4" style="background:linear-gradient(135deg,rgba(56,214,255,0.1),rgba(124,92,255,0.06));border:1px solid rgba(56,214,255,0.3);">
+        <div class="text-xs mb-1" style="color:var(--text-3);">核心 KPI · 一个数字</div>
+        <div class="text-base font-semibold" style="color:var(--text-1);">▸ 智投消耗占比</div>
+        <div class="text-xs mt-1" style="color:var(--text-2);">不再分四力盯，盯一个总数即可</div>
+      </div>
+
+      <ul class="space-y-3 text-sm" style="color:var(--text-2);">
+        <li class="flex gap-2"><span style="color:var(--cyan);">✓</span><span><b style="color:var(--text-1);">全店托管 + AIGC 默认开</b>，把 SPU 丢进算法池</span></li>
+        <li class="flex gap-2"><span style="color:var(--cyan);">✓</span><span><b style="color:var(--text-1);">ADQ × 全域通 双开</b>，吃低渗版位红利</span></li>
+        <li class="flex gap-2"><span style="color:var(--cyan);">✓</span><span>把"投放精力"从手动调控转向<b style="color:var(--text-1);">智投策略调优</b>，让算法替你跑量</span></li>
+      </ul>
+      <div class="mt-5 p-3 rounded text-xs" style="background:rgba(56,214,255,0.08);color:var(--cyan);">
+        🎯 目标：智投消耗占比 <b>≥ 70%</b>，3 个月内完成"投放平权"
+      </div>
+    </div>
+
+    <!-- L3 · 卷三力，增强确定性 -->
+    <div class="glass-strong p-7 reveal reveal-delay-3 relative glow-border" style="border-top:3px solid var(--gold);">
+      <div class="absolute -top-4 left-7 px-3 py-1 rounded-full text-xs font-bold" style="background:linear-gradient(135deg,#FFD27A,#FF9F45);color:#1a1a1a;">L3 · 卷三力，增强确定性</div>
+      <div class="big-num text-5xl mt-4 mb-2 gold-text">L3</div>
+      <div class="text-base font-semibold mb-2" style="color:var(--text-1);">拼三力 · 卷资源</div>
+      <div class="text-xs mb-4" style="color:var(--text-3);">关键词：供应链 · 内容产能 · 经营创新</div>
+      <ul class="space-y-3 text-sm" style="color:var(--text-2);">
+        <li class="flex gap-2"><span style="color:var(--gold);">✓</span><span><b style="color:var(--green);">商品力</b> · 发挥客户自身<b style="color:var(--text-1);">供应链优势</b>，做<b style="color:var(--text-1);">节点二次创作玩法</b>（如德芙），并用好小店<b style="color:var(--text-1);">货品补贴政策与 618 等大促会场资源</b></span></li>
+        <li class="flex gap-2"><span style="color:var(--gold);">✓</span><span><b style="color:var(--cyan);">内容力</b> · 投入<b style="color:var(--text-1);">明星 / 专家 / KOC 素材采买</b>，并依托<b style="color:var(--text-1);">AIGC 实现批量二次创作</b>，提升内容产能</span></li>
+        <li class="flex gap-2"><span style="color:var(--gold);">✓</span><span><b style="color:var(--gold);">经营力</b> · 双视角组合：<b style="color:var(--text-1);">视角①</b>单链路打透（直播间大场创新 —— 展会溯源 / 总裁进直播间 / 特殊货品机制） + <b style="color:var(--text-1);">视角②</b>多生意结构组合（<b style="color:var(--purple-2);">小店直购</b> + <b style="color:var(--green);">直播间</b> + <b style="color:var(--gold);">达人分销</b>，多链路合理分配）</span></li>
+      </ul>
+      <div class="mt-5 p-3 rounded text-xs" style="background:rgba(255,200,87,0.1);color:var(--gold);">
+        🎯 目标：三力各打一张"客户独有的牌"，把"高峰"打磨成"常态"，<b>站稳 0.7% 塔尖</b>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部：工作台收尾段 + 落款 -->
+  <div class="mt-8 reveal reveal-delay-4 grid grid-cols-12 gap-6 relative z-10">
+    <div class="col-span-9 p-6 rounded-2xl" style="background:linear-gradient(135deg,rgba(124,92,255,0.10),rgba(56,214,255,0.06));border:1px solid var(--line);">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="px-3 py-1 rounded-full text-xs font-bold" style="background:linear-gradient(135deg,var(--purple),var(--cyan));color:white;">油门工作台</div>
+        <div class="text-base font-semibold" style="color:var(--text-1);">用<span class="gradient-text">数据赋能</span>，三阶段全链路<span class="gold-text">深挖与放大</span></div>
+      </div>
+      <div class="text-sm" style="color:var(--text-2);line-height:1.75;">
+        当前 L3 三力能力支撑已就绪 —— <b style="color:var(--green);">商品机会洞察 Agent</b> 帮你找到下一个爆款 SPU；<b style="color:var(--cyan);">创意机会洞察</b> 拆解爆款脚本，让内容批量复用；<b style="color:var(--gold);">直播间人货场分析</b>（研发中）量化经营差距。
+        <div class="mt-2 p-2 rounded-lg" style="background:rgba(255,200,87,0.06);border:1px dashed rgba(255,200,87,0.35);">
+          <span class="text-xs font-semibold" style="color:var(--gold);">📍 全阶段路线图：</span>
+          <span class="text-xs" style="color:var(--text-2);">未来工作台还将向 <b style="color:var(--red);">L1 看清基建</b>（自动诊断基建合格率/唯一性瓶颈）、<b style="color:var(--cyan);">L2 监控智投占比</b>（一屏看渗透率/双开覆盖）方向延伸 —— <b style="color:var(--text-1);">三阶段全部有数据靶子可看</b>。</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-3 p-5 rounded-2xl flex flex-col justify-center text-center" style="background:rgba(255,255,255,0.03);border:1px solid var(--line);">
+      <div class="text-xs tracking-widest mb-2" style="color:var(--text-3);">PRESENTED BY</div>
+      <div class="text-base font-semibold" style="color:var(--text-1);">腾讯广告 · 食饮行业中心</div>
+      <div class="text-xs mt-1" style="color:var(--text-3);">2026 · 食饮行业客户培训</div>
+    </div>
+  </div>
+  <div class="page-num">17 / 17</div>
+</section>
+
+<script>
+  // 滚动渐入
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('in');
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // 进度条
+  const bar = document.getElementById('progressBar');
+  document.body.addEventListener('scroll', () => {
+    const max = document.body.scrollHeight - document.body.clientHeight;
+    const ratio = document.body.scrollTop / max;
+    bar.style.transform = `scaleX(${ratio})`;
+  });
+
+  // 顶部导航高亮
+  const navLinks = document.querySelectorAll('.top-nav a');
+  const sections = document.querySelectorAll('section.slide');
+  // 顶部导航 6 项：封面(0) / 总领(1) / L1(2) / L2(3) / L3(4) / 收尾(5)
+  const navMap = {
+    'cover': 0,
+    'm1-status': 1, 'm0': 1, 'm0-summary': 1,
+    'm1-exec': 2, 'm1-uniq': 2,
+    'm2-why': 3, 'm2-layout': 3, 'm2-tools': 3, 'm2-case': 3, 'm2-dual': 3, 'm2-kpi': 3,
+    'm3': 4, 'm3-huada': 4, 'm3-strategy': 4, 'm3-buy': 4,
+    'end': 5
+  };
+  // 用更低阈值 + 取最靠近视口中线的 section 作为当前激活，避免高度过大的页"卡"住
+  const ioNav = new IntersectionObserver((entries) => {
+    // 选取与视口相交比例最大的一个 section
+    let best = null;
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        if (!best || e.intersectionRatio > best.intersectionRatio) best = e;
+      }
+    });
+    if (best) {
+      const idx = navMap[best.target.id];
+      if (idx !== undefined) {
+        navLinks.forEach((a,i) => a.classList.toggle('active', i===idx));
+      }
+    }
+  }, { threshold: [0.25, 0.5, 0.75] });
+  sections.forEach(s => ioNav.observe(s));
+
+  // ============ 图片放大 Lightbox ============
+  (function(){
+    const lb = document.createElement('div');
+    lb.className = 'lightbox';
+    lb.innerHTML = '<div class="close-hint">按 ESC 或点击关闭</div><img alt="enlarged">';
+    document.body.appendChild(lb);
+    const lbImg = lb.querySelector('img');
+    document.querySelectorAll('.thumb-wrap').forEach(el => {
+      el.addEventListener('click', () => {
+        lbImg.src = el.dataset.img || el.querySelector('img').src;
+        lb.classList.add('active');
+      });
+    });
+    lb.addEventListener('click', () => lb.classList.remove('active'));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('active'); });
+  })();
+
+</script>
+
 </body>
 </html>
