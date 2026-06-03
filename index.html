@@ -108,6 +108,22 @@
     color: var(--purple);
     border: 1px solid rgba(99, 102, 216, 0.20);
   }
+  .card-tag.soon {
+    background: rgba(120, 130, 145, 0.10);
+    color: var(--text-3);
+    border: 1px solid rgba(120, 130, 145, 0.20);
+  }
+  .card.coming {
+    cursor: default;
+    opacity: 0.78;
+  }
+  .card.coming:hover {
+    transform: none;
+    box-shadow: 0 4px 14px rgba(20, 40, 80, 0.04), 0 1px 2px rgba(20, 40, 80, 0.04);
+  }
+  .card.coming:hover::before { opacity: 0; }
+  .card.coming .arrow { color: var(--text-3); }
+  .card.coming:hover .arrow { gap: 6px; }
   .card h2 {
     font-size: 22px; font-weight: 700; color: var(--text-1);
     margin-bottom: 8px; line-height: 1.35;
@@ -146,8 +162,8 @@
     <div class="brand">腾讯广告 · 食饮行业</div>
     <h1>食饮投放力<br><span class="accent">诊断与提升</span> · 课程矩阵</h1>
     <p class="sub">
-      围绕"投放力"做体系化沉淀：从主课勤奋度诊断打基础，
-      到进阶专题深挖出价底层逻辑——心法在前，招式在后。
+      围绕"投放力"做体系化沉淀：主课讲清三层客户结构与有效勤奋的边界，
+      进阶专题深挖出价底层逻辑——心法在前，招式在后。
     </p>
 
     <div class="section-label">课程列表</div>
@@ -155,21 +171,22 @@
       <a class="card" href="./qinfendu/">
         <span class="card-tag main">主课 · 基础</span>
         <h2>有效勤奋 · 食饮投放力诊断与提升</h2>
-        <div class="meta">三阶段诊断卡 V3 · 四类客群差异化打法</div>
+        <div class="meta">三层客户结构 L1 / L2 / L3 · 食饮 BI 大盘对照</div>
         <div class="desc">
-          围绕"勤奋度"重塑服务商基建标准认知：
-          行业现状 → 三阶段诊断卡 → 商品颗粒度 → 四类客群打法 → 场景感知召回 → 行动指引。
+          先看你在哪一层：L1 基建拉升对照表（破解 ADQ 唯一性校验）；
+          L2 智能投放（全域通 + ADQ 智投，只盯一个数：智投消耗占比）；
+          L3 三力跃迁（商品力 · 内容力 · 经营力）。
         </div>
         <span class="arrow">查看课程 →</span>
       </a>
 
       <a class="card" href="./chujia/">
-        <span class="card-tag advance">进阶 · 出价专题（上）</span>
+        <span class="card-tag advance">进阶 · 出价专题</span>
         <h2>食饮出价底层逻辑：模型、契约与博弈</h2>
-        <div class="meta">40min 认知课 · 三幕结构 · v4.2 浅蓝学术版</div>
+        <div class="meta">60min 单讲 · 心法 + 招式一体化</div>
         <div class="desc">
-          PCVR vs pLTV、CPA 契约 vs ROI 契约、成本×拿量天平博弈。
-          三阶心法："调参数 → 选杠杆 → 判边界"。
+          先建心法：PCVR vs pLTV、CPA 契约 vs ROI 契约、成本×拿量天平博弈；
+          再上招式：三大主出价（契约内）+ 局部干预加速器（潜客优投 / 创意优投）。
         </div>
         <span class="arrow">查看课程 →</span>
       </a>
