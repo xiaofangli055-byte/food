@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>食饮行业投放勤奋度诊断 · 服务商培训材料（占位版）</title>
+<style>
+  :root{--primary:#0052D9;--primary-light:#E6F0FF;--accent:#FF6B35;--accent-light:#FFE8DD;--success:#00A870;--success-light:#E3F9F0;--warning:#ED7B2F;--warning-light:#FFF1E5;--danger:#D54941;--danger-light:#FCEAE9;--gray-50:#F8F9FB;--gray-100:#F0F2F5;--gray-200:#E5E7EB;--gray-300:#D1D5DB;--gray-500:#6B7280;--gray-700:#374151;--gray-900:#111827;--bg:#FFFFFF;--shadow-sm:0 1px 3px rgba(0,0,0,.06);--shadow-md:0 4px 12px rgba(0,0,0,.08);--shadow-lg:0 12px 32px rgba(0,0,0,.12)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--gray-50);color:var(--gray-900);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .deck{max-width:1280px;margin:0 auto;padding:24px 16px 80px}
+  .slide{background:var(--bg);border-radius:16px;padding:56px 64px;margin-bottom:32px;box-shadow:var(--shadow-md);position:relative;overflow:hidden;min-height:720px}
+  .slide::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--primary) 0%,var(--accent) 100%)}
+  .slide-tag{display:inline-block;font-size:13px;font-weight:600;color:var(--primary);background:var(--primary-light);padding:4px 12px;border-radius:20px;margin-bottom:16px;letter-spacing:.5px}
+  .slide-num{position:absolute;top:24px;right:32px;font-size:12px;color:var(--gray-500);letter-spacing:1px}
+  h1.slide-title{font-size:36px;font-weight:800;color:var(--gray-900);margin-bottom:8px;line-height:1.3;letter-spacing:-.5px}
+  h2.slide-subtitle{font-size:18px;font-weight:500;color:var(--gray-500);margin-bottom:36px;letter-spacing:.3px}
+  h3.section-h{font-size:22px;font-weight:700;color:var(--gray-900);margin:28px 0 16px;padding-left:14px;border-left:4px solid var(--primary)}
+  h4.sub-h{font-size:17px;font-weight:700;color:var(--primary);margin:18px 0 10px}
+  .cover{background:linear-gradient(135deg,#0052D9 0%,#003A99 60%,#001F66 100%);color:#fff;text-align:left;padding:96px 80px;min-height:760px;display:flex;flex-direction:column;justify-content:space-between}
+  .cover::before{background:linear-gradient(90deg,var(--accent),#FFB347)}
+  .cover .brand{font-size:14px;letter-spacing:4px;opacity:.85;font-weight:500}
+  .cover h1{font-size:64px;font-weight:800;line-height:1.15;margin-top:20px;background:linear-gradient(135deg,#fff 0%,#FFD7B5 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .cover .subtitle{font-size:22px;font-weight:400;opacity:.92;margin-top:16px;max-width:800px}
+  .cover .meta{display:flex;gap:48px;font-size:14px;opacity:.8;margin-top:60px}
+  .cover .meta div b{font-weight:600;opacity:1}
+  .cover-deco{position:absolute;right:-120px;bottom:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(255,107,53,.25),transparent 70%);border-radius:50%}
+  .toc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:28px}
+  .toc-item{display:flex;align-items:center;gap:18px;padding:24px 26px;background:var(--gray-50);border-radius:12px;border-left:4px solid var(--primary);transition:all .2s}
+  .toc-item:hover{transform:translateX(4px);box-shadow:var(--shadow-md)}
+  .toc-item .num{font-size:32px;font-weight:800;color:var(--primary);opacity:.4;min-width:48px}
+  .toc-item .info .t{font-size:18px;font-weight:700;color:var(--gray-900)}
+  .toc-item .info .d{font-size:13px;color:var(--gray-500);margin-top:4px}
+  p.lead{font-size:17px;color:var(--gray-700);margin:12px 0}
+  p{font-size:15px;color:var(--gray-700);margin:10px 0}
+  .highlight{color:var(--accent);font-weight:700}
+  .ph{display:inline-block;background:linear-gradient(90deg,#FFF1E5 0%,#FFE0CC 100%);color:var(--accent);border:1px dashed var(--accent);padding:1px 8px;border-radius:4px;font-weight:700;font-size:.95em;letter-spacing:.3px}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0}
+  .stat{background:linear-gradient(135deg,var(--primary-light) 0%,#fff 100%);border-radius:12px;padding:20px 22px;border:1px solid var(--gray-200)}
+  .stat .label{font-size:13px;color:var(--gray-500);font-weight:500}
+  .stat .value{font-size:32px;font-weight:800;color:var(--primary);margin:6px 0;line-height:1}
+  .stat .value .unit{font-size:14px;font-weight:500;color:var(--gray-500);margin-left:4px}
+  .stat .desc{font-size:12px;color:var(--gray-500)}
+  .stat.danger{background:linear-gradient(135deg,var(--danger-light) 0%,#fff 100%)}.stat.danger .value{color:var(--danger)}
+  .stat.success{background:linear-gradient(135deg,var(--success-light) 0%,#fff 100%)}.stat.success .value{color:var(--success)}
+  .stat.warning{background:linear-gradient(135deg,var(--warning-light) 0%,#fff 100%)}.stat.warning .value{color:var(--warning)}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:var(--shadow-sm)}
+  thead{background:linear-gradient(135deg,var(--primary) 0%,#003A99 100%);color:#fff}
+  th{padding:12px 14px;text-align:left;font-weight:600;font-size:13px;letter-spacing:.3px}
+  td{padding:12px 14px;border-top:1px solid var(--gray-100);color:var(--gray-700)}
+  tbody tr:nth-child(even){background:var(--gray-50)}
+  tbody tr:hover{background:var(--primary-light)}
+  td.center,th.center{text-align:center}
+  .tier-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0}
+  .tier{padding:14px 10px;border-radius:8px;text-align:center;color:#fff;font-weight:600;font-size:13px}
+  .tier .tval{font-size:20px;font-weight:800;display:block;margin-top:4px}
+  .tier.t1{background:var(--danger)}.tier.t2{background:var(--warning)}.tier.t3{background:var(--primary)}.tier.t4{background:var(--success)}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:16px 0}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:16px 0}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:16px 0}
+  .card{background:var(--gray-50);border-radius:12px;padding:22px 24px;border-left:4px solid var(--primary)}
+  .card.warn{border-left-color:var(--warning);background:var(--warning-light)}
+  .card.danger{border-left-color:var(--danger);background:var(--danger-light)}
+  .card.ok{border-left-color:var(--success);background:var(--success-light)}
+  .card .ct{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:8px}
+  .card .cb{font-size:14px;color:var(--gray-700)}
+  .card ul{padding-left:20px;margin-top:6px}
+  .card li{font-size:14px;color:var(--gray-700);margin:4px 0}
+  .quote{background:linear-gradient(135deg,#FFF8F3 0%,#FFE8DD 100%);border-left:5px solid var(--accent);padding:24px 30px;border-radius:12px;margin:24px 0;font-size:18px;font-weight:600;color:var(--gray-900);line-height:1.7}
+  .quote .qmark{color:var(--accent);font-size:28px;font-weight:800}
+  .flow{display:flex;align-items:stretch;gap:12px;margin:24px 0;flex-wrap:nowrap}
+  .flow .node{flex:1;background:#fff;border:2px solid var(--primary);border-radius:10px;padding:14px 16px;text-align:center;position:relative}
+  .flow .node .nt{font-size:13px;color:var(--primary);font-weight:700;margin-bottom:6px}
+  .flow .node .nb{font-size:13px;color:var(--gray-700)}
+  .flow .arrow{align-self:center;color:var(--primary);font-size:22px;font-weight:800}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+  .badge{display:inline-block;padding:4px 12px;border-radius:16px;font-size:12px;font-weight:600;background:var(--primary-light);color:var(--primary)}
+  .badge.warn{background:var(--warning-light);color:var(--warning)}
+  .badge.danger{background:var(--danger-light);color:var(--danger)}
+  .badge.ok{background:var(--success-light);color:var(--success)}
+  .badge.gray{background:var(--gray-100);color:var(--gray-700)}
+  .diagcard{background:linear-gradient(180deg,#fff 0%,var(--gray-50) 100%);border:2px solid var(--primary);border-radius:16px;padding:28px;margin:20px 0;box-shadow:var(--shadow-md)}
+  .diagcard h4{font-size:18px;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .diagcard h4::before{content:'';width:6px;height:22px;background:var(--primary);border-radius:3px}
+  .seg-card{background:#fff;border:1px solid var(--gray-200);border-radius:14px;padding:22px;box-shadow:var(--shadow-sm);transition:all .2s}
+  .seg-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+  .seg-card .hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:12px;border-bottom:2px dashed var(--gray-200)}
+  .seg-card .hdr .name{font-size:18px;font-weight:800;color:var(--gray-900)}
+  .seg-card .hdr .tag{font-size:11px;padding:3px 8px;border-radius:10px;font-weight:600}
+  .seg-card.s1 .hdr .tag{background:var(--success-light);color:var(--success)}
+  .seg-card.s2 .hdr .tag{background:var(--primary-light);color:var(--primary)}
+  .seg-card.s3 .hdr .tag{background:var(--warning-light);color:var(--warning)}
+  .seg-card.s4 .hdr .tag{background:var(--accent-light);color:var(--accent)}
+  .seg-card .row{font-size:13px;margin:6px 0;color:var(--gray-700)}
+  .seg-card .row b{color:var(--gray-900);display:inline-block;min-width:70px}
+  .footnote{margin-top:24px;padding:12px 16px;background:var(--gray-50);border-radius:8px;font-size:12px;color:var(--gray-500);border-left:3px solid var(--gray-300)}
+  .footnote b{color:var(--gray-700)}
+  .progress{height:28px;background:var(--gray-100);border-radius:14px;overflow:hidden;position:relative;margin:6px 0}
+  .progress .fill{height:100%;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;color:#fff;font-weight:700;font-size:12px;transition:width .4s}
+  .progress.l0 .fill{background:var(--danger)}.progress.l1 .fill{background:var(--warning)}.progress.l2 .fill{background:var(--primary)}.progress.l3 .fill{background:var(--success)}
+  .progress .label-out{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:12px;font-weight:600;color:var(--gray-900)}
+  .closing{background:linear-gradient(135deg,#001F66 0%,#0052D9 100%);color:#fff;text-align:center;padding:120px 80px}
+  .closing h1{font-size:56px;font-weight:800;margin-bottom:24px}
+  .closing p{color:rgba(255,255,255,.85);font-size:18px}
+  .closing .signature{margin-top:60px;opacity:.7;font-size:13px;letter-spacing:2px}
+  .placeholder-note{background:#FFFBEB;border:1px dashed #F59E0B;border-radius:8px;padding:10px 16px;font-size:12px;color:#92400E;margin:12px 0}
+  .placeholder-note b{color:#78350F}
+  @media print{.slide{page-break-after:always;box-shadow:none}body{background:#fff}}
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- ============ 封面 ============ -->
+  <section class="slide cover">
+    <div>
+      <div class="brand">TENCENT ADS · FOOD &amp; BEVERAGE</div>
+      <h1>食饮行业<br/>投放勤奋度诊断</h1>
+      <div class="subtitle">从"做了多少"到"持续在做" —— 服务商基建标准化与勤奋度牵引培训</div>
+    </div>
+    <div class="meta">
+      <div><b>分享对象</b><br/>食饮行业核心服务商</div>
+      <div><b>课时</b><br/>1 小时精讲版</div>
+      <div><b>版本</b><br/>V3 · 2026.05</div>
+      <div><b>讲师</b><br/>腾讯广告 食品饮料行业中心</div>
+    </div>
+    <div class="cover-deco"></div>
+  </section>
+
+  <!-- ============ 目录 ============ -->
+  <section class="slide">
+    <span class="slide-num">02 / 18</span>
+    <span class="slide-tag">目录 · CONTENTS</span>
+    <h1 class="slide-title">本次培训核心议题</h1>
+    <h2 class="slide-subtitle">围绕"勤奋度"这一核心命题，重塑服务商的基建标准认知</h2>
+    <div class="toc-grid">
+      <div class="toc-item"><div class="num">01</div><div class="info"><div class="t">行业现状与勤奋度命题</div><div class="d">为什么"做了多少"的旧标准已经失效</div></div></div>
+      <div class="toc-item"><div class="num">02</div><div class="info"><div class="t">三阶段诊断卡 V3</div><div class="d">活跃水位 + 周节奏的双层诊断框架</div></div></div>
+      <div class="toc-item"><div class="num">03</div><div class="info"><div class="t">商品颗粒度与货组聚焦</div><div class="d">从"客户层评估"升级为"商品×客户"双层评估</div></div></div>
+      <div class="toc-item"><div class="num">04</div><div class="info"><div class="t">四类客群差异化打法</div><div class="d">贸易商 / 新锐 / 本土传统 / 国际品牌的对症方案</div></div></div>
+      <div class="toc-item"><div class="num">05</div><div class="info"><div class="t">场景感知召回 × AI 赋能</div><div class="d">把"勤奋"从体力活变成"杠杆活"</div></div></div>
+      <div class="toc-item"><div class="num">06</div><div class="info"><div class="t">服务商行动指引</div><div class="d">本周 / 本月 / 本季度的可落地动作清单</div></div></div>
+    </div>
+    <div class="placeholder-note"><b>占位说明：</b>本材料中所有 <span class="ph">XX</span> 标记均为待填占位符，将在 BI AI 数据回传后统一替换为真实数据。</div>
+  </section>
+
+  <!-- =================== 模块一 =================== -->
+  <section class="slide">
+    <span class="slide-num">03 / 18</span>
+    <span class="slide-tag">MODULE 01 · 命题</span>
+    <h1 class="slide-title">食饮行业，正在进入"勤奋度分化"的关键节点</h1>
+    <h2 class="slide-subtitle">大盘消耗增长趋缓的背景下，"谁能持续上新、持续上素材"成为分水岭</h2>
+    <div class="stats-grid">
+      <div class="stat"><div class="label">食饮行业月消耗</div><div class="value"><span class="ph">XX</span><span class="unit">亿</span></div><div class="desc">近30天 · 大盘体量</div></div>
+      <div class="stat warning"><div class="label">同比增速</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">行业整体增速放缓</div></div>
+      <div class="stat success"><div class="label">头部服务商集中度</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">Top10服务商消耗占比</div></div>
+      <div class="stat danger"><div class="label">活跃SPU占比</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">在投SPU中近4周有动作的占比</div></div>
+    </div>
+    <h3 class="section-h">三个正在发生的关键变化</h3>
+    <div class="grid-3">
+      <div class="card"><div class="ct">变化一：流量红利收敛</div><div class="cb">大盘自然流量增长收窄，"加预算 = 加消耗"的简单逻辑失效，更依赖<b>素材效率</b>和<b>创意迭代速度</b>。</div></div>
+      <div class="card warn"><div class="ct">变化二：素材生命周期缩短</div><div class="cb">食饮行业素材有效期普遍 <b>3~7天</b>，"一波流"投放的客户开始系统性衰退。</div></div>
+      <div class="card ok"><div class="ct">变化三：商品颗粒度成胜负手</div><div class="cb">头部客户开始按 SPU 维度精细化运营，单品打透的客户跑赢"广撒网"客户 <b><span class="ph">XX</span> 倍 ROI</b>。</div></div>
+    </div>
+    <div class="quote"><span class="qmark">"</span> 过去比拼的是"<b>有没有做</b>"，未来比拼的是"<b>有没有持续在做</b>"。<span class="qmark">"</span></div>
+  </section>
+
+  <section class="slide">
+    <span class="slide-num">04 / 18</span>
+    <span class="slide-tag">MODULE 01 · 旧标准为什么失效</span>
+    <h1 class="slide-title">为什么"30天累计创意数"是个伪指标？</h1>
+    <h2 class="slide-subtitle">素材生命周期 3~7 天的现实，让"累计值"无法反映"当下勤奋"</h2>
+    <h3 class="section-h">三个客户，同样的"30天累计60条创意"，本质完全不同</h3>
+    <div class="grid-3">
+      <div class="card danger"><div class="ct">🔴 客户A · 一波流</div><div class="cb">第1周一次性上 60 条，后 3 周 0 条。<br/><b>真相：曾经勤奋，现在躺平</b></div><div class="badges" style="margin-top:8px;"><span class="badge danger">假勤奋</span><span class="badge gray">活跃率 25%</span></div></div>
+      <div class="card warn"><div class="ct">🟡 客户B · 突击型</div><div class="cb">前3周 0 条，第4周被推着突击 60 条。<br/><b>真相：被动响应，缺乏节奏</b></div><div class="badges" style="margin-top:8px;"><span class="badge warn">突击勤奋</span><span class="badge gray">活跃率 25%</span></div></div>
+      <div class="card ok"><div class="ct">🟢 客户C · 持续型</div><div class="cb">每周稳定上新 15 条，4 周节奏不断。<br/><b>真相：真勤奋，可复制</b></div><div class="badges" style="margin-top:8px;"><span class="badge ok">真勤奋</span><span class="badge ok">活跃率 100%</span></div></div>
+    </div>
+    <h3 class="section-h">这就是为什么我们要切换到「活跃水位 + 周节奏」</h3>
+    <div class="flow">
+      <div class="node"><div class="nt">旧方法</div><div class="nb">30天累计<br/>"做了多少"</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="nt">新方法 ①</div><div class="nb">活跃水位<br/>"当下还在做"</div></div>
+      <div class="arrow">+</div>
+      <div class="node"><div class="nt">新方法 ②</div><div class="nb">周节奏<br/>"持续在做"</div></div>
+      <div class="arrow">→</div>
+      <div class="node" style="background:var(--success-light);border-color:var(--success);"><div class="nt" style="color:var(--success);">真实勤奋度</div><div class="nb">可识别 / 可指导 / 可复制</div></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <span class="slide-num">05 / 18</span>
+    <span class="slide-tag">MODULE 01 · 行业全景</span>
+    <h1 class="slide-title">食饮行业勤奋度全景画像</h1>
+    <h2 class="slide-subtitle">基于近4周（W18~W21）全行业 SPU 级活跃水位扫描</h2>
+    <h3 class="section-h">客户勤奋度分层分布（按周勤奋活跃率）</h3>
+    <div style="margin: 12px 0;">
+      <div class="progress l0"><div class="fill" style="width:38%"><span class="ph">XX</span>%</div><span class="label-out">🔴 L0 真躺平（4周中 0 周有动作）</span></div>
+      <div class="progress l1"><div class="fill" style="width:28%"><span class="ph">XX</span>%</div><span class="label-out">🟡 L1 一波流（4周中仅 1 周有动作）</span></div>
+      <div class="progress l2"><div class="fill" style="width:22%"><span class="ph">XX</span>%</div><span class="label-out">🟢 L2 间歇勤奋（4周中 2~3 周有动作）</span></div>
+      <div class="progress l3"><div class="fill" style="width:12%"><span class="ph">XX</span>%</div><span class="label-out">⭐ L3 持续勤奋（4周全活跃）</span></div>
+    </div>
+    <div class="placeholder-note"><b>数据待填：</b>四档分布占比（来自 BI 任务2 · 客户勤奋度 L0/L1/L2/L3 分布矩阵），柱长会按真实数据等比缩放。</div>
+    <h3 class="section-h">三个最扎心的发现 <span style="font-size:13px;color:var(--gray-500);font-weight:400;">（数据待填）</span></h3>
+    <div class="grid-3">
+      <div class="card danger"><div class="ct">💥 发现1：占位SPU泛滥</div><div class="cb">食饮行业在投 SPU 中，<b><span class="ph">XX</span>%</b> 的 SPU 近4周「单品活跃创意数 &lt; 3条」 —— 大量 SPU 只是"挂着"在投，实际没在做。</div></div>
+      <div class="card danger"><div class="ct">💥 发现2：周活跃率严重偏低</div><div class="cb">行业平均"周勤奋活跃率"仅 <b><span class="ph">XX</span>%</b> —— 即大多数客户4周里只有不到一半时间在动。</div></div>
+      <div class="card danger"><div class="ct">💥 发现3：爆款产出极度稀缺</div><div class="cb">近4周累计消耗 ≥5万 的爆款素材，<b>仅 <span class="ph">XX</span>% 的客户产出 ≥1条</b> —— 大多数客户在做"无效勤奋"。</div></div>
+    </div>
+  </section>
+
+  <!-- =================== 模块二 =================== -->
+  <section class="slide">
+    <span class="slide-num">06 / 18</span>
+    <span class="slide-tag">MODULE 02 · 诊断框架</span>
+    <h1 class="slide-title">三阶段勤奋度诊断卡 V3</h1>
+    <h2 class="slide-subtitle">活跃水位 + 周节奏 + 确定性产出 · 双颗粒度（商品 × 客户）</h2>
+    <div class="diagcard">
+      <h4>诊断卡总览</h4>
+      <div class="grid-3">
+        <div><div style="font-size:14px;color:var(--gray-500);margin-bottom:6px;">L1 · 基建关</div><div style="font-size:18px;font-weight:800;color:var(--danger);">活跃水位</div><div style="font-size:13px;color:var(--gray-700);margin-top:4px;">回答："你<b>当下</b>还在做吗？"</div></div>
+        <div><div style="font-size:14px;color:var(--gray-500);margin-bottom:6px;">L2 · 有效关</div><div style="font-size:18px;font-weight:800;color:var(--warning);">周节奏</div><div style="font-size:13px;color:var(--gray-700);margin-top:4px;">回答："你是不是<b>每周都在做</b>？"</div></div>
+        <div><div style="font-size:14px;color:var(--gray-500);margin-bottom:6px;">L3 · 确定性关</div><div style="font-size:18px;font-weight:800;color:var(--success);">爆款产出</div><div style="font-size:13px;color:var(--gray-700);margin-top:4px;">回答："你做的<b>有没有效</b>？"</div></div>
+      </div>
+    </div>
+    <h3 class="section-h">为什么是"三阶段"而不是一刀切</h3>
+    <p class="lead">勤奋度不是 0/1 题，而是 <b>递进式</b> 的能力建设：先把基建搭起来（L1），再把节奏跑稳（L2），最后才是产出爆款（L3）。<br/><b>客户卡在哪一关，对应的服务动作就完全不同</b> —— 这是诊断卡的核心价值。</p>
+    <div class="flow">
+      <div class="node" style="border-color:var(--danger);"><div class="nt" style="color:var(--danger);">L1 没过</div><div class="nb">服务动作：<br/>陪跑搭素材</div></div>
+      <div class="arrow">→</div>
+      <div class="node" style="border-color:var(--warning);"><div class="nt" style="color:var(--warning);">L2 没过</div><div class="nb">服务动作：<br/>定周上新节奏</div></div>
+      <div class="arrow">→</div>
+      <div class="node" style="border-color:var(--primary);"><div class="nt">L3 没过</div><div class="nb">服务动作：<br/>对标拆爆款</div></div>
+      <div class="arrow">→</div>
+      <div class="node" style="border-color:var(--success);"><div class="nt" style="color:var(--success);">L3 已过</div><div class="nb">服务动作：<br/>提客单&amp;扩矩阵</div></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <span class="slide-num">07 / 18</span>
+    <span class="slide-tag">MODULE 02 · L1基建关</span>
+    <h1 class="slide-title">L1 · 基建关：活跃水位</h1>
+    <h2 class="slide-subtitle">取最近一个完整自然周（W21：05/05~05/11）的瞬时快照 —— 反映"当下勤奋密度"</h2>
+    <h3 class="section-h">L1 商品层指标（单SPU活跃水位）</h3>
+    <table>
+      <thead><tr><th>维度</th><th class="center">🔴 躺平区</th><th class="center">🟡 入门线</th><th class="center">🟢 合格线</th><th class="center">⭐ 优秀线</th><th>口径说明</th></tr></thead>
+      <tbody>
+        <tr><td><b>单SPU活跃广告数</b></td><td class="center"><span class="ph">&lt;X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td>当周有消耗的广告数</td></tr>
+        <tr><td><b>单SPU活跃创意数</b></td><td class="center"><span class="ph">&lt;X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td>当周有曝光的创意数</td></tr>
+        <tr><td><b>单SPU活跃直播间</b></td><td class="center"><span class="ph">&lt;X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td>当周有开播且关联此SPU的直播间数</td></tr>
+      </tbody>
+    </table>
+    <h3 class="section-h">L1 客户层指标（货盘&amp;矩阵）</h3>
+    <table>
+      <thead><tr><th>维度</th><th class="center">🔴 躺平区</th><th class="center">🟡 入门线</th><th class="center">🟢 合格线</th><th class="center">⭐ 优秀线</th><th>口径说明</th></tr></thead>
+      <tbody>
+        <tr><td><b>客户在投活跃SPU数</b></td><td class="center"><span class="ph">&lt;X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td>当周有消耗的SPU总数</td></tr>
+        <tr><td><b>客户活跃直播间数</b></td><td class="center"><span class="ph">&lt;X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td>当周有开播的直播间数</td></tr>
+        <tr><td><b>客户当周开播天数</b></td><td class="center"><span class="ph">&lt;X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td>当周内任一直播间开播的累计天数</td></tr>
+      </tbody>
+    </table>
+    <div class="footnote"><b>口径锁定：</b>当前周 = 最近一个完整自然周（W21：2026-05-05 ~ 2026-05-11）。所有"活跃"=当周有消耗/曝光/开播。</div>
+  </section>
+
+  <section class="slide">
+    <span class="slide-num">08 / 18</span>
+    <span class="slide-tag">MODULE 02 · L2有效关</span>
+    <h1 class="slide-title">L2 · 有效关：周节奏</h1>
+    <h2 class="slide-subtitle">取近4周（W18~W21）周均值 —— 反映"持续勤奋度"</h2>
+    <h3 class="section-h">L2 商品层指标（单SPU节奏）</h3>
+    <table>
+      <thead><tr><th>维度</th><th class="center">🔴 躺平区</th><th class="center">🟡 入门线</th><th class="center">🟢 合格线</th><th class="center">⭐ 优秀线</th><th>口径说明</th></tr></thead>
+      <tbody>
+        <tr><td><b>周创意上新数（4周均值）</b></td><td class="center"><span class="ph">&lt;X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td>每周新增创意数的均值</td></tr>
+        <tr><td><b>周二创素材数（4周均值）</b></td><td class="center"><span class="ph">&lt;X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td><td>每周二创素材数的均值</td></tr>
+        <tr style="background:var(--accent-light);"><td><b>⭐ 周勤奋活跃率</b></td><td class="center"><span class="ph">&lt;25%</span></td><td class="center"><span class="ph">≥25%</span></td><td class="center"><span class="ph">≥50%</span></td><td class="center"><span class="ph">100%</span></td><td>4周中"有基础动作"的周数占比</td></tr>
+        <tr><td><b>唯一创意ID占比</b></td><td class="center"><span class="ph">&lt;X%</span></td><td class="center"><span class="ph">≥X%</span></td><td class="center"><span class="ph">≥X%</span></td><td class="center"><span class="ph">≥X%</span></td><td>去重创意数 / 总创意数</td></tr>
+      </tbody>
+    </table>
+    <div class="quote"><span class="qmark">★</span> <b>「周勤奋活跃率」</b>是整张诊断卡最有冲击力的一栏 —— 客户看到自己"4周里只有1周在动"，比任何累计值都更扎心。<span class="qmark">★</span></div>
+    <h3 class="section-h">L2 客户层指标（开播节奏 + 货盘更新）</h3>
+    <div class="tier-bar">
+      <div class="tier t1">周开播天数 · 躺平<span class="tval ph">&lt;X 天</span></div>
+      <div class="tier t2">入门<span class="tval ph">≥X 天</span></div>
+      <div class="tier t3">合格<span class="tval ph">≥X 天</span></div>
+      <div class="tier t4">优秀<span class="tval ph">≥X 天</span></div>
+    </div>
+    <div class="tier-bar">
+      <div class="tier t1">周新增SPU · 躺平<span class="tval ph">&lt;X</span></div>
+      <div class="tier t2">入门<span class="tval ph">≥X</span></div>
+      <div class="tier t3">合格<span class="tval ph">≥X</span></div>
+      <div class="tier t4">优秀<span class="tval ph">≥X</span></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <span class="slide-num">09 / 18</span>
+    <span class="slide-tag">MODULE 02 · L3确定性关</span>
+    <h1 class="slide-title">L3 · 确定性关：爆款产出</h1>
+    <h2 class="slide-subtitle">近4周累计 · 反映"勤奋度的最终转化效率"</h2>
+    <div class="grid-2">
+      <div>
+        <h3 class="section-h">L3 商品层指标</h3>
+        <table>
+          <thead><tr><th>维度</th><th class="center">合格线</th><th class="center">优秀线</th></tr></thead>
+          <tbody>
+            <tr><td>单SPU近4周爆款素材数<br/><span style="font-size:11px;color:var(--gray-500);">（累计消耗 ≥5万）</span></td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td></tr>
+            <tr><td>单SPU近4周累计消耗</td><td class="center"><span class="ph">≥X 万</span></td><td class="center"><span class="ph">≥X 万</span></td></tr>
+            <tr><td>单SPU爆款素材ROI均值</td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3 class="section-h">L3 客户层指标</h3>
+        <table>
+          <thead><tr><th>维度</th><th class="center">合格线</th><th class="center">优秀线</th></tr></thead>
+          <tbody>
+            <tr><td>近4周稳定爆款SPU数</td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td></tr>
+            <tr><td>Top3 SPU消耗集中度</td><td class="center"><span class="ph">≥X%</span></td><td class="center"><span class="ph">≥X%</span></td></tr>
+            <tr><td>客户综合GPM</td><td class="center"><span class="ph">≥X</span></td><td class="center"><span class="ph">≥X</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="placeholder-note"><b>阈值说明：</b>L3"爆款"门槛初定为单素材累计消耗 ≥5万。如 BI 数据显示行业普遍达成率 &lt;1%，将切换为 ≥3万 阈值，确保诊断卡能区分头部客户。</div>
+    <h3 class="section-h">三阶段诊断卡的输出形态：客户的"勤奋度雷达"</h3>
+    <p>每个客户最终会得到一张包含 <b>商品级 + 客户级</b> 双图谱的雷达图，清晰标记其在 L1/L2/L3 三关上的位置。<br/>服务商可以拿着这张雷达图直接对客户说："您卡在 L2，这周我们一起把节奏跑起来。"</p>
+  </section>
+
+  <!-- =================== 模块三 =================== -->
+  <section class="slide">
+    <span class="slide-num">10 / 18</span>
+    <span class="slide-tag">MODULE 03 · 颗粒度</span>
+    <h1 class="slide-title">从"客户层评估"升级为"商品 × 客户"双层评估</h1>
+    <h2 class="slide-subtitle">凡是涉及"投放执行动作"的分析，主颗粒度都用商品</h2>
+    <h3 class="section-h">为什么必须切到商品颗粒度</h3>
+    <table>
+      <thead><tr><th>问题</th><th>客户颗粒度（旧）</th><th>商品颗粒度（新）</th></tr></thead>
+      <tbody>
+        <tr><td><b>商品数稀释偏差</b></td><td>A客户投50个SPU、B客户投5个SPU，A的"创意数"天然是B的10倍 → 把"商品多"误判为"勤奋"</td><td>单品级基建强度可比，无论客户大小都在同一标尺上 ✅</td></tr>
+        <tr><td><b>客户类型混淆</b></td><td>大客户（多SKU铺货型）vs 小客户（单品爆款型）放一起算，基线被大客户拉高 → 小客户全部"被躺平"</td><td>每个 SPU 独立评分，避免类型混淆 ✅</td></tr>
+        <tr><td><b>无法指导动作</b></td><td>客户看到"你创意数不够"，不知道是哪个商品不够</td><td>诊断结果直接告诉客户"哪个 SPU 的创意数不够"，可立刻执行 ✅</td></tr>
+      </tbody>
+    </table>
+    <h3 class="section-h">「商品 × 客户」二元颗粒度原则</h3>
+    <table>
+      <thead><tr><th>分析场景</th><th>主颗粒度</th><th>辅颗粒度</th></tr></thead>
+      <tbody>
+        <tr><td>基建勤奋度Benchmark</td><td><b style="color:var(--accent);">商品级</b></td><td>客户级（看货盘策略）</td></tr>
+        <tr><td>创意有效性分析</td><td><b style="color:var(--accent);">商品级</b></td><td>创意级（看单创意效果）</td></tr>
+        <tr><td>货组策略分析</td><td>商品级</td><td><b style="color:var(--accent);">客户级</b>（看货盘组合）</td></tr>
+        <tr><td>客群分层</td><td><b style="color:var(--accent);">客户级</b></td><td>商品级（看单客户的SPU质量）</td></tr>
+        <tr><td>爆款标杆复盘</td><td><b style="color:var(--accent);">商品级</b></td><td>创意级 + 客户级</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="slide">
+    <span class="slide-num">11 / 18</span>
+    <span class="slide-tag">MODULE 03 · 占位SPU</span>
+    <h1 class="slide-title">食饮行业最大的"勤奋假象"：占位SPU</h1>
+    <h2 class="slide-subtitle">客户铺了100个SPU，但70个是"挂着没动"的占位货</h2>
+    <h3 class="section-h">行业占位SPU扫描结果</h3>
+    <div class="stats-grid">
+      <div class="stat danger"><div class="label">占位SPU占比</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">单品近4周活跃创意 &lt;3条</div></div>
+      <div class="stat warning"><div class="label">这些SPU消耗占比</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">实际消耗贡献极低</div></div>
+      <div class="stat"><div class="label">头部20%SPU消耗占比</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">符合"二八定律"</div></div>
+      <div class="stat success"><div class="label">货组聚焦优秀客户</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">Top3 SPU消耗占比 ≥60%</div></div>
+    </div>
+    <h3 class="section-h">"挂着没投"的SPU正在拖垮客户的整体效率</h3>
+    <div class="grid-2">
+      <div class="card warn"><div class="ct">表象：客户在投100个SPU，看起来很勤奋</div><div class="cb">服务商看消耗大盘正常，认为客户在做事；客户看自己的"商品矩阵"很完整，安心。</div></div>
+      <div class="card danger"><div class="ct">真相：70个SPU只是占位，30个SPU扛着所有消耗</div><div class="cb"><b>风险</b>：30个SPU一旦衰退，客户大盘断崖式下滑；而70个占位SPU没有被识别和优化，资源浪费。</div></div>
+    </div>
+    <div class="quote"><span class="qmark">"</span> 与其铺 100 个躺平 SPU，不如把 10 个 SPU 打透。<span class="qmark">"</span></div>
+    <h3 class="section-h">推荐的"货组聚焦"动作</h3>
+    <div class="flow">
+      <div class="node"><div class="nt">第1步</div><div class="nb">圈出近4周<br/>占位SPU清单</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="nt">第2步</div><div class="nb">逐个判断：<br/>砍 / 重做 / 加投</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="nt">第3步</div><div class="nb">资源向Top10<br/>潜力SPU倾斜</div></div>
+      <div class="arrow">→</div>
+      <div class="node" style="border-color:var(--success);"><div class="nt" style="color:var(--success);">结果</div><div class="nb">单品级勤奋度<br/>整体抬升</div></div>
+    </div>
+  </section>
+
+  <!-- =================== 模块四 =================== -->
+  <section class="slide">
+    <span class="slide-num">12 / 18</span>
+    <span class="slide-tag">MODULE 04 · 客群分层</span>
+    <h1 class="slide-title">食饮服务商面对的四类客群</h1>
+    <h2 class="slide-subtitle">不同客群的"勤奋度阻碍"完全不同 —— 服务动作必须分型施策</h2>
+    <div class="grid-2">
+      <div class="seg-card s1">
+        <div class="hdr"><div class="name">① 大健康保健品</div><div class="tag">高客单 · 内容驱动</div></div>
+        <div class="row"><b>客户画像：</b>大健康赛道头部品牌，客单价 200~800 元</div>
+        <div class="row"><b>勤奋度卡点：</b>素材合规审核慢，迭代节奏跟不上</div>
+        <div class="row"><b>典型问题：</b>L2 周节奏卡死 —— 1条素材跑2周，无新增</div>
+        <div class="row"><b>核心打法：</b>内容力 + 投放力 ADQ vs 微信豆双引擎</div>
+      </div>
+      <div class="seg-card s2">
+        <div class="hdr"><div class="name">② 预包装食品（新锐）</div><div class="tag">中客单 · 种草驱动</div></div>
+        <div class="row"><b>客户画像：</b>新锐零食/饮料品牌，客单价 30~100 元</div>
+        <div class="row"><b>勤奋度卡点：</b>团队小，无法持续产出二创素材</div>
+        <div class="row"><b>典型问题：</b>L1 活跃水位偏低 —— 单SPU活跃创意 &lt;3条</div>
+        <div class="row"><b>核心打法：</b>KOC 种草矩阵 + 二创素材规模化</div>
+      </div>
+      <div class="seg-card s3">
+        <div class="hdr"><div class="name">③ 产业带源头</div><div class="tag">低客单 · 溯源驱动</div></div>
+        <div class="row"><b>客户画像：</b>产业带源头工厂/合作社，客单价 20~60 元</div>
+        <div class="row"><b>勤奋度卡点：</b>不会做内容，开播节奏不稳</div>
+        <div class="row"><b>典型问题：</b>L2 周开播天数仅 1~2 天，活跃率极低</div>
+        <div class="row"><b>核心打法：</b>溯源直播 + 标准化开播节奏</div>
+      </div>
+      <div class="seg-card s4">
+        <div class="hdr"><div class="name">④ 传统品牌</div><div class="tag">中高客单 · 代运营驱动</div></div>
+        <div class="row"><b>客户画像：</b>传统快消品牌，客单价 50~200 元</div>
+        <div class="row"><b>勤奋度卡点：</b>四力不齐 —— 有内容缺投放、有投放缺直播</div>
+        <div class="row"><b>典型问题：</b>客户层活跃SPU多但深度不够，雷达图严重偏科</div>
+        <div class="row"><b>核心打法：</b>代运营补齐四力，端到端托管</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <span class="slide-num">13 / 18</span>
+    <span class="slide-tag">MODULE 04 · 四类客群基线对比</span>
+    <h1 class="slide-title">四类客群的勤奋度基线差异</h1>
+    <h2 class="slide-subtitle">为什么需要"分客群独立设档" —— 而不是用统一基线一刀切</h2>
+    <table>
+      <thead><tr><th>客群</th><th class="center">单SPU活跃创意 · 合格线</th><th class="center">周创意上新 · 合格线</th><th class="center">周勤奋活跃率 · 合格线</th><th class="center">月开播天数 · 合格线</th><th class="center">爆款门槛 · 合格线</th></tr></thead>
+      <tbody>
+        <tr><td><b>① 大健康</b></td><td class="center"><span class="ph">≥X 条</span></td><td class="center"><span class="ph">≥X 条</span></td><td class="center"><span class="ph">≥X%</span></td><td class="center"><span class="ph">≥X 天</span></td><td class="center"><span class="ph">≥X 万</span></td></tr>
+        <tr><td><b>② 预包装新锐</b></td><td class="center"><span class="ph">≥X 条</span></td><td class="center"><span class="ph">≥X 条</span></td><td class="center"><span class="ph">≥X%</span></td><td class="center"><span class="ph">≥X 天</span></td><td class="center"><span class="ph">≥X 万</span></td></tr>
+        <tr><td><b>③ 产业带</b></td><td class="center"><span class="ph">≥X 条</span></td><td class="center"><span class="ph">≥X 条</span></td><td class="center"><span class="ph">≥X%</span></td><td class="center"><span class="ph">≥X 天</span></td><td class="center"><span class="ph">≥X 万</span></td></tr>
+        <tr><td><b>④ 传统品牌</b></td><td class="center"><span class="ph">≥X 条</span></td><td class="center"><span class="ph">≥X 条</span></td><td class="center"><span class="ph">≥X%</span></td><td class="center"><span class="ph">≥X 天</span></td><td class="center"><span class="ph">≥X 万</span></td></tr>
+      </tbody>
+    </table>
+    <h3 class="section-h">分客群施策的服务动作清单</h3>
+    <div class="grid-4">
+      <div class="card"><div class="ct">大健康</div><ul><li>合规预审通道，迭代周期 14天→5天</li><li>内容力工作坊：专业感叙事</li><li>ADQ vs 微信豆双引擎对比测试</li></ul></div>
+      <div class="card"><div class="ct">预包装新锐</div><ul><li>对接 KOC 团长，每周 <span class="ph">XX</span> 条种草</li><li>二创素材标准化模板</li><li>AIGC 工具批量产基础物料</li></ul></div>
+      <div class="card"><div class="ct">产业带</div><ul><li>溯源直播 SOP — 工厂场景脚本</li><li>标准化开播：每天固定 4 小时</li><li>低客单货组优化 — "买二赠一"提客单</li></ul></div>
+      <div class="card"><div class="ct">传统品牌</div><ul><li>代运营撮合，端到端补齐四力</li><li>展会溯源资源 — 信任感叙事</li><li>达播 + KOC + 自播三层矩阵</li></ul></div>
+    </div>
+  </section>
+
+  <!-- =================== 模块五 =================== -->
+  <section class="slide">
+    <span class="slide-num">14 / 18</span>
+    <span class="slide-tag">MODULE 05 · 场景感知召回</span>
+    <h1 class="slide-title">场景感知召回：把"勤奋"从体力活变成"杠杆活"</h1>
+    <h2 class="slide-subtitle">四大场景作为"导航引擎"，指导商家开品、重组货盘</h2>
+    <div class="grid-4">
+      <div class="card"><div class="ct">① 时令应季</div><div class="cb">夏季饮料、冬季滋补 —— 提前 2 周布局应季 SPU 与素材，抢占自然流量。</div></div>
+      <div class="card"><div class="ct">② 大促节点</div><div class="cb">618 / 双11 / 年货节 —— 大包装 / 囤货组合，提前 30 天预热。</div></div>
+      <div class="card"><div class="ct">③ 客户创新干预</div><div class="cb">微信小店补贴、新人券、达人专享 —— 主动干预人货场，制造场景化心智。</div></div>
+      <div class="card"><div class="ct">④ 热点&流行文化</div><div class="cb">爆款话题、综艺联名 —— 1~2 周内快速跟进素材产出。</div></div>
+    </div>
+    <h3 class="section-h">四力飞轮 × 场景感知召回 = 拿量确定性</h3>
+    <div class="flow">
+      <div class="node"><div class="nt">货品力</div><div class="nb">场景化开品</div></div>
+      <div class="arrow">+</div>
+      <div class="node"><div class="nt">内容力</div><div class="nb">场景化素材</div></div>
+      <div class="arrow">+</div>
+      <div class="node"><div class="nt">投放力</div><div class="nb">场景化投放</div></div>
+      <div class="arrow">+</div>
+      <div class="node"><div class="nt">直播力</div><div class="nb">场景化开播</div></div>
+      <div class="arrow">→</div>
+      <div class="node" style="border-color:var(--success);"><div class="nt" style="color:var(--success);">飞轮转动</div><div class="nb">勤奋度的<br/>"杠杆放大"</div></div>
+    </div>
+    <div class="quote">场景感知召回不是新流量入口，而是 <b>「让勤奋更值得做」</b> 的导航系统 —— 同样上 10 条素材，踩对场景能比错的拿量高 <span class="ph">XX</span> 倍。</div>
+  </section>
+
+  <section class="slide">
+    <span class="slide-num">15 / 18</span>
+    <span class="slide-tag">MODULE 05 · AI 赋能</span>
+    <h1 class="slide-title">三力 AI 工具：让单人产能提升 3~5 倍</h1>
+    <h2 class="slide-subtitle">把服务商从"重复劳动"中解放出来，专注高价值动作</h2>
+    <div class="grid-3">
+      <div class="diagcard" style="border-color:var(--primary);">
+        <h4>AI 选品洞察</h4>
+        <p style="font-size:14px;">基于场景感知召回，反向推荐"该上什么品 + 当前货盘里哪些 SPU 勤奋度不够需要加投"。</p>
+        <div class="badges"><span class="badge">货品力</span><span class="badge">场景驱动</span></div>
+        <div style="margin-top:12px;font-size:13px;color:var(--gray-700);"><b>典型场景：</b>5月推荐"夏季应季饮料"开品 + 圈出已上但无消耗的占位 SPU</div>
+      </div>
+      <div class="diagcard" style="border-color:var(--accent);">
+        <h4>AI 创意脚本解析</h4>
+        <p style="font-size:14px;">解析爆款素材的"钩子结构 / 卖点排序 / 节奏曲线"，一键生成脚本变体。</p>
+        <div class="badges"><span class="badge warn">内容力</span><span class="badge warn">规模化</span></div>
+        <div style="margin-top:12px;font-size:13px;color:var(--gray-700);"><b>典型场景：</b>把 1 条爆款素材在 24 小时内裂变出 <span class="ph">XX</span> 条二创变体</div>
+      </div>
+      <div class="diagcard" style="border-color:var(--success);">
+        <h4>AI 直播间诊断</h4>
+        <p style="font-size:14px;">实时分析直播间的"流量结构 / 转化漏斗 / 主播话术效率"，给出具体改进项。</p>
+        <div class="badges"><span class="badge ok">直播力</span><span class="badge ok">即时反馈</span></div>
+        <div style="margin-top:12px;font-size:13px;color:var(--gray-700);"><b>典型场景：</b>下播后 30 分钟出诊断报告，次日开播即调整</div>
+      </div>
+    </div>
+    <h3 class="section-h">AI 工具如何嵌入"勤奋度提升路径"</h3>
+    <table>
+      <thead><tr><th>诊断关卡</th><th>客户问题</th><th>AI 工具介入</th><th>预期效果</th></tr></thead>
+      <tbody>
+        <tr><td><b style="color:var(--danger);">L1 没过</b></td><td>占位 SPU 太多，不知道砍哪些</td><td>AI 选品洞察 → 占位 SPU 清单 + 替代品建议</td><td>2 周内活跃 SPU 占比 30%→60%</td></tr>
+        <tr><td><b style="color:var(--warning);">L2 没过</b></td><td>素材产能跟不上，周节奏断档</td><td>AI 创意脚本解析 → 单人单日产 10+ 条变体</td><td>周勤奋活跃率 25%→75%</td></tr>
+        <tr><td><b style="color:var(--primary);">L3 没过</b></td><td>爆款无法稳定复制</td><td>AI 直播间诊断 → 找到爆量瓶颈点</td><td>每月稳定产 <span class="ph">XX</span> 条 5万+ 素材</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="slide">
+    <span class="slide-num">16 / 18</span>
+    <span class="slide-tag">MODULE 05 · 资源赋能</span>
+    <h1 class="slide-title">三大资源赋能 · 把"做不到"变成"做得到"</h1>
+    <h2 class="slide-subtitle">服务商单打独斗的时代结束 —— 平台资源全面下发</h2>
+    <div class="grid-3">
+      <div class="card ok"><div class="ct">🏭 展会溯源撮合</div><ul><li>对接 <span class="ph">XX</span> 个产业带源头工厂</li><li>提供溯源直播标准化 SOP</li><li>每月 <span class="ph">XX</span> 场展会专属直通车</li></ul></div>
+      <div class="card ok"><div class="ct">🤝 代运营撮合</div><ul><li>对接腾讯广告认证代运营服务商池</li><li>四力托管：货品 / 内容 / 投放 / 直播</li><li>分润机制 —— 服务商参与长期收益</li></ul></div>
+      <div class="card ok"><div class="ct">📣 达播&KOC团长撮合</div><ul><li>食饮垂类达人 <span class="ph">XX</span> 名直连</li><li>KOC 矩阵 <span class="ph">XX</span>+，覆盖主流话题圈层</li><li>团长统筹 + 内容矩阵化分发</li></ul></div>
+    </div>
+    <h3 class="section-h">资源赋能与"诊断卡"形成闭环</h3>
+    <div class="flow">
+      <div class="node"><div class="nt">诊断</div><div class="nb">客户卡在哪一关？<br/>L1 / L2 / L3</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="nt">匹配资源</div><div class="nb">AI工具 + 撮合资源<br/>对症下药</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="nt">执行</div><div class="nb">服务商落地<br/>1对1陪跑</div></div>
+      <div class="arrow">→</div>
+      <div class="node" style="border-color:var(--success);"><div class="nt" style="color:var(--success);">复盘</div><div class="nb">下一周再诊断<br/>看活跃率提升</div></div>
+    </div>
+  </section>
+
+  <!-- =================== 模块六：行动指引 =================== -->
+  <section class="slide">
+    <span class="slide-num">17 / 18</span>
+    <span class="slide-tag">MODULE 06 · 行动指引</span>
+    <h1 class="slide-title">服务商行动指引 · 本周 / 本月 / 本季度</h1>
+    <h2 class="slide-subtitle">把诊断结论转化为"立刻可执行"的动作清单</h2>
+    <div class="grid-3">
+      <div class="card danger">
+        <div class="ct">📅 本周 · 立刻做</div>
+        <ul>
+          <li>把每个客户的 SPU 跑一遍 <b>"周勤奋活跃率"</b> 自检表</li>
+          <li>圈出"<b>占位 SPU 清单</b>"（活跃创意 &lt;3条）</li>
+          <li>选 1 个客户做诊断卡试点，给客户雷达图</li>
+          <li>对接 AI 创意脚本解析，跑通 1 个 SPU 的素材裂变</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <div class="ct">📆 本月 · 跑通流程</div>
+        <ul>
+          <li>覆盖 <b>Top20 重客</b>，每个客户出诊断卡</li>
+          <li>给每个客户定"<b>周创意上新承诺数</b>"</li>
+          <li>低活跃客户接入 AI 创意工具，提产能</li>
+          <li>启动 <b>1 个产业带溯源直播</b> 试点项目</li>
+        </ul>
+      </div>
+      <div class="card ok">
+        <div class="ct">🗓 本季度 · 形成体系</div>
+        <ul>
+          <li>诊断卡纳入服务商 <b>月度KPI</b>，从"做了多少"改为"持续做了多少周"</li>
+          <li>每月发布"<b>食饮服务商勤奋度榜单</b>"，公开透明</li>
+          <li>四类客群全部建立 <b>差异化服务SOP</b></li>
+          <li>跑通 <b>诊断 → AI赋能 → 资源撮合</b> 完整闭环</li>
+        </ul>
+      </div>
+    </div>
+    <h3 class="section-h">服务商三件事自检清单</h3>
+    <div class="stats-grid">
+      <div class="stat"><div class="label">事一：你的客户里</div><div class="value"><span class="ph">XX</span></div><div class="desc">个 SPU 是占位 SPU？</div></div>
+      <div class="stat warning"><div class="label">事二：你的客户里</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">的客户周活跃率 &lt;25%？</div></div>
+      <div class="stat success"><div class="label">事三：你过去4周</div><div class="value"><span class="ph">XX</span></div><div class="desc">条素材进入了爆款档？</div></div>
+      <div class="stat danger"><div class="label">事四：你的服务团队</div><div class="value"><span class="ph">XX</span><span class="unit">%</span></div><div class="desc">已经接入 AI 工具？</div></div>
+    </div>
+    <div class="quote"><span class="qmark">"</span> 勤奋不是结果，<b>持续</b> 才是 —— 让我们一起，把每个客户从 L0 推到 L3。<span class="qmark">"</span></div>
+  </section>
+
+  <!-- ============ 结尾页 ============ -->
+  <section class="slide closing">
+    <h1>持续在做，<br/>才是真勤奋</h1>
+    <p>欢迎与食饮行业中心沟通诊断卡试点 ·<br/>让我们用数据替服务商背书，把"勤奋度"做成可衡量、可牵引、可成长的硬实力。</p>
+    <div class="signature">TENCENT ADS · FOOD &amp; BEVERAGE  ·  2026 K1</div>
+  </section>
+
+</div>
+</body>
+</html>
