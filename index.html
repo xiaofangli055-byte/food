@@ -3,6 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  // 老链接兼容：原对外课程链接（如 /food/#cover）的根目录指向"勤奋度"课程，
+  // 改造后根目录变为导航页，需把带锚点的访问无感转跳到 ./qinfendu/ 并保留原 hash。
+  // 导航页本身不使用任何 hash 锚点，因此凡是带 # 的访问一律视为老链接转跳。
+  (function () {
+    var h = window.location.hash;
+    if (h && h.length > 1) {
+      window.location.replace('./qinfendu/' + h);
+    }
+  })();
+</script>
 <title>食饮投放力诊断与提升 · 课程导航</title>
 <style>
   :root {
