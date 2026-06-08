@@ -193,9 +193,9 @@
 
 <nav class="top-nav">
   <a href="#act1" data-target="act1" data-group="act1,act2">归因前置</a>
-  <a href="#act3" data-target="act3" data-group="act3,act3-cmp,act3-tree,act3-edge">出价心法</a>
+  <a href="#act3" data-target="act3" data-group="act3,act3-cmp,act3-tree,act3-edge">出价选型</a>
   <a href="#act4" data-target="act4" data-group="act4">eCPM 杠杆</a>
-  <a href="#act5-balance" data-target="act5" data-group="act5-balance,act5">掉量诊断</a>
+  <a href="#act5-balance" data-target="act5" data-group="act5-balance,act5,act5-panic">掉量诊断</a>
   <a href="#act6" data-target="act6" data-group="act6,act6-table,act6-tree">6把加速器</a>
   <a href="#card" data-target="card" data-group="card">决策卡</a>
 </nav>
@@ -214,8 +214,8 @@
         <span style="font-size:32px; font-weight:600; color:var(--text-2)">— 模型、契约与博弈 —</span>
       </h1>
       <p class="subtitle reveal reveal-d2" style="margin-top:20px; font-size:16px;">
-        投手每天在投放后台调的那几个数字，<br/>
-        你真的知道它们在跟系统打什么<span class="gold-text" style="font-weight:700">契约</span>吗？
+        每天在投放后台调的那几个数字，<br/>
+        真的知道它们在跟系统打什么<span class="gold-text" style="font-weight:700">契约</span>吗？
       </p>
       <div class="reveal reveal-d3 mt-8 grid grid-cols-2 gap-4">
         <div class="glass p-5">
@@ -229,7 +229,7 @@
       </div>
       <div class="mt-8 flex gap-3 flex-wrap reveal reveal-d4">
         <span class="pill purple">归因前置</span>
-        <span class="pill purple">出价心法</span>
+        <span class="pill purple">出价选型</span>
         <span class="pill cyan">eCPM 杠杆</span>
         <span class="pill red">掉量诊断</span>
         <span class="pill gold">6把加速器</span>
@@ -259,24 +259,24 @@
       </div>
     </div>
   </div>
-  <div class="page-num">00 / 16</div>
+  <div class="page-num">00 / 17</div>
 </section>
 
-<!-- ============ 心法地基 · 出价的双重撬动 ============ -->
+<!-- ============ 底层认知 · 出价的双重撬动 ============ -->
 <section class="slide" id="foundation">
-  <div class="module-tag reveal"><span class="num">心法地基</span><span>·</span><span>出价的双重撬动 · 1.5 min</span></div>
+  <div class="module-tag reveal"><span class="num">底层认知</span><span>·</span><span>出价的双重撬动</span></div>
   <h2 class="slide-title reveal reveal-d1">
     你今天调了一次出价——<br/>
     <span class="gradient-text">系统那边，发生了几件事？</span>
   </h2>
 
-  <!-- 反差对比：客户视角 vs 真相 -->
+  <!-- 反差对比：常见认知 vs 真相 -->
   <div class="grid grid-cols-12 gap-5 mt-6">
-    <!-- 左：客户视角 -->
+    <!-- 左：常见认知 -->
     <div class="col-span-5 glass p-6 reveal reveal-d2" style="border-color:rgba(28,40,72,0.14);">
       <div class="flex items-center gap-2 mb-3">
-        <span class="pill" style="background:rgba(28,40,72,0.06); border-color:rgba(28,40,72,0.18); color:var(--text-2);">客户视角</span>
-        <span class="text-xs" style="color:var(--text-3);">90% 投手脑子里的画面</span>
+        <span class="pill" style="background:rgba(28,40,72,0.06); border-color:rgba(28,40,72,0.18); color:var(--text-2);">常见认知</span>
+        <span class="text-xs" style="color:var(--text-3);">大多数人脑子里的画面</span>
       </div>
       <div class="text-base mb-4" style="color:var(--text-2);">
         "我把出价从 <b style="color:var(--text-1)">30</b> 调到 <b style="color:var(--text-1)">35</b>，<br/>就 <b class="gold-text" style="font-size:22px;">1 件事</b> 嘛。"
@@ -314,7 +314,7 @@
           <span class="text-base font-bold" style="color:var(--cyan-2);">1</span>
           <div class="text-xs leading-relaxed" style="color:var(--text-2);">
             <b style="color:var(--cyan-2); font-size:13px;">BID 数值变了</b>　<span style="color:var(--text-3);">直接 · 即时（分钟级）</span><br/>
-            → eCPM 立刻被你撬高 · 投手手里唯一的即时杠杆
+            → eCPM 立刻被撬高 · 投放侧唯一的即时杠杆
           </div>
         </div>
         <div class="flex items-start gap-3 p-2.5 rounded-lg" style="background:rgba(133,137,229,0.07); border-left:3px solid #8589E5;">
@@ -421,7 +421,7 @@
     </div>
     <div class="glass p-3 text-center" style="border-color:rgba(133,137,229,0.25);">
       <div class="text-xs mb-1" style="color:#8589E5; letter-spacing:0.1em;">ACT 3</div>
-      <div class="text-xs" style="color:var(--text-2);">选哪根杠杆<br/><span style="color:var(--text-3);">心法选契约</span></div>
+      <div class="text-xs" style="color:var(--text-2);">选哪根杠杆<br/><span style="color:var(--text-3);">先选契约</span></div>
     </div>
     <div class="glass p-3 text-center" style="border-color:rgba(37,99,217,0.25);">
       <div class="text-xs mb-1" style="color:var(--cyan-2); letter-spacing:0.1em;">ACT 4</div>
@@ -441,17 +441,17 @@
     </div>
   </div>
 
-  <div class="page-num">01 / 16</div>
+  <div class="page-num">01 / 17</div>
 </section>
 
 <!-- ============ 开场：四句拷问 ============ -->
 <section class="slide" id="open">
   <div class="module-tag reveal"><span class="num">PROLOGUE</span><span>·</span><span>四句拷问</span></div>
-  <h2 class="slide-title reveal reveal-d1">客户每天会问的<span class="gradient-text">4 个真问题</span></h2>
+  <h2 class="slide-title reveal reveal-d1">日常投放最高频的<span class="gradient-text">4 个真问题</span></h2>
   <p class="subtitle reveal reveal-d2">
     上一页的"两根杠杆"是<span class="gold-text" style="font-weight:700">总纲</span>——
     那它具体长在哪些<span class="gold-text" style="font-weight:700">真实场景</span>里？<br/>
-    下面这 4 个问题，是客户每天会拍到你脸上的、最高频的"杠杆翻车现场"。
+    下面这 4 个问题，是投放复盘时最常被反复追问的"杠杆翻车现场"。
   </p>
 
   <div class="grid grid-cols-2 gap-5 mt-10 flex-1 content-center">
@@ -469,15 +469,15 @@
     </div>
     <div class="glass p-6 reveal reveal-d4">
       <div class="text-xs uppercase tracking-widest mb-2" style="color:var(--text-3)">Q4 · 跑量</div>
-      <div class="text-lg font-medium leading-relaxed">"前面跑得好好的，<br/>为什么<span class="red-text" style="font-weight:700">突然就没量了</span>？"</div>
+      <div class="text-base font-medium leading-relaxed">"前面跑得好好的，<br/>为什么<span class="red-text" style="font-weight:700">突然就没量了</span>？<br/><span style="color:var(--text-2); font-size:0.92em;">——或者上午刚超成本就压量，<br/>反而<span class="red-text" style="font-weight:700">越压越糟</span>？"</span></div>
     </div>
   </div>
 
   <div class="punchline mt-8 reveal reveal-d5">
-    答完这 4 题，等于把"<span class="gold-text">两根杠杆</span>"翻成了 <span class="gold-text">4 个具体的客户场景</span>——
-    接下来 6 幕，就是把每个场景背后的杠杆原理讲透。
+    答完这 4 题，等于把"<span class="gold-text">两根杠杆</span>"落到了 <span class="gold-text">4 个具体的投放场景</span>——
+    接下来 6 幕，逐一拆解每个场景背后的杠杆原理。
   </div>
-  <div class="page-num">02 / 16</div>
+  <div class="page-num">02 / 17</div>
 </section>
 
 <!-- ============ 第一幕 · 症状1：CVR口径 ============ -->
@@ -499,7 +499,7 @@
     <div class="col-span-5 glass-red p-6">
       <div class="flex items-center gap-2 mb-2">
         <span class="pill red">回传口径</span>
-        <span class="text-xs" style="color:var(--text-3);">客户复盘看数 · 投放端常用</span>
+        <span class="text-xs" style="color:var(--text-3);">日常复盘看数 · 投放端常用</span>
       </div>
       <div class="text-2xl font-bold mb-2 red-text">转化回传</div>
       <div class="text-sm leading-relaxed" style="color:var(--text-2)">
@@ -557,7 +557,7 @@
     系统喂模型用的是<b style="color:#5DCFA3">"广告播放"</b>口径——
     <b>冷启 / 起量阶段，必须切回播放口径看 CVR</b>，才能知道模型到底学到没学到。
   </div>
-  <div class="page-num">03 / 16</div>
+  <div class="page-num">03 / 17</div>
 </section>
 
 <!-- ============ 第二幕 · 症状2：30天窗口 ============ -->
@@ -608,12 +608,12 @@
       </div>
     </div>
   </div>
-  <div class="page-num">04 / 16</div>
+  <div class="page-num">04 / 17</div>
 </section>
 
-<!-- ============ 第三幕 · 出价心法 · 章首（多品直播间故事） ============ -->
+<!-- ============ 第三幕 · 出价方式选型 · 章首（多品直播间故事） ============ -->
 <section class="slide" id="act3">
-  <div class="module-tag reveal"><span class="num">ACT 3</span><span>·</span><span>出价方式心法 · 12 min · 核心一幕</span></div>
+  <div class="module-tag reveal"><span class="num">ACT 3</span><span>·</span><span>出价方式选型 · 核心一幕</span></div>
   <h2 class="slide-title reveal reveal-d1">
     下单出价 <span style="color:var(--text-3); font-weight:400">vs</span> 下单 ROI<br/>
     <span class="gradient-text">同一个用户，两套模型眼里完全不一样</span>
@@ -695,12 +695,12 @@
   </div>
 
   <div class="punchline mt-5 reveal reveal-d5">
-    <span class="gold-text">🎁 一句话听懂：</span>
+    <span class="gold-text">一句话听懂：</span>
     <b class="gradient-text">下单出价帮你找"会下单的人"</b>，<b class="gold-text">下单 ROI 帮你找"会买更多的人"</b>。<br/>
-    多品直播间 / SKU 丰富 / 客单跨度大 的客户，<b style="color:var(--gold)">用 pCVR 是亏的</b>——
+    多品直播间 / SKU 丰富 / 客单跨度大的盘子，<b style="color:var(--gold)">用 pCVR 是亏的</b>——
     模型只学到第 1 单，后面 2 单的价值<b>全被它当成噪声丢掉了</b>。
   </div>
-  <div class="page-num">05 / 16</div>
+  <div class="page-num">05 / 17</div>
 </section>
 
 <!-- ============ 第三幕 · 一张表看懂差异 ============ -->
@@ -749,19 +749,19 @@
   </div>
 
   <div class="punchline mt-6 reveal reveal-d3">
-    <span class="gold-text">🎁 升维金句：</span>
+    一句话总结：
     下单出价是<b class="gradient-text">"管成本"</b>，下单 ROI 是<b class="gold-text">"管赚钱"</b>。<br/>
     冷启阶段，先让系统学会"<b>谁会下单</b>"，再让它学会"<b>谁下单更值钱</b>"。<br/>
-    <span style="color:var(--gold); font-weight:600;">📍 多品直播间 / SKU 丰富的客户，过了冷启就该切下单 ROI——别让模型只看到第 1 单。</span>
+    <span style="color:var(--gold); font-weight:600;">📍 多品直播间 / SKU 丰富的盘子，过了冷启就该切下单 ROI——别让模型只看到第 1 单。</span>
   </div>
-  <div class="page-num">06 / 16</div>
+  <div class="page-num">06 / 17</div>
 </section>
 
 <!-- ============ 第三幕 · 决策三问 ============ -->
 <section class="slide" id="act3-tree">
   <div class="module-tag reveal"><span class="num">ACT 3.2</span><span>·</span><span>选型决策树</span></div>
-  <h2 class="slide-title reveal reveal-d1">心法决策<span class="gradient-text">三问</span></h2>
-  <p class="subtitle reveal reveal-d2">不是看"客户考核什么"就用什么——先看模型有没有学好的资格。</p>
+  <h2 class="slide-title reveal reveal-d1">出价选型<span class="gradient-text">决策三问</span></h2>
+  <p class="subtitle reveal reveal-d2">不是看"考核什么"就用什么——先看模型有没有学好的资格。</p>
 
   <div class="grid grid-cols-3 gap-5 mt-8 reveal reveal-d3">
     <div class="glass p-5">
@@ -788,9 +788,9 @@
     </div>
     <div class="glass-strong p-5 glow-border">
       <div class="big-num text-4xl gold-text mb-2">03</div>
-      <h3 class="section-title">客户考核什么？</h3>
+      <h3 class="section-title">业务考核什么？</h3>
       <p class="text-sm leading-relaxed" style="color:var(--text-2)">
-        客户的 KPI 是看<b>成本</b>还是看 <b>ROI</b>？
+        这盘的 KPI 是看<b>成本</b>还是看 <b>ROI</b>？
       </p>
       <div class="mt-3 text-sm">
         <div><span class="pill cyan">成本</span> → <b>下单出价</b>（契约对齐 KPI）</div>
@@ -808,12 +808,12 @@
       </ul>
     </div>
     <div class="punchline">
-      <span class="gold-text">📐 结论：</span>
+      结论：
       下单出价是"<b>先让模型活下来</b>"，<br/>
       下单 ROI 是"<b>让会赚的模型多赚一点</b>"。
     </div>
   </div>
-  <div class="page-num">07 / 16</div>
+  <div class="page-num">07 / 17</div>
 </section>
 
 <!-- ============ 第三幕 · 小众出价边界 ============ -->
@@ -851,16 +851,16 @@
       </p>
       <div class="mt-3">
         <div class="text-xs uppercase tracking-widest mb-1" style="color:var(--text-3)">适用场景</div>
-        <div class="text-sm" style="color:var(--text-2)">高退款类目（生鲜 · 服饰 · 跨界）<br/>客户考核净成本而非毛成本</div>
+        <div class="text-sm" style="color:var(--text-2)">高退款类目（生鲜 · 服饰 · 跨界）<br/>考核净成本而非毛成本</div>
       </div>
     </div>
   </div>
 
   <div class="punchline mt-8 reveal reveal-d4">
-    <span class="gold-text">🎁 边界金句：</span>
+    一句话边界：
     主流出价是<b>下单 / 下单 ROI</b>，小众出价不是替代——而是<b class="gradient-text">在特殊类目上的契约修饰</b>。
   </div>
-  <div class="page-num">08 / 16</div>
+  <div class="page-num">08 / 17</div>
 </section>
 
 <!-- ============ 第四幕 · eCPM 杠杆 ============ -->
@@ -873,7 +873,7 @@
   <div class="reveal reveal-d2 mt-2">
     <span class="stage-tag symptom">症状</span>
     <div class="quote-box mt-3">
-      "是不是每次起量都得靠加价？这是不是<b style="color:var(--red)">投手偷懒</b>？"
+      "是不是每次起量都得靠加价？这是不是<b style="color:var(--red)">操作不够精细的偷懒做法</b>？"
     </div>
   </div>
 
@@ -889,7 +889,7 @@
       <h3 class="section-title">三个杠杆的"撬动周期"</h3>
       <table class="cmp">
         <tr><th>杠杆</th><th>谁说了算</th><th>多久</th></tr>
-        <tr><td><b class="cyan-2" style="color:var(--cyan-2)">bid</b></td><td>客户直接调</td><td><b class="green-text">秒级</b></td></tr>
+        <tr><td><b class="cyan-2" style="color:var(--cyan-2)">bid</b></td><td>投放侧直接调</td><td><b class="green-text">秒级</b></td></tr>
         <tr><td>pCTR</td><td>创意 + 系统</td><td>几小时~几天</td></tr>
         <tr><td>pCVR</td><td>商品 + 落地页 + 系统</td><td><b style="color:var(--orange)">冷启最慢</b></td></tr>
       </table>
@@ -899,17 +899,17 @@
   <div class="glass-strong p-6 mt-6 reveal reveal-d5 glow-border">
     <h3 class="section-title">🎯 反直觉锚点</h3>
     <p style="color:var(--text-2); line-height:1.8; font-size:15px;">
-      加出价不是"投手偷懒"，是<b class="gradient-text">冷启阶段唯一能秒级影响 eCPM 的科学操作</b>。<br/>
+      加出价不是"投放不够精细"，而是<b class="gradient-text">冷启阶段唯一能秒级影响 eCPM 的科学操作</b>。<br/>
       因为冷启时 pCVR 是预估的、置信度低，系统给的量极少；
-      这时你不主动用 bid 把 eCPM 顶上去，模型永远等不到那个能让它"开窍"的样本量。
+      这时不主动用 bid 把 eCPM 顶上去，模型永远等不到那个能让它"开窍"的样本量。
     </p>
   </div>
 
   <div class="punchline mt-6 reveal reveal-d5">
-    <span class="gold-text">🎁 升维金句：</span>
+    一句话总结：
     冷启阶段，<b>bid 不是成本表达，是<span class="gradient-text">"模型学习费"</span></b>。
   </div>
-  <div class="page-num">09 / 16</div>
+  <div class="page-num">09 / 17</div>
 </section>
 
 <!-- ============ 第五幕 · 超成本打压 ============ -->
@@ -1019,7 +1019,7 @@
       <ul class="text-sm leading-relaxed space-y-1" style="color:var(--text-2)">
         <li>· 爆品稳定期，ROI 是生命线</li>
         <li>· 利润敏感（食饮加工 / 标品），CPA 超 1 块都疼</li>
-        <li>· 客户已有稳定模型积累，目标是<b style="color:var(--cyan-2)">守 ROI 上限</b></li>
+        <li>· 已有稳定模型积累，目标是<b style="color:var(--cyan-2)">守 ROI 上限</b></li>
       </ul>
       <div class="text-xs uppercase tracking-widest mt-4 mb-2" style="color:var(--cyan-2);">系统会怎么做</div>
       <p class="text-sm leading-relaxed" style="color:var(--text-2)">
@@ -1060,18 +1060,18 @@
       <span class="pill red" style="flex-shrink:0;">⚠ 最常见的错</span>
       <div class="text-sm leading-relaxed" style="color:var(--text-2);">
         <b style="color:#B53D52">立场错位 = 永远救不对火。</b>
-        把"控成本"客户当"抢量"投 → 一加价就触发超成本打压、量更少；把"抢量"客户当"控成本"投 → 模型永远跑不出冷启、客户骂你佛系。
-        <b style="color:var(--text-1)">→ 跟客户对齐第一句话永远是："这个广告这个阶段，我们要的是成本还是量？"</b>
+        把"控成本"的盘当"抢量"投 → 一加价就触发超成本打压、量更少；把"抢量"的盘当"控成本"投 → 模型永远跑不出冷启、量起不来还被怀疑"投得太保守"。
+        <b style="color:var(--text-1)">→ 投放启动前，第一句要先对齐的就是："这个广告这个阶段，要的是成本还是量？"</b>
       </div>
     </div>
   </div>
 
   <div class="punchline mt-5 reveal reveal-d5">
-    <span class="gold-text">📐 元决策金句：</span>
+    一句话总结：
     <b class="gradient-text">出价不是技术题，是决策题；决策的前提，是<span class="gold-text">天平先得成立</span>。</b><br/>
-    天平的两端不是给你选"哪个更好"，而是逼你跟客户/老板<b>明牌共识</b>：这局，重在哪头。
+    天平的两端不是选"哪个更好"，而是先<b>明牌共识</b>：这局，重在哪头。
   </div>
-  <div class="page-num">10 / 16</div>
+  <div class="page-num">10 / 17</div>
 </section>
 
 <!-- ============ 第五幕 · 契约反噬（具体诊断） ============ -->
@@ -1137,7 +1137,97 @@ eCPM 跌穿竞价线
       </tr>
     </table>
   </div>
-  <div class="page-num">11 / 16</div>
+  <div class="page-num">11 / 17</div>
+</section>
+
+<!-- ============ 第五幕 · 分时波动与过度干预 ============ -->
+<section class="slide" id="act5-panic">
+  <div class="module-tag reveal"><span class="num">ACT 5.2</span><span>·</span><span>掉量诊断之"分时波动与过度干预" · 5 min</span></div>
+  <h2 class="slide-title reveal reveal-d1">
+    系统按<span class="gradient-text">"天"</span>履约，操作端常按<span class="red-text">"小时"</span>判断——<br/>
+    <span style="font-size:0.78em; color:var(--text-2); font-weight:400;">分时波动下最常见的过度干预</span>
+  </h2>
+
+  <div class="reveal reveal-d2 mt-2">
+    <span class="stage-tag symptom">典型场景</span>
+    <div class="quote-box mt-3">
+      "上午 10 点 CPA <b style="color:var(--red)">已经超 30%</b> 了，再不控一控全天就拉不回来——<br/>
+      <span style="color:var(--text-3);">→ 暂停半小时 / 大幅降出价 / 关掉两条计划</span>"
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-5 mt-6">
+    <!-- 左：契约口径错配的真相 -->
+    <div class="col-span-7 glass-red p-6 reveal reveal-d3">
+      <h3 class="section-title" style="color:#B53D52">⏱ 时间维度的错配</h3>
+      <p class="text-sm leading-relaxed" style="color:var(--text-2)">
+        ROI / 下单出价的契约口径是<b class="gradient-text">「天」级成本达成</b>——<br/>
+        系统会用<b class="gold-text">全天的曝光节奏</b>去摊平成本：<br/>
+        <span style="color:var(--text-3); font-size:13px;">早高峰人贵但精准、午后量大但杂、晚间转化高但竞争激烈……系统会自动调度。</span>
+      </p>
+      <div class="ascii mt-3">10:00  CPA 超 30%  ← 当下看到的
+14:00  CPA  +5%   ← 系统抓便宜流量回血
+20:00  CPA  -8%   ← 晚间转化拉回成本
+─────────────────────
+全天 CPA  −2%    ← <b style="color:var(--green)">系统的契约目标</b></div>
+      <div class="punchline mt-3" style="color:var(--text-2);">
+        分时超成本，<b style="color:var(--text-1)">是系统在执行履约</b>，不是失控。
+      </div>
+    </div>
+
+    <!-- 右：过度干预的反噬链路 -->
+    <div class="col-span-5 glass-strong p-6 reveal reveal-d4">
+      <h3 class="section-title" style="color:#B53D52">🌀 干预过早 → 反噬链路</h3>
+      <div class="ascii mt-2">看到分时超成本
+       ↓
+<b style="color:var(--red)">控投放 / 关计划 / 砍出价</b>
+       ↓
+转化样本骤减、模型探索被打断
+       ↓
+后续小时段<b style="color:#B53D52">既没量、也失去回血窗口</b>
+       ↓
+全天 CPA <b style="color:var(--red)">真的</b>超了
+       ↓
+"还好控了，否则更糟"
+       ↓
+<b class="gold-text">下次更早干预 → 反复循环</b></div>
+      <div class="mt-4 punchline" style="background: linear-gradient(135deg, rgba(216,80,104,0.08), rgba(212,165,58,0.06));">
+        过早干预的真实代价：<br/>
+        <b style="color:#B53D52">省下的不是超成本，而是关掉了系统的回血窗口。</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="glass p-6 mt-6 reveal reveal-d5">
+    <h3 class="section-title">🎯 解法：<span class="green-text">分时波动看趋势、契约履约看一天</span></h3>
+    <table class="cmp">
+      <tr>
+        <th>❌ 容易踩的反应</th>
+        <th>✅ 契约视角的动作</th>
+      </tr>
+      <tr>
+        <td>上午看到超 30% 就压量</td>
+        <td>对照<b class="gold-text">近 3 天同时段</b>的成本曲线，确认是不是常态波动</td>
+      </tr>
+      <tr>
+        <td>每小时盯盘、随手调出价</td>
+        <td>把判断窗口拉到<b class="green-text">至少半天 / 全天</b>再决策</td>
+      </tr>
+      <tr>
+        <td>"先关一条保险一点" 的防御操作</td>
+        <td>给系统留出<b>探索-回血-达成</b>的完整契约周期</td>
+      </tr>
+      <tr>
+        <td>把分时波动当事故</td>
+        <td>分时波动是<b class="gradient-text">系统履约的正常代价</b>，不是 bug</td>
+      </tr>
+    </table>
+    <div class="punchline mt-4">
+      契约型出价最考验的不是技术，<br/>
+      而是<b class="gold-text">在分时波动中能不能稳住、把判断窗口交给"一天"</b>。
+    </div>
+  </div>
+  <div class="page-num">12 / 17</div>
 </section>
 
 <!-- ============ 第六幕 · 章首 ============ -->
@@ -1187,7 +1277,7 @@ eCPM 跌穿竞价线
   <div class="punchline mt-8 reveal reveal-d4">
     共性：<b>不（部分）赔付、激进探索、用成本容忍度换跑量</b>。
   </div>
-  <div class="page-num">12 / 16</div>
+  <div class="page-num">13 / 17</div>
 </section>
 
 <!-- ============ 第六幕 · 6把加速器一张图 ============ -->
@@ -1249,7 +1339,7 @@ eCPM 跌穿竞价线
         <td><b style="color:var(--purple-2)">分人群出价</b></td>
         <td>不同人群分桶配置不同出价</td>
         <td><span class="pill purple">👥 人群</span></td>
-        <td>客户分层运营 / 人群破圈</td>
+        <td>人群分层运营 / 破圈拉新</td>
         <td>自定义</td>
         <td>✅</td>
       </tr>
@@ -1270,11 +1360,11 @@ eCPM 跌穿竞价线
       <ol class="text-sm leading-relaxed pl-5 list-decimal" style="color:var(--text-2)">
         <li><b>不要叠满</b>：潜客优投 ×1.5 + 创意优投 ×1.3 = <b style="color:#B53D52">真出价 ×1.95</b>，容易超成本</li>
         <li><b>不要在掉量当下开</b>：先排查是否"超成本打压"，否则加速器火上浇油</li>
-        <li><b>不要长期常开</b>：加速器是"<b class="gold-text">应急药</b>"，长期开会让客户失去对真实成本的感知</li>
+        <li><b>不要长期常开</b>：加速器是"<b class="gold-text">应急药</b>"，长期开会让团队失去对真实成本的感知</li>
       </ol>
     </div>
   </div>
-  <div class="page-num">13 / 16</div>
+  <div class="page-num">14 / 17</div>
 </section>
 
 <!-- ============ 第六幕 · 决策树 ============ -->
@@ -1330,7 +1420,7 @@ eCPM 跌穿竞价线
       顺序错了，等于：<b style="color:#B53D52">在错的人身上验证错的素材，做出错的脉冲</b>。
     </p>
   </div>
-  <div class="page-num">14 / 16</div>
+  <div class="page-num">15 / 17</div>
 </section>
 
 <!-- ============ 决策卡 ============ -->
@@ -1381,11 +1471,11 @@ eCPM 跌穿竞价线
 
   <div class="glass-strong p-6 mt-8 reveal reveal-d4 glow-border text-center">
     <p style="color:var(--text-2); line-height:1.85; font-size:17px;">
-      会出价的投手，管好<b class="gradient-text">契约内</b>的 4 件事：bid · 契约 · 归因 · 时间。<br/>
-      会出价的高手，再加<b class="gold-text">契约外</b>的 2 把杠杆：<b class="gold-text">人群（潜客优投）</b> + <b class="gold-text">素材（创意优投）</b>。
+      会出价，要先管好<b class="gradient-text">契约内</b>的 4 件事：bid · 契约 · 归因 · 时间。<br/>
+      再进一步，叠上<b class="gold-text">契约外</b>的 2 把杠杆：<b class="gold-text">人群（潜客优投）</b> + <b class="gold-text">素材（创意优投）</b>。
     </p>
   </div>
-  <div class="page-num">15 / 16</div>
+  <div class="page-num">16 / 17</div>
 </section>
 
 <script>
