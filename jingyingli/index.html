@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>经营力 · 三层抓手全景图</title>
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --card-bg: #ffffff;
+    --layer1: #2a9d8f;
+    --layer1-bg: #ecfaf7;
+    --layer1-border: #b7e4d9;
+    --layer2: #e76f51;
+    --layer2-bg: #fef4f0;
+    --layer2-border: #f7cebe;
+    --layer3: #4a6fa5;
+    --layer3-bg: #eef3fa;
+    --layer3-border: #c4d4ea;
+    --gold: #d4a017;
+    --gold-light: #fdf3d0;
+    --text: #1a1a2e;
+    --text-secondary: #5a6070;
+    --text-muted: #8c9098;
+    --tag-green: #e6f7ee;
+    --tag-green-text: #1a7f4b;
+    --tag-orange: #fff3e6;
+    --tag-orange-text: #c0690c;
+    --tag-blue: #e8f0fe;
+    --tag-blue-text: #2563a4;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, #1a2332 0%, #1e3a5f 40%, #1a2332 100%);
+    padding: 20px 48px 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -80px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,160,23,.12) 0%, transparent 70%);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 10%;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(42,157,143,.10) 0%, transparent 70%);
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    display: flex; align-items: center;
+    gap: 28px; flex-wrap: wrap;
+  }
+  .hero-left { flex: 1; min-width: 320px; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(212,160,23,.15);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 12px;
+    border-radius: 20px;
+    letter-spacing: .04em;
+    margin-bottom: 8px;
+  }
+  .hero h1 {
+    font-size: 30px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: .02em;
+    margin-bottom: 4px;
+  }
+  .hero h1 .accent { color: var(--gold); }
+  .hero-subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,.6);
+  }
+  .hero-definition {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 12px;
+    padding: 12px 18px;
+    flex-shrink: 0;
+    max-width: 440px;
+  }
+  .hero-definition .icon-box {
+    width: 38px; height: 38px;
+    background: var(--gold);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .hero-definition p {
+    color: rgba(255,255,255,.85);
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+  .hero-definition p strong { color: var(--gold); }
+
+  /* ===== MAIN CONTAINER ===== */
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 48px 28px;
+  }
+
+  /* ===== SECTION HEADER ===== */
+  .section-header {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .section-header h2 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .section-header .divider {
+    width: 48px; height: 3px;
+    background: linear-gradient(90deg, var(--layer1), var(--layer2), var(--layer3));
+    margin: 0 auto 6px;
+    border-radius: 2px;
+  }
+  .section-header p {
+    font-size: 12.5px; color: var(--text-secondary);
+  }
+
+  /* ===== FLOW DIAGRAM (横向三阶递进) ===== */
+  .flow-diagram {
+    display: flex;
+    align-items: stretch;
+    gap: 4px;
+    margin-bottom: 22px;
+  }
+  .step-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  /* 阶梯上升：第一阶最低、第三阶最高 */
+  .flow-diagram > .step-col:nth-child(1) .layer-card { margin-top: 46px; }
+  .flow-diagram > .step-col:nth-child(3) .layer-card { margin-top: 23px; }
+  .flow-diagram > .step-col:nth-child(5) .layer-card { margin-top: 0; }
+
+  .step-arrow {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+    padding: 0 2px;
+  }
+  .step-arrow .arrow-glyph {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--layer1), var(--layer3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .step-arrow .arrow-note {
+    font-size: 9.5px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    font-weight: 600;
+  }
+
+  /* ===== LAYER CARDS (纵向卡片) ===== */
+  .layer-card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .layer-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 26px rgba(0,0,0,.1);
+  }
+  .layer-card.layer1 { border-top: 4px solid var(--layer1); }
+  .layer-card.layer2 { border-top: 4px solid var(--layer2); }
+  .layer-card.layer3 { border-top: 4px solid var(--layer3); }
+
+  .layer-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 14px 16px 10px;
+  }
+  .step-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .layer-num {
+    width: 30px; height: 30px;
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .layer1 .layer-num { background: var(--layer1); }
+  .layer2 .layer-num { background: var(--layer2); }
+  .layer3 .layer-num { background: var(--layer3); }
+  .step-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .04em;
+  }
+  .layer1 .step-tag { color: var(--layer1); }
+  .layer2 .step-tag { color: var(--layer2); }
+  .layer3 .step-tag { color: var(--layer3); }
+
+  .layer-title-area { display: flex; flex-direction: column; gap: 2px; }
+  .layer-title-area h3 {
+    font-size: 18px; font-weight: 800;
+  }
+  .layer1 .layer-title-area h3 { color: var(--layer1); }
+  .layer2 .layer-title-area h3 { color: var(--layer2); }
+  .layer3 .layer-title-area h3 { color: var(--layer3); }
+
+  .layer-title-area .layer-subtitle {
+    font-size: 11.5px; color: var(--text-muted); line-height: 1.4;
+  }
+  .layer-problem {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    align-self: flex-start;
+  }
+  .layer1 .layer-problem { background: var(--layer1-bg); color: var(--layer1); }
+  .layer2 .layer-problem { background: var(--layer2-bg); color: var(--layer2); }
+  .layer3 .layer-problem { background: var(--layer3-bg); color: var(--layer3); }
+
+  .layer-body {
+    padding: 0 16px 14px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+  }
+
+  /* ----- 抓手清单 ----- */
+  .grasp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+  }
+  .grasp-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 11.5px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+  .layer1 .grasp-item { background: var(--layer1-bg); color: #1a6b60; }
+  .layer2 .grasp-item { background: var(--layer2-bg); color: #b55a3e; }
+  .layer3 .grasp-item { background: var(--layer3-bg); color: #3a5a85; }
+  .grasp-item .dot {
+    width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 5px;
+  }
+  .layer1 .dot { background: var(--layer1); }
+  .layer2 .dot { background: var(--layer2); }
+  .layer3 .dot { background: var(--layer3); }
+
+  /* ----- 产品杠杆区 ----- */
+  .lever-box {
+    background: var(--gold-light);
+    border: 1px solid rgba(212,160,23,.2);
+    border-radius: 10px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-align: left;
+    margin-top: auto;
+  }
+  .lever-box .lever-icon {
+    font-size: 18px; flex-shrink: 0;
+  }
+  .lever-box .lever-label {
+    font-size: 9.5px; font-weight: 700;
+    color: var(--gold);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .lever-box .lever-title {
+    font-size: 11.5px; font-weight: 700;
+    color: var(--text);
+  }
+  .lever-box .lever-desc {
+    font-size: 10px; color: var(--text-muted);
+    line-height: 1.35;
+  }
+
+  /* ===== TWO LEVERS PANEL ===== */
+  .levers-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .lever-full {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    padding: 14px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .lever-full .lever-full-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .lever-full.platform .lever-full-icon { background: #eef3fa; }
+  .lever-full.ruyi .lever-full-icon { background: #fef4f0; }
+  .lever-full h4 { font-size: 15px; font-weight: 800; margin-bottom: 3px; display:inline; }
+  .lever-full .lever-tagline {
+    font-size: 11px; font-weight: 600;
+    margin-left: 8px;
+    display: inline-block;
+    padding: 1px 9px;
+    border-radius: 10px;
+  }
+  .lever-full.platform .lever-tagline { background: var(--layer3-bg); color: var(--layer3); }
+  .lever-full.ruyi .lever-tagline { background: var(--layer2-bg); color: var(--layer2); }
+  .lever-full .lever-details {
+    font-size: 11.5px; color: var(--text-secondary);
+    line-height: 1.55;
+    margin-top: 6px;
+  }
+  .lever-full .lever-details strong { color: var(--text); }
+  .lever-full .lever-body { flex: 1; }
+  .lever-def {
+    font-size: 11.5px; color: var(--text-secondary);
+    line-height: 1.5; margin-bottom: 8px;
+  }
+  .lever-def strong { color: var(--text); }
+  .lever-points { display: flex; flex-direction: column; gap: 5px; margin-bottom: 8px; }
+  .lever-point {
+    display: flex; align-items: flex-start; gap: 7px;
+    font-size: 11px; line-height: 1.4; color: var(--text-secondary);
+  }
+  .lever-point .pt-key {
+    flex-shrink: 0;
+    font-weight: 800;
+    width: 18px; height: 18px;
+    border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    color: #fff;
+  }
+  .lever-full.ruyi .pt-key { background: var(--layer2); }
+  .lever-full.platform .pt-key { background: var(--layer3); }
+  .lever-point .pt-text strong { color: var(--text); }
+  .lever-point .pt-text .pt-arrow { color: var(--gold); font-weight: 700; }
+  .lever-metrics {
+    display: flex; flex-wrap: wrap; gap: 5px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(0,0,0,.08);
+  }
+  .lever-metric {
+    font-size: 10px; font-weight: 600;
+    padding: 2px 8px; border-radius: 6px;
+  }
+  .lever-full.ruyi .lever-metric { background: var(--layer2-bg); color: #b55a3e; }
+  .lever-full.platform .lever-metric { background: var(--layer3-bg); color: #3a5a85; }
+  .lever-point .pt-warn {
+    color: #c0690c; font-weight: 700; font-style: normal;
+    background: #fff3e6; padding: 0 6px; border-radius: 5px;
+    margin-left: 4px; font-size: 10px;
+  }
+
+  /* ===== SUPPORT BRIDGE (杠杆向上支撑) ===== */
+  .support-bridge {
+    display: flex; align-items: center; justify-content: center;
+    gap: 14px; margin: 2px 0 12px;
+  }
+  .support-bridge .sb-arrows { display: flex; gap: 7px; }
+  .support-bridge .sb-arrows span {
+    font-size: 20px; font-weight: 800; line-height: 1;
+    background: linear-gradient(180deg, var(--gold), var(--layer2));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: floatUp 1.9s ease-in-out infinite;
+  }
+  .support-bridge .sb-arrows span:nth-child(2) { animation-delay: .3s; }
+  .support-bridge .sb-arrows span:nth-child(3) { animation-delay: .6s; }
+  .support-bridge .sb-text {
+    font-size: 12px; font-weight: 700; color: #8a6d1a;
+    background: var(--gold-light); padding: 6px 16px; border-radius: 20px;
+    border: 1px dashed rgba(212,160,23,.4);
+  }
+  .support-bridge .sb-text b { color: var(--layer2); }
+  @keyframes floatUp {
+    0%,100% { transform: translateY(0); opacity: .45; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+  .levers-panel.as-base .lever-full { border-bottom: 3px solid var(--gold); }
+
+  /* ===== RELATION ARROWS ===== */
+  .relation-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.03);
+    flex-wrap: wrap;
+  }
+  .relation-item {
+    font-size: 13px; font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 10px;
+  }
+  .relation-item.diagnose { background: var(--layer1-bg); color: var(--layer1); }
+  .relation-item.execute { background: var(--layer3-bg); color: var(--layer3); }
+  .relation-arrow {
+    font-size: 18px; color: var(--text-muted);
+  }
+
+  /* ===== BOTTOM QUOTE ===== */
+  .bottom-quote {
+    text-align: center;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, #fdf3d0 0%, #fcf6e4 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(212,160,23,.15);
+  }
+  .bottom-quote .quote-line {
+    font-size: 14px; font-weight: 600;
+    color: #5a4410;
+  }
+  .bottom-quote .quote-line .hl { color: var(--gold); font-weight: 800; }
+
+  /* ===== 四力全景盘点 ===== */
+  .overview-wrap { margin-bottom: 24px; }
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .force-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    padding: 14px 14px 12px;
+    border-top: 4px solid var(--fc);
+    display: flex; flex-direction: column; gap: 8px;
+    position: relative;
+  }
+  .force-card .fc-head { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .force-card .fc-name { font-size: 16px; font-weight: 800; color: var(--fc); }
+  .force-card .fc-en { font-size: 9px; font-weight: 700; letter-spacing: .03em; color: var(--text-muted); text-transform: uppercase; }
+  .force-card .fc-role { font-size: 11px; color: var(--text-secondary); line-height: 1.45; flex: 1; }
+  .force-card .fc-role strong { color: var(--text); }
+  .force-card .fc-bar { height: 6px; border-radius: 4px; background: #eef0f3; overflow: hidden; }
+  .force-card .fc-bar > span { display:block; height:100%; border-radius:4px; background: var(--fc); }
+  .force-card .fc-status { font-size: 10.5px; font-weight: 700; color: var(--fc); }
+  .force-card.gap {
+    border: 2px solid var(--gold);
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 6px 22px rgba(212,160,23,.25);
+    background: linear-gradient(180deg, #fffdf5, #fff);
+  }
+  .force-card .fc-flag {
+    position: absolute; top: -11px; right: 10px;
+    background: var(--gold); color:#fff; font-size: 10px; font-weight: 800;
+    padding: 2px 10px; border-radius: 10px; letter-spacing:.03em;
+    box-shadow: 0 3px 8px rgba(212,160,23,.35);
+  }
+  .org-base {
+    background: linear-gradient(135deg, #fdf3d0 0%, #fcf6e4 100%);
+    border: 1px solid rgba(212,160,23,.2);
+    border-radius: 12px;
+    padding: 10px 18px;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 12px; color: #6b5518; line-height: 1.4;
+  }
+  .org-base .ob-name { font-size: 14px; font-weight: 800; color: #b5860f; flex-shrink:0; }
+  .org-base b { color: #8a6d1a; }
+  .gap-callout {
+    margin: 12px 0 0;
+    text-align:center;
+    font-size: 13px; font-weight: 700; color:#8a6d1a; line-height: 1.5;
+    background: var(--gold-light); border:1px dashed rgba(212,160,23,.4);
+    border-radius: 10px; padding: 10px 18px;
+  }
+  .gap-callout .hl { color: var(--gold); font-weight:800; }
+
+  /* ===== 为什么现在立项 ===== */
+  .rationale {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 12px;
+    margin-bottom: 12px;
+  }
+  .rat-card {
+    background: var(--card-bg); border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    padding: 14px 16px; border-left: 4px solid var(--layer3);
+  }
+  .rat-card.r1 { border-left-color: var(--layer1); }
+  .rat-card.r2 { border-left-color: var(--layer2); }
+  .rat-card.r3 { border-left-color: var(--gold); }
+  .rat-card .rc-tag { font-size: 11px; font-weight: 800; margin-bottom: 5px; }
+  .rat-card.r1 .rc-tag { color: var(--layer1); }
+  .rat-card.r2 .rc-tag { color: var(--layer2); }
+  .rat-card.r3 .rc-tag { color: #b5860f; }
+  .rat-card .rc-title { font-size: 13.5px; font-weight: 800; margin-bottom: 5px; color: var(--text); }
+  .rat-card .rc-body { font-size: 11.5px; color: var(--text-secondary); line-height: 1.5; }
+  .rat-card .rc-body strong { color: var(--text); }
+  .ask-strip {
+    background: linear-gradient(135deg, #1a2332, #1e3a5f);
+    color: rgba(255,255,255,.9); border-radius: 12px; padding: 14px 20px;
+    font-size: 13px; font-weight: 600; line-height:1.6;
+    display:flex; align-items:center; gap:14px;
+    margin-bottom: 26px;
+  }
+  .ask-strip .as-ico { font-size: 22px; flex-shrink:0; }
+  .ask-strip .hl { color: var(--gold); font-weight: 800; }
+
+  /* ===== 超链接 ===== */
+  .doc-link {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 10.5px; font-weight: 700;
+    color: #2563a4; text-decoration: none;
+    border-bottom: 1px dashed rgba(37,99,164,.45);
+    padding-bottom: 1px; line-height: 1.4;
+    transition: color .15s, border-color .15s;
+  }
+  .doc-link::before { content: '🔗'; font-size: 10px; }
+  .doc-link:hover { color: #d4a017; border-bottom-color: rgba(212,160,23,.6); }
+  .force-card .doc-link {
+    margin-top: 8px; padding-top: 8px;
+    border-top: 1px dashed rgba(0,0,0,.07);
+    border-bottom: none;
+  }
+  .four-force-link { text-align: center; margin: 12px 0 0; }
+  .four-force-link .doc-link {
+    font-size: 12px; padding: 7px 18px;
+    background: var(--gold-light); border: 1px dashed rgba(212,160,23,.4);
+    border-radius: 20px; color: #8a6d1a;
+  }
+  .four-force-link .doc-link:hover { color: #b5860f; }
+  .lever-link {
+    margin-top: 8px; padding-top: 8px;
+    border-top: 1px dashed rgba(0,0,0,.08);
+  }
+
+  /* 产品卡左右对齐上层：经营平台(左·对阵地/节点) · 如翼(右·对人群) */
+  .levers-panel .lever-full.platform { order: 1; }
+  .levers-panel .lever-full.ruyi { order: 2; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .hero { padding: 32px 24px 28px; }
+    .hero h1 { font-size: 28px; }
+    .main { padding: 24px 16px 40px; }
+    .flow-diagram { flex-direction: column; gap: 10px; }
+    .flow-diagram > .step-col:nth-child(1) .layer-card,
+    .flow-diagram > .step-col:nth-child(3) .layer-card,
+    .flow-diagram > .step-col:nth-child(5) .layer-card { margin-top: 0; }
+    .step-arrow .arrow-glyph { transform: rotate(45deg); }
+    .levers-panel { grid-template-columns: 1fr; }
+    .overview-grid { grid-template-columns: 1fr 1fr; }
+    .rationale { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-badge">四力全景 · 经营力立项</div>
+      <h1>经营力<span class="accent">缺口盘点</span>与打法全景图</h1>
+      <p class="hero-subtitle">先盘四力全局 → 锁定经营力缺口 → 讲清打法与立项建议 · 把"一次性流量"变成"可反复经营的生意资产"</p>
+    </div>
+    <div class="hero-definition">
+      <div class="icon-box">🎯</div>
+      <p>商品力 = <strong>货</strong>　·　内容力 = <strong>说</strong>　·　投放力 = <strong>放</strong>　·　经营力 = <strong style="color:#d4a017;">接</strong><br>投放"把水引进来"，经营力<strong>修渠蓄水、让水能反复用</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAIN ===== -->
+<div class="main">
+
+  <!-- ===== 四力全景盘点 ===== -->
+  <div class="section-header">
+    <h2>先看全局：四力能力盘点</h2>
+    <div class="divider"></div>
+    <p>商品力 / 内容力 / 投放力已沉淀方法论与工具，<strong style="color:var(--gold);">经营力是当前唯一「产品化推进中」的缺口</strong></p>
+  </div>
+
+  <div class="overview-wrap">
+    <div class="overview-grid">
+      <div class="force-card" style="--fc:#2563a4;">
+        <div class="fc-head"><span class="fc-name">商品力</span><span class="fc-en">WHAT · 卖什么</span></div>
+        <div class="fc-role">选出"这里的爆款"——痛点 × 货组机制 × 信任背书。<strong>面状拓品（经营平台已产品化落地）/ 点状拓品 AI 工具赋能</strong></div>
+        <div class="fc-bar"><span style="width:70%"></span></div>
+        <div class="fc-status">● AI 手搓产品工具 → 部分产品化</div>
+        <a class="doc-link" href="https://winglee777.github.io/food-category-insight/" target="_blank">食品饮料赛道品类拓品洞察体系</a>
+      </div>
+      <div class="force-card" style="--fc:#7c4dbc;">
+        <div class="fc-head"><span class="fc-name">内容力</span><span class="fc-en">HOW TO SAY · 怎么说</span></div>
+        <div class="fc-role">卖点不变、视角切换。<strong>素材内容力：Creative+ 已产品化；直播内容力：经营平台已完善直播间诊断 + 数字人直播能力</strong></div>
+        <div class="fc-bar"><span style="width:90%"></span></div>
+        <div class="fc-status">● 双线产品化 · 持续迭代</div>
+        <a class="doc-link" href="https://doc.weixin.qq.com/doc/w3_AbEAEAZXAOcCNPynTcax1Q4q0EN6P?scode=AJEAIQdfAAo337hFMeAbEAEAZXAOc" target="_blank">商品经营平台进展同步和讨论</a>
+      </div>
+      <div class="force-card gap" style="--fc:#d4a017;">
+        <div class="fc-flag">当前缺口</div>
+        <div class="fc-head"><span class="fc-name">经营力</span><span class="fc-en">HOW TO SELL · 怎么卖</span></div>
+        <div class="fc-role">接住平台给的每一次机会——阵地 / 节点 / 人群三层经营。<strong>经营号 · 如翼小店产品化推进中</strong></div>
+        <div class="fc-bar"><span style="width:35%"></span></div>
+        <div class="fc-status">⚠ 产品化推进中 · 方法论待体系化</div>
+        <a class="doc-link" href="https://doc.weixin.qq.com/slide/p3_AaEAUgbuAPUCN9m0XrQYOSB0ZnSHg?scode=AJEAIQdfAAoCLmgEYhAaEAUgbuAPU" target="_blank">食饮品牌四力破局 · 私董会版</a>
+      </div>
+      <div class="force-card" style="--fc:#2a9d8f;">
+        <div class="fc-head"><span class="fc-name">投放力</span><span class="fc-en">HOW TO ACQUIRE · 怎么获客</span></div>
+        <div class="fc-role">AI 投放平权、做有效基建——放大到每个该被看见的人。<strong>勤奋度课程 / adata 诊断已上线</strong></div>
+        <div class="fc-bar"><span style="width:80%"></span></div>
+        <div class="fc-status">● 基本产品化 · 人工+AI+产品</div>
+        <a class="doc-link" href="https://xiaofangli055-byte.github.io/food/qinfendu/" target="_blank">三阶段勤奋诊断与四力提升手册</a>
+      </div>
+    </div>
+
+    <div class="gap-callout">
+      三力"怎么选货 / 怎么说 / 怎么获客"都已跑通、有工具、有沉淀 —— 唯独 <span class="hl">经营力"怎么卖、接得住"这一环，打法散、产品化最浅</span>，是四力飞轮里目前最松、也最该补的一环。
+    </div>
+  </div>
+
+  <!-- ===== 为什么现在要立项 ===== -->
+  <div class="section-header">
+    <h2>为什么"经营力"要在此刻立项、重点布局</h2>
+    <div class="divider" style="background:linear-gradient(90deg,var(--layer1),var(--gold),var(--layer2));"></div>
+    <p>战略顺势 × 外部已造势 × 已验证待规模化 —— 三者叠加，正是补齐缺口的最佳时点</p>
+  </div>
+
+  <div class="rationale">
+    <div class="rat-card r1">
+      <div class="rc-tag">① 战略顺势</div>
+      <div class="rc-title">部门重仓微信小店 & K800 品牌</div>
+      <div class="rc-body">微信小店与 K800 品牌是部门<strong>今年最强战略投入方向</strong>——补齐经营力，是给战略配上"方法论弹药"，顺势而为，不是无中生有。</div>
+    </div>
+    <div class="rat-card r2">
+      <div class="rc-tag">② 外部已造势</div>
+      <div class="rc-title">7/20 上海私董会（GM 开场）已对外承诺</div>
+      <div class="rc-body">私董会《四力破局》已向 K800 品牌<strong>重点输出经营力布局</strong>、引出经营平台 & 如翼，并<strong>呼吁品牌入驻授权</strong>。对外承诺已发出，亟需内部有体系承接、把授权转化为经营结果。</div>
+    </div>
+    <div class="rat-card r3">
+      <div class="rc-tag">③ 已验证待规模化</div>
+      <div class="rc-title">经营投入能撬动规模，但仍点状、难复制</div>
+      <div class="rc-body">已小范围验证：<strong>引导经营投入能撬动经营规模、带动广告增长</strong>（锋味派达播拉新、WonderLab 新品类达人种收破圈）。但仍点状、非标，难规模化，亟需<strong>体系化沉淀可复制打法</strong>。</div>
+    </div>
+  </div>
+
+  <div class="ask-strip">
+    <span class="as-ico">📌</span>
+    <span>所以恳请老板：把经营力<span class="hl">立项为部门级方法论资产</span>、<span class="hl">投入落地资源</span>（如翼小店版数据源打通 / 经营平台 push K800 接入），让它从"私董会对外造势"真正沉淀为<span class="hl">内部可复用的经营体系</span>。&nbsp;下面就是这套体系的完整打法 ↓</span>
+  </div>
+
+  <!-- Section header -->
+  <div class="section-header">
+    <h2>「怎么打」三层经营 · 层层递进</h2>
+    <div class="divider"></div>
+    <p>从「日常承接」到「节点爆发」再到「人群资产化」——经营力是唯一跨周期的力</p>
+  </div>
+
+  <!-- Flow diagram (横向三阶阶梯递进) -->
+  <div class="flow-diagram">
+
+    <!-- ===== STEP 1: 阵地经营 ===== -->
+    <div class="step-col">
+      <div class="layer-card layer1">
+        <div class="layer-header">
+          <div class="step-badge">
+            <div class="layer-num">1</div>
+            <span class="step-tag">STEP 1 · 日常承接</span>
+          </div>
+          <div class="layer-title-area">
+            <h3>阵地经营</h3>
+            <div class="layer-subtitle">覆盖小店六大成交路径 · 分阵地承接运营</div>
+          </div>
+          <div class="layer-problem">解决：接得住、接得全</div>
+        </div>
+        <div class="layer-body">
+          <div class="grasp-list">
+            <div class="grasp-item"><span class="dot"></span> <strong>直播</strong>（主播话术 / 排品 / 装修）</div>
+            <div class="grasp-item"><span class="dot"></span> <strong>短视频</strong>（小店直购、主页 / KOC加热）</div>
+            <div class="grasp-item"><span class="dot"></span> <strong>增量阵地引导</strong>（达播 / 送礼 / 货架 / 搜索）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 递进箭头 1→2 -->
+    <div class="step-arrow">
+      <span class="arrow-glyph">↗</span>
+      <span class="arrow-note">接得集中</span>
+    </div>
+
+    <!-- ===== STEP 2: 节点经营 ===== -->
+    <div class="step-col">
+      <div class="layer-card layer2">
+        <div class="layer-header">
+          <div class="step-badge">
+            <div class="layer-num">2</div>
+            <span class="step-tag">STEP 2 · 节点爆发</span>
+          </div>
+          <div class="layer-title-area">
+            <h3>节点经营</h3>
+            <div class="layer-subtitle">借平台节点集中爆发与资源撬动 · 脉冲放大器</div>
+          </div>
+          <div class="layer-problem">解决：何时集中接、怎么撬平台资源</div>
+        </div>
+        <div class="layer-body">
+          <div class="grasp-list">
+            <div class="grasp-item"><span class="dot"></span> <strong>品牌好友日</strong>（新客88%+，日销2-10倍）</div>
+            <div class="grasp-item"><span class="dot"></span> <strong>大促膨胀券 & 官方货补</strong></div>
+            <div class="grasp-item"><span class="dot"></span> <strong>超品发布会 / 自建大场</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 递进箭头 2→3 -->
+    <div class="step-arrow">
+      <span class="arrow-glyph">↗</span>
+      <span class="arrow-note">接得长久</span>
+    </div>
+
+    <!-- ===== STEP 3: 人群经营 ===== -->
+    <div class="step-col">
+      <div class="layer-card layer3">
+        <div class="layer-header">
+          <div class="step-badge">
+            <div class="layer-num">3</div>
+            <span class="step-tag">STEP 3 · 人群资产化</span>
+          </div>
+          <div class="layer-title-area">
+            <h3>人群经营</h3>
+            <div class="layer-subtitle">承接 → 看清 → 复用 · 长期复利引擎</div>
+          </div>
+          <div class="layer-problem">解决：能否留下、下次还能再用</div>
+        </div>
+        <div class="layer-body">
+          <div class="grasp-list">
+            <div class="grasp-item"><span class="dot"></span> <strong>承接</strong>：私域沉淀（企微加粉）、会员运营</div>
+            <div class="grasp-item"><span class="dot"></span> <strong>看清</strong>：R0→R5 人群资产健康度（不止即时收割）</div>
+            <div class="grasp-item"><span class="dot"></span> <strong>复用</strong>：再营销、RTA 追投</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== Section: Two Product Levers ===== -->
+  <div class="section-header">
+    <h2>「用什么打」两大产品杠杆 · 分层托举</h2>
+    <div class="divider" style="background: linear-gradient(90deg, var(--layer3), var(--layer2));"></div>
+    <p><strong style="color:var(--text);">阵地 / 节点经营 → ⚡ 经营平台（做动作）</strong>；<strong style="color:var(--text);">人群经营 → 📊 如翼（管资产）</strong> · 上面三层递进，下面两大杠杆分层承接托举</p>
+  </div>
+
+  <div class="levers-panel as-base">
+    <!-- ===== 如翼（诊断） ===== -->
+    <div class="lever-full ruyi">
+      <div class="lever-full-icon">🔬</div>
+      <div class="lever-body">
+        <h4>如翼</h4><span class="lever-tagline">资产度量 · 营销科学</span>
+        <div class="lever-def"><strong>定位：</strong>腾讯营销科学产品，用数据科学衡量数字营销效果</div>
+        <div class="lever-points">
+          <div class="lever-point"><span class="pt-key">F</span><span class="pt-text"><strong>人群资产</strong>（5R 链路 / R0 种子）—— 让人<strong>看见</strong></span></div>
+          <div class="lever-point"><span class="pt-key">A</span><span class="pt-text"><strong>友赞资产</strong>（社交口碑扩散）—— 让人<strong>说好</strong></span></div>
+          <div class="lever-point"><span class="pt-key">S</span><span class="pt-text"><strong>心智资产</strong>（品牌记忆 / 心智份额）—— 让人<strong>记住</strong></span></div>
+          <div class="lever-point"><span class="pt-key">T</span><span class="pt-text"><strong>生意资产</strong>（GMV / ROI）—— 让人<strong>买单</strong></span></div>
+        </div>
+        <div class="lever-def" style="margin-bottom:6px;"><strong>落地：</strong>推动小店版如翼接入非广告域数据源 + 与旗舰版高效协同</div>
+        <div class="lever-metrics">
+          <span class="lever-metric">5R人群量级</span>
+          <span class="lever-metric">R0渗透率</span>
+          <span class="lever-metric">心智份额</span>
+          <span class="lever-metric">外溢转化率</span>
+        </div>
+        <div class="lever-link"><a class="doc-link" href="https://doc.weixin.qq.com/doc/w3_AcQAYgblAHkCNOvYfp2P0SX6cRHHt?scode=AJEAIQdfAAoST3ZzxPAPYAgQbdAFw" target="_blank">如翼数据 → 四力诊断 → 解决方案 · 标准化分析 SOP</a></div>
+      </div>
+    </div>
+
+    <!-- ===== 经营平台（执行） ===== -->
+    <div class="lever-full platform">
+      <div class="lever-full-icon">🩺</div>
+      <div class="lever-body">
+        <h4>经营平台</h4><span class="lever-tagline">动作提效 · 全域经营</span>
+        <div class="lever-def"><strong>底座：</strong>经营号 —— 数据资产统一<strong>接入 / 打通 / 管理</strong>，一切经营动作的数据地基</div>
+        <div class="lever-points">
+          <div class="lever-point"><span class="pt-key">直</span><span class="pt-text"><strong>直播经营</strong>：AI复盘（GPM+63.6%）/ 数字分身 / 高光切片</span></div>
+          <div class="lever-point"><span class="pt-key">店</span><span class="pt-text"><strong>小店经营</strong>：选品 / 价格带 / 爆品洞察 · <strong>全域ROI / 新客LTV分析</strong></span></div>
+          <div class="lever-point"><span class="pt-key">企</span><span class="pt-text"><strong>企微经营</strong>：转化宝 ClawBot / 用户跃迁洞察</span></div>
+        </div>
+        <div class="lever-def" style="margin-bottom:6px;"><strong>落地：</strong>借势私董会 <strong>push K800 品牌全量接入经营号 + 授权数据源打通</strong> 小 A 灵活应用</div>
+        <div class="lever-metrics">
+          <span class="lever-metric">经营号接入数</span>
+          <span class="lever-metric">GPM 提升</span>
+          <span class="lever-metric">全域ROI</span>
+          <span class="lever-metric">新客LTV</span>
+        </div>
+        <div class="lever-link"><a class="doc-link" href="https://doc.weixin.qq.com/sheet/e3_AaEAUgbuAPUCN36EE19hmT7qyba1z?scode=AJEAIQdfAAolSR9ChkAaEAUgbuAPU&tab=BB08J2" target="_blank">食品饮料 × 经营平台需求沟通</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Relation Row（动作沉淀资产 · 资产反哺动作 · 飞轮） ===== -->
+  <div class="relation-row">
+    <span class="relation-item execute">⚡ 经营平台 · 做动作</span>
+    <span class="relation-arrow">→</span>
+    <span style="font-size:12px;color:var(--text-muted);">动作沉淀人群资产<br>资产反哺下一轮动作</span>
+    <span class="relation-arrow">→</span>
+    <span class="relation-item diagnose">📊 如翼 · 管资产</span>
+    <span class="relation-arrow">→</span>
+    <span style="font-size:14px;font-weight:700;color:var(--gold);">🎯 GMV/ROI 增长飞轮</span>
+  </div>
+
+  <!-- ===== Bottom Quote ===== -->
+  <div class="bottom-quote">
+    <div class="quote-line">
+      经营力决定了这门生意是<span class="hl">"一波流"</span>还是转得起来的<span class="hl">"飞轮"</span>——它是四力中唯一<span class="hl">跨周期</span>的力。
+    </div>
+    <div style="margin-top:8px;font-size:12px;color:#8c7a30;">
+      阵地经营（日常）→ 节点经营（脉冲）→ 人群经营（复利） → 反哺下一轮阵地经营
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
