@@ -589,6 +589,133 @@
   .levers-panel .lever-full.platform { order: 1; }
   .levers-panel .lever-full.ruyi { order: 2; }
 
+  /* ===== 终局：经营基建体系（数据接入 → 四力诊断 → 人群资产沉淀） ===== */
+  .infra-system {
+    background: linear-gradient(160deg, #e9f1fc 0%, #f3f7fd 100%);
+    border: 1px solid #d3e0f2;
+    border-radius: 16px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .infra-title-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap; padding: 2px 4px 8px;
+  }
+  .infra-title-bar h3 { font-size: 17px; font-weight: 800; color: #1e3a5f; }
+  .infra-title-bar h3 em { color: var(--gold); font-style: normal; }
+  .infra-force-tags { display: flex; gap: 6px; }
+  .ift { font-size: 10.5px; font-weight: 700; padding: 3px 10px; border-radius: 12px; color: #fff; }
+
+  .infra-layer {
+    display: flex; align-items: stretch; gap: 14px;
+    background: #fff; border-radius: 12px; padding: 11px 14px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.04);
+  }
+  .infra-label {
+    flex-shrink: 0; width: 78px;
+    display: flex; flex-direction: column; justify-content: center;
+    font-size: 14px; font-weight: 800; color: #2563a4; line-height: 1.3;
+  }
+  .infra-content { flex: 1; min-width: 0; }
+  .infra-tagline { font-size: 12.5px; font-weight: 700; color: #2563a4; text-align: center; }
+  .infra-tagline b { color: var(--gold); }
+  .infra-arrow { align-self: center; font-size: 16px; color: var(--gold); font-weight: 800; line-height: 1; }
+
+  /* Layer A: 平台接入 */
+  .platform-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+  .platform-item {
+    display: flex; align-items: center; gap: 7px; justify-content: center;
+    font-size: 13px; font-weight: 700; color: var(--text);
+    background: #f4f8fd; border: 1px solid #e0e9f5;
+    padding: 7px 12px; border-radius: 10px; flex: 1;
+  }
+  .platform-item .pf-ico { font-size: 17px; }
+
+  /* Layer B: 四力诊断 */
+  .diag-banner {
+    background: linear-gradient(135deg, #1e3a5f, #2563a4);
+    color: #fff; font-size: 12.5px; font-weight: 700;
+    text-align: center; padding: 7px 14px; border-radius: 8px; margin-bottom: 10px;
+  }
+  .diag-banner b { color: var(--gold); }
+  .diag-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .diag-card {
+    border: 1px solid var(--dc-border); border-top: 3px solid var(--dc);
+    border-radius: 10px; padding: 10px; background: var(--dc-bg);
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .diag-card .dc-head { display: flex; align-items: baseline; gap: 5px; flex-wrap: wrap; }
+  .diag-card .dc-name { font-size: 14px; font-weight: 800; color: var(--dc); }
+  .diag-card .dc-en { font-size: 7.5px; font-weight: 700; color: var(--text-muted); letter-spacing: .02em; text-transform: uppercase; }
+  .diag-card .dc-role { font-size: 10.5px; color: var(--text-secondary); line-height: 1.4; }
+  .diag-card .dc-list { display: flex; flex-direction: column; gap: 3px; }
+  .diag-card .dc-item {
+    font-size: 10.5px; color: var(--text); font-weight: 600;
+    display: flex; align-items: flex-start; gap: 5px; line-height: 1.32;
+  }
+  .diag-card .dc-item::before { content: '✓'; color: var(--dc); font-weight: 800; flex-shrink: 0; }
+  .diag-card .dc-deliver {
+    margin-top: auto; font-size: 9.5px; color: var(--dc);
+    background: #fff; border: 1px dashed var(--dc-border);
+    border-radius: 6px; padding: 5px 7px; line-height: 1.4; font-weight: 600;
+  }
+
+  /* Layer C: 5R 人群资产 */
+  .r-flow { display: flex; align-items: stretch; gap: 5px; margin-bottom: 8px; }
+  .r-step {
+    flex: 1; text-align: center; padding: 8px 4px 8px 16px;
+    color: #fff; line-height: 1.2;
+    clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 50%, calc(100% - 13px) 100%, 0 100%, 13px 50%);
+  }
+  .r-step:first-child {
+    padding-left: 8px;
+    clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 50%, calc(100% - 13px) 100%, 0 100%);
+  }
+  .r-step .r-code { font-size: 15px; font-weight: 800; letter-spacing: .02em; }
+  .r-step .r-name { font-size: 10.5px; font-weight: 600; opacity: .95; }
+
+  /* ===== 反哺闭环：人群资产沉淀 → 回流四力诊断（经营飞轮） ===== */
+  .infra-cycle {
+    position: relative;
+    display: flex; flex-direction: column; gap: 4px;
+    padding-right: 52px;
+  }
+  .loopback {
+    position: absolute; top: 6px; right: 4px; bottom: 6px; width: 38px;
+    border: 2px dashed var(--gold);
+    border-left: none;
+    border-radius: 0 18px 18px 0;
+    pointer-events: none;
+  }
+  .loopback .lb-arrow-top {
+    position: absolute; top: -11px; left: -9px;
+    color: var(--gold); font-size: 16px; font-weight: 800; line-height: 1;
+  }
+  .loopback .lb-arrow-bottom {
+    position: absolute; bottom: -3px; left: -8px;
+    color: var(--gold); font-size: 12px; font-weight: 800; line-height: 1;
+  }
+  .loopback .lb-text {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    writing-mode: vertical-rl;
+    font-size: 11px; font-weight: 800; color: #b8860b;
+    letter-spacing: 2px; white-space: nowrap;
+    background: linear-gradient(160deg, #e9f1fc 0%, #f3f7fd 100%);
+    padding: 4px 0;
+  }
+  .infra-loop-note {
+    margin-top: 2px;
+    background: linear-gradient(135deg, #fff7e6, #fef3d9);
+    border: 1px dashed var(--gold);
+    border-radius: 10px; padding: 9px 14px;
+    font-size: 12px; font-weight: 700; color: #8c6d1f;
+    text-align: center; line-height: 1.55;
+  }
+  .infra-loop-note b { color: var(--gold); }
+
   /* ===== RESPONSIVE ===== */
   @media (max-width: 900px) {
     .hero { padding: 32px 24px 28px; }
@@ -602,6 +729,14 @@
     .levers-panel { grid-template-columns: 1fr; }
     .overview-grid { grid-template-columns: 1fr 1fr; }
     .rationale { grid-template-columns: 1fr; }
+    .infra-layer { flex-direction: column; gap: 8px; }
+    .infra-label { width: auto; }
+    .diag-grid { grid-template-columns: 1fr 1fr; }
+    .platform-item { flex: 1 1 45%; }
+    .r-flow { flex-wrap: wrap; }
+    .r-step { flex: 1 1 30%; }
+    .infra-cycle { padding-right: 0; }
+    .loopback { display: none; }
   }
 </style>
 </head>
@@ -869,6 +1004,133 @@
     <div style="margin-top:8px;font-size:12px;color:#8c7a30;">
       阵地经营（日常）→ 节点经营（脉冲）→ 人群经营（复利） → 反哺下一轮阵地经营
     </div>
+  </div>
+
+  <!-- ===== 终局愿景：经营基建体系 ===== -->
+  <div class="section-header" style="margin-top:26px;">
+    <h2>终局：我们给品牌的不是投放工具，而是一套<em style="color:var(--gold);font-style:normal;">经营基建体系</em></h2>
+    <div class="divider" style="background:linear-gradient(90deg,#2563a4,#7c4dbc,var(--layer1),var(--layer2));"></div>
+    <p>经营力缺口补齐后，四力合璧 —— 从<strong style="color:var(--text);">数据接入</strong> → <strong style="color:var(--text);">品牌生意全面诊断</strong> → <strong style="color:var(--text);">人群资产沉淀</strong>，交付一整套可复用的经营基建</p>
+  </div>
+
+  <div class="infra-system">
+    <div class="infra-title-bar">
+      <h3>我们给品牌的不是投放工具，而是<em>一套经营基建体系</em></h3>
+      <div class="infra-force-tags">
+        <span class="ift" style="background:#2563a4;">商品力</span>
+        <span class="ift" style="background:#7c4dbc;">内容力</span>
+        <span class="ift" style="background:var(--layer1);">经营力</span>
+        <span class="ift" style="background:var(--layer2);">投放力</span>
+      </div>
+    </div>
+
+    <!-- Layer A: 生意数据资产接入 -->
+    <div class="infra-layer">
+      <div class="infra-label">生意数据<br>资产接入</div>
+      <div class="infra-content">
+        <div class="platform-row">
+          <div class="platform-item"><span class="pf-ico">📣</span>营销投放</div>
+          <div class="platform-item"><span class="pf-ico">🎬</span>视频号</div>
+          <div class="platform-item"><span class="pf-ico">🛍️</span>微信小店</div>
+          <div class="platform-item"><span class="pf-ico">💬</span>企业微信</div>
+        </div>
+        <div class="infra-tagline">品牌经营矩阵<b>全授权</b>，生意数据<b>精准反哺</b></div>
+      </div>
+    </div>
+
+    <div class="infra-arrow">▼</div>
+
+    <div class="infra-cycle">
+    <!-- Layer B: 品牌经营全面诊断 -->
+    <div class="infra-layer">
+      <div class="infra-label">品牌经营<br>全面诊断</div>
+      <div class="infra-content">
+        <div class="diag-banner">K800 客户尊享【<b>四力诊断报告</b>】—— 决策有优先级，落地有依据</div>
+        <div class="diag-grid">
+
+          <!-- 商品力 -->
+          <div class="diag-card" style="--dc:#2563a4;--dc-bg:#eef4fc;--dc-border:#c9dcf3;">
+            <div class="dc-head"><span class="dc-name">商品力</span><span class="dc-en">WHAT · 卖什么</span></div>
+            <div class="dc-role">帮助货盘结构、爆品选品、产品背书，一次看清</div>
+            <div class="dc-list">
+              <div class="dc-item">货盘金字塔（结构 / 机会点洞察）</div>
+              <div class="dc-item">爆品心智占位（大单品聚合）</div>
+              <div class="dc-item">产品背书体系（信任构建）</div>
+              <div class="dc-item">节令商品预警（应季抢先卡位）</div>
+            </div>
+            <div class="dc-deliver">交付：货盘金字塔模型 + 节令预警 + 三力调度关联表</div>
+          </div>
+
+          <!-- 内容力 -->
+          <div class="diag-card" style="--dc:#7c4dbc;--dc-bg:#f3edfb;--dc-border:#ddc9f0;">
+            <div class="dc-head"><span class="dc-name">内容力</span><span class="dc-en">HOW TO SAY · 怎么说</span></div>
+            <div class="dc-role">帮助创作者视角、痛点分层、内容评估，变成可复制的方法</div>
+            <div class="dc-list">
+              <div class="dc-item">爆点找逻辑（从爆款反推 + 三段结构）</div>
+              <div class="dc-item">创作者视角金字塔（KOC 全景）</div>
+              <div class="dc-item">本地化内容黑盒（达人三段论）</div>
+              <div class="dc-item">三级评估体系（内容诊断）</div>
+            </div>
+            <div class="dc-deliver">交付：创作者视角图 + 爆点定位卡 + 三级评估卡</div>
+          </div>
+
+          <!-- 经营力 -->
+          <div class="diag-card" style="--dc:#2a9d8f;--dc-bg:#e9f7f4;--dc-border:#bce3db;">
+            <div class="dc-head"><span class="dc-name">经营力</span><span class="dc-en">HOW TO SELL · 怎么卖</span></div>
+            <div class="dc-role">帮助阵地、直播、大场、公私域，打通经营抓手</div>
+            <div class="dc-list">
+              <div class="dc-item">三种经营路径（六大成交路径矩阵）</div>
+              <div class="dc-item">阵地三层看清（直播 / 短视频 / 达播）</div>
+              <div class="dc-item">直播间精选（诊断 + 高光切片）</div>
+              <div class="dc-item">公私域双域模型（企微 / 私域）</div>
+            </div>
+            <div class="dc-deliver">交付：直播间黄金卡 + 高流量入场日历 + 公私域联动</div>
+          </div>
+
+          <!-- 投放力 -->
+          <div class="diag-card" style="--dc:#e76f51;--dc-bg:#fdf0eb;--dc-border:#f6d2c5;">
+            <div class="dc-head"><span class="dc-name">投放力</span><span class="dc-en">HOW TO ACQUIRE · 怎么获客</span></div>
+            <div class="dc-role">帮助素材、智投、验证，把 ROI 转化到收入增量</div>
+            <div class="dc-list">
+              <div class="dc-item">影响度诊断（智投红点锁定）</div>
+              <div class="dc-item">智能三阶诊断（点线面逐层）</div>
+              <div class="dc-item">付费工具视图（ADQ 一览诊断）</div>
+              <div class="dc-item">营销链路表达（流转结构）</div>
+            </div>
+            <div class="dc-deliver">交付：adata 影响度诊断卡 + 三阶行动清单</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="infra-arrow">▼</div>
+
+    <!-- Layer C: 品牌人群资产沉淀 -->
+    <div class="infra-layer">
+      <div class="infra-label">品牌人群<br>资产沉淀</div>
+      <div class="infra-content">
+        <div class="r-flow">
+          <div class="r-step" style="background:#8fb4e6;"><div class="r-code">R0</div><div class="r-name">机会人群</div></div>
+          <div class="r-step" style="background:#6b9be0;"><div class="r-code">R1</div><div class="r-name">触达</div></div>
+          <div class="r-step" style="background:#4e83d4;"><div class="r-code">R2</div><div class="r-name">回应</div></div>
+          <div class="r-step" style="background:#3a6cc0;"><div class="r-code">R3</div><div class="r-name">共鸣</div></div>
+          <div class="r-step" style="background:#2b5399;"><div class="r-code">R4</div><div class="r-name">行动</div></div>
+          <div class="r-step" style="background:#1e3d72;"><div class="r-code">R5</div><div class="r-name">信赖</div></div>
+        </div>
+        <div class="infra-tagline">品类 / 品牌人群，<b>看清、看准、看透</b></div>
+      </div>
+    </div>
+
+      <!-- 反哺回路：人群资产 → 四力诊断与动作优化 -->
+      <div class="loopback">
+        <span class="lb-arrow-top">◀</span>
+        <span class="lb-text">人群资产反哺</span>
+        <span class="lb-arrow-bottom">▲</span>
+      </div>
+    </div><!-- /infra-cycle -->
+
+    <div class="infra-loop-note">⟲ <b>经营飞轮</b>：沉淀的 5R 人群资产回流至四力诊断，持续校准货盘 / 内容 / 经营 / 投放动作 —— <b>诊断 → 经营 → 沉淀 → 再诊断</b>，越转越准</div>
   </div>
 
 </div>
